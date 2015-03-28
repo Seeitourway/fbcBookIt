@@ -59,11 +59,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="_EF6_1ContextViaFactoryExecutionStatistics.txt">
-      <DependentUpon>ContextViaFactory.tt</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{ec4bb4fe-5273-452e-97f8-64eca4c75d8f}</Project>
       <Name>Entity</Name>

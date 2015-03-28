@@ -52,16 +52,10 @@
 	vGetByNamedColumn = 
 		new List<string>
 		{
-//			"Client:ClientName"
-//			, "Client:ClientName,Active"
-//			, "ActivityToPayment:ActivityId,PaymentId"
 		};
 	vDeleteByNamedColumn = 
 		new List<string>
 		{
-//			"Client:ClientName"
-//			, "Client:ClientName,Active"
-//			, "ActivityToPayment:ActivityId,PaymentId"
 		};
 	vTableList = 
 		new List<string>
@@ -91,7 +85,7 @@
 	const InflectTo ENTITY_INFLECT_TO = InflectTo.Unchanged;
 	const bool ALLOW_EF_MODIFICATIONS = true;
 	const bool USE_DOT_NET_SAFE_NAME = false;
-	const bool WRITE_EXECUTION_STATISTICS = true;
+	const bool WRITE_EXECUTION_STATISTICS = false;
 
 	const string DB_META_DATA_LOCAL_FILENAME = "";	// Change this for a local file
 	AWEDbMetaDataStorageType vDbMetaDataStorageType = 
