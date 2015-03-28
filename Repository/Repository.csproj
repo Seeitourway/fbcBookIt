@@ -44,34 +44,55 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookLoanR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="BookRequestR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="CopyR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="CopyStatusR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="DistrictR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="FormatTypeR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
-    <Compile Include="IStudentR.cs" />
     <Compile Include="LoanStatusR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryDIEF6_1.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestStatusR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="SchoolR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentTeacherSchoolR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="TeacherR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
     <Compile Include="TitleR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VolumeR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VolumeStatusR.generated.cs">
+      <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +109,12 @@
       <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="RepositoryDIEF6_1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RepositoryDIEF6_1.generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

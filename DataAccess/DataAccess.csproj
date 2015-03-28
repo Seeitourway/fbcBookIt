@@ -45,14 +45,22 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContextViaFactory.generated.cs">
+    <Compile Include="BookInventory.generated.cs">
+      <DependentUpon>ContextViaFactory.tt</DependentUpon>
     </Compile>
-    <Compile Include="FbcBookIt.generated.cs">
+    <Compile Include="ContextViaFactory.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContextViaFactory.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ContextViaFactory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ContextViaFactory.generated.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

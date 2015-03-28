@@ -30,12 +30,12 @@ namespace FbcBookIt.Entity
 		// Non-Primary columns
 		// Foreign Key to BookRequest
 		public System.Guid BookRequestID { get; set; }
-		// Foreign Key to Copy
-		public System.Guid CopyID { get; set; }
 		public System.DateTime? InDate { get; set; }
 		public System.DateTime? OutDate { get; set; }
 		// Foreign Key to LoanStatus
 		public System.Int32 StatusID { get; set; }
+		// Foreign Key to Volume
+		public System.Guid VolumeID { get; set; }
 	
 	}
 	
@@ -49,10 +49,10 @@ namespace FbcBookIt.Entity
 			// Map property to column
 			Property(t => t.BookLoanId).HasColumnName("BookLoanId");
 			Property(t => t.BookRequestID).HasColumnName("BookRequestID");
-			Property(t => t.CopyID).HasColumnName("CopyID");
 			Property(t => t.InDate).HasColumnName("InDate");
 			Property(t => t.OutDate).HasColumnName("OutDate");
 			Property(t => t.StatusID).HasColumnName("StatusID");
+			Property(t => t.VolumeID).HasColumnName("VolumeID");
 	
 			// Primary Key
 			HasKey(t => t.BookLoanId);
@@ -64,10 +64,10 @@ namespace FbcBookIt.Entity
 			Property(t => t.BookRequestID)
 				.IsRequired();
 	
-			Property(t => t.CopyID)
+			Property(t => t.StatusID)
 				.IsRequired();
 	
-			Property(t => t.StatusID)
+			Property(t => t.VolumeID)
 				.IsRequired();
 	
 	
@@ -111,20 +111,20 @@ namespace FbcBookIt.Entity
 		{
 			aTo.BookLoanId = aFrom.BookLoanId;
 			aTo.BookRequestID = aFrom.BookRequestID;
-			aTo.CopyID = aFrom.CopyID;
 			aTo.InDate = aFrom.InDate;
 			aTo.OutDate = aFrom.OutDate;
 			aTo.StatusID = aFrom.StatusID;
+			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
 		public static void AssignToNoPrimaryKeys
 			(BookLoan aFrom, BookLoan aTo)
 		{
 			aTo.BookRequestID = aFrom.BookRequestID;
-			aTo.CopyID = aFrom.CopyID;
 			aTo.InDate = aFrom.InDate;
 			aTo.OutDate = aFrom.OutDate;
 			aTo.StatusID = aFrom.StatusID;
+			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
 		public static void AssignToJustPrimaryKeys
@@ -138,20 +138,20 @@ namespace FbcBookIt.Entity
 		{
 			aTo.BookLoanId = aFrom.BookLoanId;
 			aTo.BookRequestID = aFrom.BookRequestID;
-			aTo.CopyID = aFrom.CopyID;
 			aTo.InDate = aFrom.InDate;
 			aTo.OutDate = aFrom.OutDate;
 			aTo.StatusID = aFrom.StatusID;
+			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
 		public static void AssignFromNoPrimaryKeys
 			(this BookLoan aTo, BookLoan aFrom)
 		{
 			aTo.BookRequestID = aFrom.BookRequestID;
-			aTo.CopyID = aFrom.CopyID;
 			aTo.InDate = aFrom.InDate;
 			aTo.OutDate = aFrom.OutDate;
 			aTo.StatusID = aFrom.StatusID;
+			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
 		public static void AssignFromJustPrimaryKeys

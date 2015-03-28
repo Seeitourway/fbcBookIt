@@ -91,7 +91,7 @@ namespace FbcBookIt.Repository
 		: BASE_RepositoryDbTable, IBookRequestR
 	{
 		public BookRequestR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	

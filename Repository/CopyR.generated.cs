@@ -85,13 +85,21 @@ namespace FbcBookIt.Repository
 	
 		void Delete(System.Guid aCopyId);
 	
+		bool IsActive(System.Guid aCopyId);
+	
+		void Remove(System.Guid aCopyId);
+	
+		void Restore(System.Guid aCopyId);
+	
+		void DeleteAllRemoved();
+	
 	}
 	
 	public partial class CopyR
 		: BASE_RepositoryDbTable, ICopyR
 	{
 		public CopyR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
@@ -231,6 +239,60 @@ namespace FbcBookIt.Repository
 				return; // Record is already gone, no worries!
 			}
 			_Db.CopyDb.Remove(vRec);
+			_Db.SaveChanges();
+		}
+	
+		public bool IsActive(System.Guid aCopyId)
+		{
+			Copy vRec = 
+				_Db.CopyDb.FirstOrDefault(aRec => aRec.CopyId == aCopyId);
+			bool vResult = (vRec != null) && vRec.Active;
+			return vResult;
+		}
+	
+		public void Remove(System.Guid aCopyId)
+		{
+			Copy vRec = 
+				_Db.CopyDb.FirstOrDefault(aRec => aRec.CopyId == aCopyId);
+			if (vRec == null)
+			{
+				return;
+			}
+			vRec.Active = false;
+			_Db.SaveChanges();
+		}
+	
+		public void Restore(System.Guid aCopyId)
+		{
+			Copy vRec = 
+				_Db.CopyDb.FirstOrDefault(aRec => aRec.CopyId == aCopyId);
+			if (vRec == null)
+			{
+				return;
+			}
+			vRec.Active = true;
+			_Db.SaveChanges();
+		}
+	
+		/// <remark>
+		/// Note that this method in EF is Really Ugly in that EF requires that 
+		/// each record to be deleted must first be brought into the context, then 
+		/// "removed", then SaveChanges called to actually delete the record(s).
+		/// For a large number of records this gets memory intensive.
+		/// </remark>
+		public void DeleteAllRemoved()
+		{
+			List<Copy> vToDelete =
+				_Db.CopyDb
+					.Where(aRec => !aRec.Active).ToList();
+			if (vToDelete.Count < 1)
+			{
+				return;
+			}
+			foreach (Copy vRec in vToDelete)
+			{
+				_Db.CopyDb.Remove(vRec);
+			}
 			_Db.SaveChanges();
 		}
 	

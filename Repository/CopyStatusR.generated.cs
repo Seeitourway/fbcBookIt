@@ -91,7 +91,7 @@ namespace FbcBookIt.Repository
 		: BASE_RepositoryDbTable, ICopyStatusR
 	{
 		public CopyStatusR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
