@@ -62,8 +62,8 @@
 	const CodeSectionType ENTITY_ROOT_HANDLER_CODE_SECTION = CodeSectionType.Middle;
 	const bool INCLUDE_PRIMARY_KEY_REC = true;
 	const bool ENTITY_USE_COMB_GUID = true;
-	const InflectTo DBSET_INFLECT_TO = InflectTo.Singular;
-	const InflectTo ENTITY_INFLECT_TO = InflectTo.Singular;
+	const InflectTo DBSET_INFLECT_TO = InflectTo.Unchanged;
+	const InflectTo ENTITY_INFLECT_TO = InflectTo.Unchanged;
 	const bool ALLOW_EF_MODIFICATIONS = false;
 	const bool FACILITATE_LAZY_LOADING = false;
 	const bool USE_DOT_NET_SAFE_NAME = false;

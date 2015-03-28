@@ -22,7 +22,7 @@ namespace FbcBookIt.Entity
 	using System.Collections.Generic;
 	
 	// Table Name: LoanStatus
-	public partial class LoanStatu: BASE_Entity
+	public partial class LoanStatus: BASE_Entity
 	{
 		// Primary Keys
 		public System.Int32 LoanStatusId { get; set; }
@@ -32,9 +32,9 @@ namespace FbcBookIt.Entity
 	
 	}
 	
-	public class LoanStatuMap: EntityTypeConfiguration<LoanStatu>
+	public class LoanStatusMap: EntityTypeConfiguration<LoanStatus>
 	{
-		public LoanStatuMap()
+		public LoanStatusMap()
 		{
 			// Map entity to table
 			ToTable("LoanStatus");
@@ -54,10 +54,10 @@ namespace FbcBookIt.Entity
 		}
 	}
 	
-	public static partial class LoanStatuHelper
+	public static partial class LoanStatusHelper
 	{
 		public static void AssignNewPK
-			(this LoanStatu aLoanStatu)
+			(this LoanStatus aLoanStatus)
 		{
 		}
 	
@@ -69,56 +69,56 @@ namespace FbcBookIt.Entity
 		/// fashion NOT governed by the database server.
 		/// </summary>
 		public static bool IsNew
-			(this LoanStatu aLoanStatu)
+			(this LoanStatus aLoanStatus)
 		{
-			if (aLoanStatu == null)
+			if (aLoanStatus == null)
 			{
 				throw 
 					new ArgumentNullException
 						(
-							"aLoanStatu"
+							"aLoanStatus"
 							, "Entity instance cannot be null!"
 						);
 			}
 			bool vResult = 
-				(aLoanStatu.LoanStatusId < 1);
+				(aLoanStatus.LoanStatusId < 1);
 			return vResult;
 		}
 	
 		public static void AssignTo
-			(LoanStatu aFrom, LoanStatu aTo)
+			(LoanStatus aFrom, LoanStatus aTo)
 		{
 			aTo.LoanStatusId = aFrom.LoanStatusId;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignToNoPrimaryKeys
-			(LoanStatu aFrom, LoanStatu aTo)
+			(LoanStatus aFrom, LoanStatus aTo)
 		{
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignToJustPrimaryKeys
-			(LoanStatu aFrom, LoanStatu aTo)
+			(LoanStatus aFrom, LoanStatus aTo)
 		{
 			aTo.LoanStatusId = aFrom.LoanStatusId;
 		}
 	
 		public static void AssignFrom
-			(this LoanStatu aTo, LoanStatu aFrom)
+			(this LoanStatus aTo, LoanStatus aFrom)
 		{
 			aTo.LoanStatusId = aFrom.LoanStatusId;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignFromNoPrimaryKeys
-			(this LoanStatu aTo, LoanStatu aFrom)
+			(this LoanStatus aTo, LoanStatus aFrom)
 		{
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignFromJustPrimaryKeys
-			(this LoanStatu aTo, LoanStatu aFrom)
+			(this LoanStatus aTo, LoanStatus aFrom)
 		{
 			aTo.LoanStatusId = aFrom.LoanStatusId;
 		}
