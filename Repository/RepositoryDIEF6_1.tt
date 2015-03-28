@@ -66,6 +66,7 @@
 			, "Teacher:Active"
 			, "Title:Active"
 			, "StudentTeacherSchool:StudentId,TeacherId"
+			, "StudentTeacherSchool:TeacherId"
 		};
 	vDeleteByNamedColumn = 
 		new List<string>

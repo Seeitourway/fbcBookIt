@@ -14,7 +14,7 @@
 	IntegratedSecurity = true;
 	User = string.Empty;
 	Pwd = string.Empty;
-	Table = "CopyStatus";
+	Table = "VolumeStatus";
 	ValueColumn = Table + "Id";
 	TextColumn = "StatusDescription";
 #>
@@ -73,7 +73,7 @@ private void BuildEnum()
 			WriteLine(vEnumLine);
 		}
 */
-				PopIndent();
+		PopIndent();
 		vReader.Close();
 		vConnection.Close();
 	}

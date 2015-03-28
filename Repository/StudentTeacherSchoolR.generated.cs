@@ -54,6 +54,12 @@ namespace FbcBookIt.Repository
 			, System.Guid aTeacherID
 		);
 	
+		// GetByTeacherID will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		StudentTeacherSchool GetByTeacherID(System.Guid aTeacherID);
+	
+			List<StudentTeacherSchool> GetByTeacherIDAsList(System.Guid aTeacherID);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -181,6 +187,26 @@ namespace FbcBookIt.Repository
 								(aRec.StudentID == aStudentID)
 									&& (aRec.TeacherID == aTeacherID)
 					).ToList();
+			return vResult;
+		}
+	
+		public StudentTeacherSchool GetByTeacherID(System.Guid aTeacherID)
+		{
+			StudentTeacherSchool vResult;
+			vResult = 
+				_Db.StudentTeacherSchoolDb
+					.Where(aRec => aRec.TeacherID == aTeacherID)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<StudentTeacherSchool> GetByTeacherIDAsList(System.Guid aTeacherID)
+		{
+			List<StudentTeacherSchool> vResult;
+			vResult = 
+				_Db.StudentTeacherSchoolDb
+					.Where(aRec => aRec.TeacherID == aTeacherID)
+					.ToList();
 			return vResult;
 		}
 	
