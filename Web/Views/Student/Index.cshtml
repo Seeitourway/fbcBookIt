@@ -1,0 +1,145 @@
+﻿@model FbcBookIt.Entity.Student
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("SaveStudent", "Student", FormMethod.Post, new { id = "SaveStudent" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Student</h4>
+        <hr />
+        @if (Model != null)
+        {
+            <input type="hidden" id="StudentID" name="StudentID" value="@Model.StudentID" />
+        }
+        else
+        {
+            <input type="hidden" id="StudentID" name="StudentID" value="0" />
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Grade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Grade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Grade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VisionDiagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.VisionDiagnosis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VisionDiagnosis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div id="studentList" class="hidden">
+    
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $('#FirstName').focus();
+
+        $('#DateOfBirth').on('focusout', function () {
+            var fname = $('#FirstName').val();
+            var lname = $('#LastName').val();
+            var dob = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: '/Student/getStudentByNameAndDOB',
+                datatype: 'html',
+                data: { 'FirstName': fname, 'LastName': lname, 'DateOfBirth': dob },
+                success: function (result) {
+                    // fill in kid data if result has them
+                    if (result) {
+                        $('#studentList').removeClass('hidden').html(result);
+                    }
+                    else {
+                        // do nothing, let them continue
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#studentList').on('click', '.pickStudent', function (e) {
+                if (e.button !== 0) {
+                    return; // not a left click
+                }
+                e.preventDefault(); // I got it
+                var that = $(this);
+                var tr = that.closest('tr');
+                var studentId = tr.data('id');
+                // do something
+                $('#SaveStudent')[0].reset();
+                $('#StudentID').val(studentId);
+                $('#FirstName').val(tr.find(".fname").text().trim());
+                $('#MiddleName').val(tr.find(".mname").text().trim());
+                $('#LastName').val(tr.find(".lname").text().trim());
+                $('#DateOfBirth').val(tr.find(".dob").text().trim());
+                $('#Gender').val(tr.find(".gender").text().trim());
+                $('#Grade').val(tr.find(".grade").text().trim());
+                $('#VisionDiagnosis').val(tr.find(".diagnosis").text().trim());
+            });
+        });
+    </script>
+}
