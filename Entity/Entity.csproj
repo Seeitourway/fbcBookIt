@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -8,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FbcBookIt.Entity</RootNamespace>
     <AssemblyName>FbcBookIt.Entity</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -42,25 +43,43 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookLoan.generated.cs"></Compile>
-    <Compile Include="BookRequest.generated.cs"></Compile>
-    <Compile Include="BuildEnumFromTableCopyStatus.cs"></Compile>
-    <Compile Include="BuildEnumFromTableFormatType.cs"></Compile>
-    <Compile Include="BuildEnumFromTableLoanStatus.cs"></Compile>
-    <Compile Include="BuildEnumFromTableRequestStatus.cs"></Compile>
-    <Compile Include="Copy.generated.cs"></Compile>
-    <Compile Include="CopyStatus.generated.cs"></Compile>
-    <Compile Include="District.generated.cs"></Compile>
-    <Compile Include="EntityEF6_1.generated.cs"></Compile>
-    <Compile Include="FormatType.generated.cs"></Compile>
-    <Compile Include="LoanStatus.generated.cs"></Compile>
+    <Compile Include="BookLoan.generated.cs">
+    </Compile>
+    <Compile Include="BookRequest.generated.cs">
+    </Compile>
+    <Compile Include="BuildEnumFromTableCopyStatus.cs">
+    </Compile>
+    <Compile Include="BuildEnumFromTableFormatType.cs">
+    </Compile>
+    <Compile Include="BuildEnumFromTableLoanStatus.cs">
+    </Compile>
+    <Compile Include="BuildEnumFromTableRequestStatus.cs">
+    </Compile>
+    <Compile Include="Copy.generated.cs">
+    </Compile>
+    <Compile Include="CopyStatus.generated.cs">
+    </Compile>
+    <Compile Include="District.generated.cs">
+    </Compile>
+    <Compile Include="EntityEF6_1.generated.cs">
+    </Compile>
+    <Compile Include="FormatType.generated.cs">
+    </Compile>
+    <Compile Include="LoanStatus.generated.cs">
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestStatus.generated.cs"></Compile>
-    <Compile Include="School.generated.cs"></Compile>
-    <Compile Include="Student.generated.cs"></Compile>
-    <Compile Include="StudentTeacherSchool.generated.cs"></Compile>
-    <Compile Include="Teacher.generated.cs"></Compile>
-    <Compile Include="Title.generated.cs"></Compile>
+    <Compile Include="RequestStatus.generated.cs">
+    </Compile>
+    <Compile Include="School.generated.cs">
+    </Compile>
+    <Compile Include="Student.generated.cs">
+    </Compile>
+    <Compile Include="StudentTeacherSchool.generated.cs">
+    </Compile>
+    <Compile Include="Teacher.generated.cs">
+    </Compile>
+    <Compile Include="Title.generated.cs">
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
