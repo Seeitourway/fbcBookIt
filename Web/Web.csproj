@@ -291,6 +291,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{ec4bb4fe-5273-452e-97f8-64eca4c75d8f}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{fdbf5c1f-2ae2-42e3-adac-9cded31af2c8}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{B6941C42-C1A4-4B01-892B-9E275A35F393}</Project>
       <Name>Utility</Name>
