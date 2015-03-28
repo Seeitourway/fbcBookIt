@@ -1,0 +1,120 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\Microsoft\Entity Framework Tools\Templates\Includes\EF.Utility.CS.ttinclude"#><#
+	code = new CodeGenerationTools(this);
+	codeNamespace = code.VsNamespaceSuggestion();
+	Server = @".\SqlExpress";
+	Database = "FbcBookIt";	
+	IntegratedSecurity = true;
+	User = string.Empty;
+	Pwd = string.Empty;
+	Table = "CopyStatus";
+	ValueColumn = Table + "Id";
+	TextColumn = "StatusDescription";
+#>
+namespace <#=codeNamespace ?? "codeNamespace boo boo"#>
+{
+
+	public enum <#= CreateValidIdentifier(Table) #>E
+	{
+	<#
+		if (Validate())
+		{
+			BuildEnum();
+		}	
+	#>
+	}
+
+}
+<#+
+private bool Validate()
+{
+	if (string.IsNullOrEmpty(Server)) { Error("No Server was specified"); }
+	if (string.IsNullOrEmpty(Database)) { Error("No database was specified"); }
+	if (!IntegratedSecurity)
+	{
+		if (string.IsNullOrEmpty(User)) { Error("No User Id was specified"); }
+		if (string.IsNullOrEmpty(Pwd)) { Error("No Password was specified"); }
+	}
+	if (string.IsNullOrEmpty(Table)) { Error("No Table was specified"); }
+	if (string.IsNullOrEmpty(ValueColumn)) { Error("The ValueColumn was not specified"); }
+	if (string.IsNullOrEmpty(TextColumn)) { Error("The TextColumn was not specified"); }
+
+	return !this.Errors.HasErrors;
+}
+
+private void BuildEnum()
+{
+	using (SqlConnection vConnection = new SqlConnection(BuildConnectionString()))
+	{
+		SqlCommand vCmd = vConnection.CreateCommand();
+		vCmd.CommandText = string.Format("SELECT {0}, {1} FROM {2}", ValueColumn, TextColumn, Table);
+		vCmd.CommandType = System.Data.CommandType.Text;
+		vConnection.Open();
+		SqlDataReader vReader = vCmd.ExecuteReader();
+		PushIndent("\t\t");
+		WriteLine("\tUnknown = 0");
+		while (vReader.Read())
+		{
+			string vEnumLine = 
+				string.Format
+					(
+						", {0} = {1}"
+						, CreateValidIdentifier(vReader[TextColumn].ToString())
+						, vReader[ValueColumn].ToString()
+					);
+			WriteLine(vEnumLine);
+		}
+		PopIndent();
+		vReader.Close();
+		vConnection.Close();
+	}
+}
+
+private string CreateValidIdentifier(string aInput)
+{
+	string vPattern = @"[\.\[\]\s]";
+	Regex vRegEx = new Regex(vPattern, RegexOptions.None);
+	string vResult = vRegEx.Replace(aInput, "");
+	return vResult;
+}
+
+private string BuildConnectionString()
+{
+	SqlConnectionStringBuilder vCsb = new SqlConnectionStringBuilder();
+	vCsb.DataSource = Server;
+	vCsb.InitialCatalog = Database;
+	vCsb.IntegratedSecurity = IntegratedSecurity;
+	if (!IntegratedSecurity)
+	{
+		vCsb.UserID = User;
+		vCsb.Password = Pwd;
+	}
+	string vResult = vCsb.ConnectionString;
+	return vResult;
+}
+
+#>
+<#+
+// ----------------------------------------------------------------------------
+// Declarations
+// ----------------------------------------------------------------------------
+CodeGenerationTools code;
+string codeNamespace;
+
+private string Server;
+private string Database;
+private bool IntegratedSecurity;
+private string User;
+private string Pwd;
+
+private string Table;
+private string ValueColumn;
+private string TextColumn;
+#>

@@ -1,0 +1,76 @@
+﻿<#@ template hostSpecific="true" debug="true" language="C#"#>
+<#
+	// Multi-File: Always overwrite
+	/*
+			Creates a set of entities based on the meta data found in the selected
+			meta data source.
+	*/
+#>
+<#@ include file="c:\AWETools\T4\Cmn\_InitialDeclarations.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\_StdOutputExtension.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\AssembliesAndNamespaces.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\AssembliesAndNamespacesAWE.ttinclude" once="true" #>
+<#@ assembly name="C:\AWETools\AWEFramework\Newtonsoft.Json.dll" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ include file="c:\AWETools\T4\Cmn\_FinalDeclarations.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\CodeGenerationToolsAWE.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\EF6\EF6_1\Cmn\EF6.Utility.CS.T4.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\Utility.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\UtilityMulti-File.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\UtilityAWE.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\_Cmn\WritePrimaryKeysAsList.ttinclude" once="true" #>
+<#@ include file="c:\AWETools\T4\Cmn\WriteExecutionStatistics.ttinclude" once="true" #>
+<#@ include file="C:\AWETools\T4\Cmn\Entity\Entity_GenerateNewPK.ttinclude" once="true"#>
+<#@ include file="C:\AWETools\T4\Cmn\Entity\Entity_IsNew.ttinclude" once="true"#>
+<#@ include file="C:\AWETools\T4\Cmn\Entity\Entity_WriteRootEntityHandler.ttinclude" once="true"#>
+<#@ include file="C:\AWETools\T4\EF6\EF6_1\DbFirst\Entity\TTInclude\EntityEF6_1_LeftRight.ttinclude" once="true"#>
+<#@ include file="C:\AWETools\T4\EF6\EF6_1\DbFirst\Entity\TTInclude\EntityEF6_1_LeftRightPrimaryKeyRec.ttinclude" once="true"#>
+<#@ include file="C:\AWETools\T4\EF6\EF6_1\DbFirst\Entity\TTInclude\EntityEF6_1_WriteEF6_1Entities.ttinclude" once="true"#>
+<#@ include file="C:\AWETools\T4\EF6\EF6_1\DbFirst\Entity\TTInclude\EntityEF6_1_WriteEF6_1EntityMaps.ttinclude" once="true"#>
+<#@ include file="C:\AWETools\T4\EF6\EF6_1\DbFirst\Entity\TTInclude\EntityEF6_1__Core.ttinclude" once="true" #>
+<#
+	vTableList = 
+		new List<string>
+		{
+		};
+	const AWEFilterAction TABLE_FILTER_ACTION = 
+			AWEFilterAction.IncludeAll;
+	vViewList = 
+		new List<string>
+		{
+		};
+	const AWEFilterAction VIEW_FILTER_ACTION = 
+			AWEFilterAction.IncludeAll;
+	vStoredProcedureList = 
+		new List<string>
+		{
+		};
+	const AWEFilterAction STORED_PROCEDURE_FILTER_ACTION = 
+			AWEFilterAction.IncludeAll;
+#>
+<#@ include file="C:\AWETools\T4\EF6\EF6_1\DbFirst\Entity\TTInclude\EntityEF6_1.ttinclude" once="true" #>
+<#+
+	const bool INCLUDE_PARENT_INSTANCE = false;
+	const bool INCLUDE_NAVIGATION_PROPERTIES = false;
+#>
+<#+
+	const StandardProject STANDARD_PROJECT = StandardProject.Web;	// Change this
+	const CodeSectionType ENTITY_GENERATE_NEW_PK_CODE_SECTION = CodeSectionType.Header;
+	const CodeSectionType ENTITY_IS_NEW_CODE_SECTION = CodeSectionType.Middle;
+	const CodeSectionType ENTITY_LEFT_RIGHT_PRIMARY_KEY_CODE_SECTION = CodeSectionType.Middle;
+	const CodeSectionType ENTITY_LEFT_RIGHT_CODE_SECTION = CodeSectionType.Footer;
+	const CodeSectionType ENTITY_ROOT_HANDLER_CODE_SECTION = CodeSectionType.Middle;
+	const bool INCLUDE_PRIMARY_KEY_REC = true;
+	const bool ENTITY_USE_COMB_GUID = true;
+	const InflectTo DBSET_INFLECT_TO = InflectTo.Singular;
+	const InflectTo ENTITY_INFLECT_TO = InflectTo.Singular;
+	const bool ALLOW_EF_MODIFICATIONS = false;
+	const bool FACILITATE_LAZY_LOADING = false;
+	const bool USE_DOT_NET_SAFE_NAME = false;
+	const bool WRITE_EXECUTION_STATISTICS = false;
+	const bool ENTITY_IS_DTO = false;
+
+	const string DB_META_DATA_LOCAL_FILENAME = "";	// Change this for a local file
+	AWEDbMetaDataStorageType vDbMetaDataStorageType = 
+		AWEDbMetaDataStorageType.LocalDb;
+#>
