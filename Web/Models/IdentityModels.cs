@@ -29,5 +29,7 @@ namespace Web.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<FbcBookIt.Entity.Student> Students { get; set; }
     }
 }

@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="FormatTypeR.generated.cs">
     </Compile>
+    <Compile Include="IStudentR.cs" />
     <Compile Include="LoanStatusR.generated.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
