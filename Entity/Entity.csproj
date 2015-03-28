@@ -51,22 +51,22 @@
     <Compile Include="BookRequest.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>
-    <Compile Include="BuildEnumFromTableCopyStatus1.cs">
+    <Compile Include="BuildEnumFromTableCopyStatus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BuildEnumFromTableCopyStatus.tt</DependentUpon>
     </Compile>
-    <Compile Include="BuildEnumFromTableFormatType1.cs">
+    <Compile Include="BuildEnumFromTableFormatType.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BuildEnumFromTableFormatType.tt</DependentUpon>
     </Compile>
-    <Compile Include="BuildEnumFromTableLoanStatus1.cs">
+    <Compile Include="BuildEnumFromTableLoanStatus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BuildEnumFromTableLoanStatus.tt</DependentUpon>
     </Compile>
-    <Compile Include="BuildEnumFromTableRequestStatus1.cs">
+    <Compile Include="BuildEnumFromTableRequestStatus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BuildEnumFromTableRequestStatus.tt</DependentUpon>
@@ -126,19 +126,19 @@
     <None Include="App.config" />
     <None Include="BuildEnumFromTableCopyStatus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BuildEnumFromTableCopyStatus1.cs</LastGenOutput>
+      <LastGenOutput>BuildEnumFromTableCopyStatus.cs</LastGenOutput>
     </None>
     <None Include="BuildEnumFromTableFormatType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BuildEnumFromTableFormatType1.cs</LastGenOutput>
+      <LastGenOutput>BuildEnumFromTableFormatType.cs</LastGenOutput>
     </None>
     <None Include="BuildEnumFromTableLoanStatus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BuildEnumFromTableLoanStatus1.cs</LastGenOutput>
+      <LastGenOutput>BuildEnumFromTableLoanStatus.cs</LastGenOutput>
     </None>
     <None Include="BuildEnumFromTableRequestStatus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BuildEnumFromTableRequestStatus1.cs</LastGenOutput>
+      <LastGenOutput>BuildEnumFromTableRequestStatus.cs</LastGenOutput>
     </None>
     <None Include="BuildEnumFromTableVolumeStatus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
