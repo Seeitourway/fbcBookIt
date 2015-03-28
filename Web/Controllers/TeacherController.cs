@@ -12,7 +12,9 @@ namespace Web.Controllers
     {
         public readonly ITeacherR _teacherR;
         public readonly IStudentR _studentR;
-        public TeacherController(ITeacherR aTeacherR, IStudentR aStudentR)
+        public readonly IStudentTeacherSchoolR _stsR;
+
+        public TeacherController(ITeacherR aTeacherR, IStudentR aStudentR, IStudentTeacherSchoolR aSTSR)
         {
             if (aTeacherR == null)
             {
@@ -22,9 +24,14 @@ namespace Web.Controllers
             {
                 throw new ArgumentNullException("aStudentR");
             }
+            if (aSTSR == null)
+            {
+                throw new ArgumentNullException("aSTSR");
+            }
 
             _teacherR = aTeacherR;
             _studentR = aStudentR;
+            _stsR = aSTSR;
         }
 
         // GET: Teacher
@@ -32,6 +39,12 @@ namespace Web.Controllers
         {
             List<Student> studs =_studentR.GetAll();
             return View(studs);
-        }      
+        }
+
+        public ActionResult ReleaseStudent(string studentID)
+        {
+            
+            return null;
+        }
     }
 }

@@ -31,5 +31,9 @@ namespace Web.Models
         }
 
         public System.Data.Entity.DbSet<FbcBookIt.Entity.Student> Students { get; set; }
+
+        public System.Data.Entity.DbSet<FbcBookIt.Entity.BookRequest> BookRequests { get; set; }
+
+        public System.Data.Entity.DbSet<FbcBookIt.Entity.Title> Titles { get; set; }
     }
 }

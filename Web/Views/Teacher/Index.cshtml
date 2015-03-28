@@ -1,15 +1,126 @@
 ﻿@model IEnumerable<FbcBookIt.Entity.Student>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Request Books";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Index", "Student")
-</p>
+<div id="studentList">
+    @Html.Partial("_BookRequest", new FbcBookIt.Entity.Title())
+</div>
 
 @Html.Partial("_studentList", Model)
 
+@section scripts
+{
 
+    <script>
+        $(document).ready(function () {
+            $('#bookRequestModal').modal('hide');
+            $('#bookResults').DataTable();
+            $('#studentList').on('click', '.pickStudent', function (e) {
+                if (e.button !== 0) {
+                    return; // not a left click
+                }
+                var that = $(this);
+                var tr = that.closest('tr');
+                var studentId = tr.data('id');
+                // do something
+                
+                $('#StudentID').val(studentId);                
+            });
+        });
+
+        $('#releaseStudent').on('click', function () {
+            var that = $(this);
+            var tr = that.closest('tr');
+            var studentID = tr.data('id');
+
+            $.ajax({
+                type: 'POST',
+                url: '/Teacher/ReleaseStudent',
+                data: { "StudentID": studentID },
+                datatype: 'json',
+                success: function(result)
+                {
+                    if(result)
+                    {
+                        //
+                    }
+                }
+            });
+        });
+
+        $(document).on('click', '.pickStudent', function (e) {
+            if(e.button !== 0)
+            {
+                return; // not a left click
+            }
+            
+            var that = $(this);
+            var tr = that.closest('tr');
+            $('#modalStudentID').val(tr.data('id'));
+            $('#bookRequestModal').modal('show');
+        });
+
+        $('#bookRequestModal').on('shown.bs.modal', function () {
+            $('#ISBN').focus();
+        })
+
+        $('#Close').on('click', function () {
+            $(this).closest('form')[0].reset();
+            $('#cover').attr('src', '#');
+        });
+
+        $('#Search').on('click', function () {
+            var isbn = $('#ISBN').val();
+            var searchType = 'isbn';
+            if (isbn)
+            {
+               
+            }
+            else
+            {
+                searchType = 'intitle'
+                isbn = $('#Name').val();
+            }
+
+            $.ajax({
+                type: "GET",
+                url: 'https://www.googleapis.com/books/v1/volumes?q='+ searchType +':'+ encodeURIComponent(isbn),
+                datatype: 'json',
+                success: function (result) {
+
+                    $(function () {
+                        $.each(result.items, function (i, item) {
+                            var $tr = $('<tr>').append(
+                                $('<td>').text(item.volumeInfo.title),
+                                $('<td>').text(item.volumeInfo.industryIdentifiers[0].identifier),
+                                $('<td>').text(item.accessInfo.textToSpeechPermission)
+                            ).appendTo('#bookResults');
+                        });
+                    });
+
+                    $('#books').removeClass('hidden');
+                    //if (result) {
+                    //    if($('#ISBN').val())
+                    //    {
+                    //        $('#Name').val(result.items[0].volumeInfo.title);
+                    //    }
+                    //    else
+                    //    {
+                    //        $('#ISBN').val(result.items[0].volumeInfo.industryIdentifiers[0].identifier);
+                    //    }
+                    //    $('#cover').attr('src', result.items[0].volumeInfo.imageLinks.thumbnail);
+                    //    $('#tts').val(result.items[0].accessInfo.textToSpeechPermission);
+                    //}
+                    //else {
+                    //    // do nothing, let them continue
+                    //}
+                }
+            });
+        });
+
+    </script>
+}
