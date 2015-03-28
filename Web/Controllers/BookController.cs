@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FbcBookIt.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,26 +7,23 @@ using System.Web.Mvc;
 
 namespace Web.Controllers
 {
-    public readonly IStudentTeacherSchoolR _STSR;
-        public BookController(IStudentR aStudentR, IStudentTeacherSchoolR aSTSR)
+    public class BookController : Controller
+    {
+        public readonly ICopyR _copyR;
+        public BookController(ICopyR aCopyR)
         {
-            if (aStudentR == null)
+            if (aCopyR == null)
             {
                 throw new ArgumentNullException("aStudentR");
             }
-            if (aSTSR == null)
-            {
-                throw new ArgumentNullException("aSTSR");
-            }
-            _StudentR = aStudentR;
-            _STSR = aSTSR;
+            _copyR = aCopyR;
         }
 
-    public class BookController : Controller
-    {
         // GET: Book
-        public ActionResult Index()
+        public ActionResult Index(Guid TeacherId)
         {
+            // get all students by teacher
+
             return View();
         }
 

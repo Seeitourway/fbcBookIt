@@ -1,0 +1,15 @@
+﻿@model IEnumerable<FbcBookIt.Entity.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Index", "Student")
+</p>
+
+@Html.Partial("_studentList", Model)
+
+
