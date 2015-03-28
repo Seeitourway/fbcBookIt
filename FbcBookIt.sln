@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{2681B523-B8C3-4A65-9160-EF3ECB8A9E1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookItAdmin", "BookItAdmin\BookItAdmin.csproj", "{A0F5E55A-FAC6-44EA-9DD9-E101A54A832F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2681B523-B8C3-4A65-9160-EF3ECB8A9E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2681B523-B8C3-4A65-9160-EF3ECB8A9E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2681B523-B8C3-4A65-9160-EF3ECB8A9E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F5E55A-FAC6-44EA-9DD9-E101A54A832F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F5E55A-FAC6-44EA-9DD9-E101A54A832F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F5E55A-FAC6-44EA-9DD9-E101A54A832F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F5E55A-FAC6-44EA-9DD9-E101A54A832F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
