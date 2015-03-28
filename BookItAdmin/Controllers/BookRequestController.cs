@@ -6,27 +6,27 @@ using System.Web.Mvc;
 
 namespace BookItAdmin.Controllers
 {
-    public partial class AccountController : Controller
+    public partial class BookRequestController : Controller
     {
-        // GET: Account
+        // GET: BookRequest
         public virtual ActionResult Index()
         {
             return View();
         }
 
-        // GET: Account/Details/5
+        // GET: BookRequest/Details/5
         public virtual ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Account/Create
+        // GET: BookRequest/Create
         public virtual ActionResult Create()
         {
             return View();
         }
 
-        // POST: Account/Create
+        // POST: BookRequest/Create
         [HttpPost]
         public virtual ActionResult Create(FormCollection collection)
         {
@@ -42,13 +42,13 @@ namespace BookItAdmin.Controllers
             }
         }
 
-        // GET: Account/Edit/5
+        // GET: BookRequest/Edit/5
         public virtual ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Account/Edit/5
+        // POST: BookRequest/Edit/5
         [HttpPost]
         public virtual ActionResult Edit(int id, FormCollection collection)
         {
@@ -64,13 +64,13 @@ namespace BookItAdmin.Controllers
             }
         }
 
-        // GET: Account/Delete/5
+        // GET: BookRequest/Delete/5
         public virtual ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Account/Delete/5
+        // POST: BookRequest/Delete/5
         [HttpPost]
         public virtual ActionResult Delete(int id, FormCollection collection)
         {
