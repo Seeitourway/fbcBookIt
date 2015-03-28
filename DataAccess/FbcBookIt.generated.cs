@@ -32,11 +32,11 @@ namespace FbcBookIt.DataAccess
 		IDbSet<BookLoan> BookLoanDb { get; set; }
 		IDbSet<BookRequest> BookRequestDb { get; set; }
 		IDbSet<Copy> CopyDb { get; set; }
-		IDbSet<CopyStatu> CopyStatuDb { get; set; }
+		IDbSet<CopyStatus> CopyStatusDb { get; set; }
 		IDbSet<District> DistrictDb { get; set; }
 		IDbSet<FormatType> FormatTypeDb { get; set; }
-		IDbSet<LoanStatu> LoanStatuDb { get; set; }
-		IDbSet<RequestStatu> RequestStatuDb { get; set; }
+		IDbSet<LoanStatus> LoanStatusDb { get; set; }
+		IDbSet<RequestStatus> RequestStatusDb { get; set; }
 		IDbSet<School> SchoolDb { get; set; }
 		IDbSet<Student> StudentDb { get; set; }
 		IDbSet<StudentTeacherSchool> StudentTeacherSchoolDb { get; set; }
@@ -67,11 +67,11 @@ namespace FbcBookIt.DataAccess
 			aModelBuilder.Configurations.Add(new BookLoanMap());
 			aModelBuilder.Configurations.Add(new BookRequestMap());
 			aModelBuilder.Configurations.Add(new CopyMap());
-			aModelBuilder.Configurations.Add(new CopyStatuMap());
+			aModelBuilder.Configurations.Add(new CopyStatusMap());
 			aModelBuilder.Configurations.Add(new DistrictMap());
 			aModelBuilder.Configurations.Add(new FormatTypeMap());
-			aModelBuilder.Configurations.Add(new LoanStatuMap());
-			aModelBuilder.Configurations.Add(new RequestStatuMap());
+			aModelBuilder.Configurations.Add(new LoanStatusMap());
+			aModelBuilder.Configurations.Add(new RequestStatusMap());
 			aModelBuilder.Configurations.Add(new SchoolMap());
 			aModelBuilder.Configurations.Add(new StudentMap());
 			aModelBuilder.Configurations.Add(new StudentTeacherSchoolMap());
@@ -92,11 +92,11 @@ namespace FbcBookIt.DataAccess
 		public IDbSet<BookLoan> BookLoanDb { get; set; }
 		public IDbSet<BookRequest> BookRequestDb { get; set; }
 		public IDbSet<Copy> CopyDb { get; set; }
-		public IDbSet<CopyStatu> CopyStatuDb { get; set; }
+		public IDbSet<CopyStatus> CopyStatusDb { get; set; }
 		public IDbSet<District> DistrictDb { get; set; }
 		public IDbSet<FormatType> FormatTypeDb { get; set; }
-		public IDbSet<LoanStatu> LoanStatuDb { get; set; }
-		public IDbSet<RequestStatu> RequestStatuDb { get; set; }
+		public IDbSet<LoanStatus> LoanStatusDb { get; set; }
+		public IDbSet<RequestStatus> RequestStatusDb { get; set; }
 		public IDbSet<School> SchoolDb { get; set; }
 		public IDbSet<Student> StudentDb { get; set; }
 		public IDbSet<StudentTeacherSchool> StudentTeacherSchoolDb { get; set; }

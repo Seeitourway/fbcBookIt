@@ -21,43 +21,43 @@ namespace FbcBookIt.Entity
 	using FbcBookIt.Utility;
 	using System.Collections.Generic;
 	
-	// Table Name: RequestStatus
-	public partial class RequestStatu: BASE_Entity
+	// Table Name: CopyStatus
+	public partial class CopyStatus: BASE_Entity
 	{
 		// Primary Keys
-		public System.Int32 RequestStatusId { get; set; }
+		public System.Int32 CopyStatusId { get; set; }
 	
 		// Non-Primary columns
 		public System.String StatusDescription { get; set; }
 	
 	}
 	
-	public class RequestStatuMap: EntityTypeConfiguration<RequestStatu>
+	public class CopyStatusMap: EntityTypeConfiguration<CopyStatus>
 	{
-		public RequestStatuMap()
+		public CopyStatusMap()
 		{
 			// Map entity to table
-			ToTable("RequestStatus");
+			ToTable("CopyStatus");
 	
 			// Map property to column
-			Property(t => t.RequestStatusId).HasColumnName("RequestStatusId");
+			Property(t => t.CopyStatusId).HasColumnName("CopyStatusId");
 			Property(t => t.StatusDescription).HasColumnName("StatusDescription");
 	
 			// Primary Key
-			HasKey(t => t.RequestStatusId);
+			HasKey(t => t.CopyStatusId);
 	
 			// Additional property mappings
-			Property(t => t.RequestStatusId)
+			Property(t => t.CopyStatusId)
 				.IsRequired();
 	
 	
 		}
 	}
 	
-	public static partial class RequestStatuHelper
+	public static partial class CopyStatusHelper
 	{
 		public static void AssignNewPK
-			(this RequestStatu aRequestStatu)
+			(this CopyStatus aCopyStatus)
 		{
 		}
 	
@@ -69,58 +69,58 @@ namespace FbcBookIt.Entity
 		/// fashion NOT governed by the database server.
 		/// </summary>
 		public static bool IsNew
-			(this RequestStatu aRequestStatu)
+			(this CopyStatus aCopyStatus)
 		{
-			if (aRequestStatu == null)
+			if (aCopyStatus == null)
 			{
 				throw 
 					new ArgumentNullException
 						(
-							"aRequestStatu"
+							"aCopyStatus"
 							, "Entity instance cannot be null!"
 						);
 			}
 			bool vResult = 
-				(aRequestStatu.RequestStatusId < 1);
+				(aCopyStatus.CopyStatusId < 1);
 			return vResult;
 		}
 	
 		public static void AssignTo
-			(RequestStatu aFrom, RequestStatu aTo)
+			(CopyStatus aFrom, CopyStatus aTo)
 		{
-			aTo.RequestStatusId = aFrom.RequestStatusId;
+			aTo.CopyStatusId = aFrom.CopyStatusId;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignToNoPrimaryKeys
-			(RequestStatu aFrom, RequestStatu aTo)
+			(CopyStatus aFrom, CopyStatus aTo)
 		{
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignToJustPrimaryKeys
-			(RequestStatu aFrom, RequestStatu aTo)
+			(CopyStatus aFrom, CopyStatus aTo)
 		{
-			aTo.RequestStatusId = aFrom.RequestStatusId;
+			aTo.CopyStatusId = aFrom.CopyStatusId;
 		}
 	
 		public static void AssignFrom
-			(this RequestStatu aTo, RequestStatu aFrom)
+			(this CopyStatus aTo, CopyStatus aFrom)
 		{
-			aTo.RequestStatusId = aFrom.RequestStatusId;
+			aTo.CopyStatusId = aFrom.CopyStatusId;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignFromNoPrimaryKeys
-			(this RequestStatu aTo, RequestStatu aFrom)
+			(this CopyStatus aTo, CopyStatus aFrom)
 		{
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
 		public static void AssignFromJustPrimaryKeys
-			(this RequestStatu aTo, RequestStatu aFrom)
+			(this CopyStatus aTo, CopyStatus aFrom)
 		{
-			aTo.RequestStatusId = aFrom.RequestStatusId;
+			aTo.CopyStatusId = aFrom.CopyStatusId;
 		}
 	
 	}

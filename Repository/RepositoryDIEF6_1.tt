@@ -87,8 +87,8 @@
 	const bool VALIDATE_GET_BY_LIST = true;	// Change this to false if the list hasn't changed
 
 	const StandardProject STANDARD_PROJECT = StandardProject.Web;	// Change this
-	const InflectTo DBSET_INFLECT_TO = InflectTo.Singular;
-	const InflectTo ENTITY_INFLECT_TO = InflectTo.Singular;
+	const InflectTo DBSET_INFLECT_TO = InflectTo.Unchanged;
+	const InflectTo ENTITY_INFLECT_TO = InflectTo.Unchanged;
 	const bool ALLOW_EF_MODIFICATIONS = true;
 	const bool USE_DOT_NET_SAFE_NAME = false;
 	const bool WRITE_EXECUTION_STATISTICS = true;

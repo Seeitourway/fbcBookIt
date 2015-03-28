@@ -33,27 +33,14 @@ namespace FbcBookIt.Repository
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		CopyStatu Find(System.Int32 aCopyStatusId);
+		CopyStatus Find(System.Int32 aCopyStatusId);
 	
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		CopyStatu Get(System.Int32 aCopyStatusId);
+		CopyStatus Get(System.Int32 aCopyStatusId);
 	
-		List<CopyStatu> GetAll();
-	
-		// There are several methods that add a record to a table:
-		//	1. Add
-		//  2. Insert
-		//  3. InsertAndReturnPrimaryKey
-		// - Add will add the record if possible and return the entity updated with
-		// the primary key information
-		// - Insert will add the record if possible and return void.
-		// - InsertAndReturnPrimaryKey will add the record if possible and then 
-		// return the new primary key (a single value for single primary key
-		// tables, an instance of a custom class containing all portions of the 
-		// primary key for a table with a compound primary key).
-		CopyStatu Add(CopyStatu aCopyStatu);
+		List<CopyStatus> GetAll();
 	
 		// There are several methods that add a record to a table:
 		//	1. Add
@@ -66,7 +53,7 @@ namespace FbcBookIt.Repository
 		// return the new primary key (a single value for single primary key
 		// tables, an instance of a custom class containing all portions of the 
 		// primary key for a table with a compound primary key).
-		void Insert(CopyStatu aCopyStatu);
+		CopyStatus Add(CopyStatus aCopyStatus);
 	
 		// There are several methods that add a record to a table:
 		//	1. Add
@@ -79,9 +66,22 @@ namespace FbcBookIt.Repository
 		// return the new primary key (a single value for single primary key
 		// tables, an instance of a custom class containing all portions of the 
 		// primary key for a table with a compound primary key).
-		System.Int32 InsertAndReturnPrimaryKey(CopyStatu aCopyStatu);
+		void Insert(CopyStatus aCopyStatus);
 	
-		void Update(CopyStatu aCopyStatu);
+		// There are several methods that add a record to a table:
+		//	1. Add
+		//  2. Insert
+		//  3. InsertAndReturnPrimaryKey
+		// - Add will add the record if possible and return the entity updated with
+		// the primary key information
+		// - Insert will add the record if possible and return void.
+		// - InsertAndReturnPrimaryKey will add the record if possible and then 
+		// return the new primary key (a single value for single primary key
+		// tables, an instance of a custom class containing all portions of the 
+		// primary key for a table with a compound primary key).
+		System.Int32 InsertAndReturnPrimaryKey(CopyStatus aCopyStatus);
+	
+		void Update(CopyStatus aCopyStatus);
 	
 		void Delete(System.Int32 aCopyStatusId);
 	
@@ -98,35 +98,35 @@ namespace FbcBookIt.Repository
 		public bool Any()
 		{
 			bool vResult;
-			vResult = _Db.CopyStatuDb.Any();
+			vResult = _Db.CopyStatusDb.Any();
 			return vResult;
 		}
 	
 		public bool Exists(System.Int32 aCopyStatusId)
 		{
 			bool vResult;
-				vResult = _Db.CopyStatuDb.Any(aRec => (aRec.CopyStatusId == aCopyStatusId));
+				vResult = _Db.CopyStatusDb.Any(aRec => (aRec.CopyStatusId == aCopyStatusId));
 			return vResult;
 		}
 	
-		public CopyStatu Find(System.Int32 aCopyStatusId)
+		public CopyStatus Find(System.Int32 aCopyStatusId)
 		{
-			CopyStatu vResult;
-			vResult = _Db.CopyStatuDb.Single(aRec => (aRec.CopyStatusId == aCopyStatusId));
+			CopyStatus vResult;
+			vResult = _Db.CopyStatusDb.Single(aRec => (aRec.CopyStatusId == aCopyStatusId));
 			return vResult;
 		}
 	
-		public CopyStatu Get(System.Int32 aCopyStatusId)
+		public CopyStatus Get(System.Int32 aCopyStatusId)
 		{
-			CopyStatu vResult;
-			vResult = _Db.CopyStatuDb.FirstOrDefault(aRec => aRec.CopyStatusId == aCopyStatusId);
+			CopyStatus vResult;
+			vResult = _Db.CopyStatusDb.FirstOrDefault(aRec => aRec.CopyStatusId == aCopyStatusId);
 			return vResult;
 		}
 	
-		public List<CopyStatu> GetAll()
+		public List<CopyStatus> GetAll()
 		{
-			List<CopyStatu> vResult;
-			vResult = _Db.CopyStatuDb.ToList();
+			List<CopyStatus> vResult;
+			vResult = _Db.CopyStatusDb.ToList();
 			return vResult;
 		}
 	
@@ -134,54 +134,54 @@ namespace FbcBookIt.Repository
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public CopyStatu Add(CopyStatu aCopyStatu)
+		public CopyStatus Add(CopyStatus aCopyStatus)
 		{
-			if (aCopyStatu == null)
+			if (aCopyStatus == null)
 			{
-				throw new ArgumentNullException("aCopyStatu", " cannot be null!");
+				throw new ArgumentNullException("aCopyStatus", " cannot be null!");
 			}
 	/*
-			if (!aCopyStatu.IsRootEntity())
+			if (!aCopyStatus.IsRootEntity())
 			{
-				aCopyStatu.ClearToRootEntity();
+				aCopyStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aCopyStatu.IsNew())
+			if (!aCopyStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"CopyStatu Insert failed. Record has failed \"IsNew\" test.";
+					"CopyStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-				aCopyStatu.AssignNewPK();
-			aCopyStatu = _Db.CopyStatuDb.Add(aCopyStatu);
+				aCopyStatus.AssignNewPK();
+			aCopyStatus = _Db.CopyStatusDb.Add(aCopyStatus);
 			_Db.SaveChanges();
-			return aCopyStatu;
+			return aCopyStatus;
 		}
 	
 		/// <remark>
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public void Insert(CopyStatu aCopyStatu)
+		public void Insert(CopyStatus aCopyStatus)
 		{
-			if (aCopyStatu == null)
+			if (aCopyStatus == null)
 			{
-				throw new ArgumentNullException("aCopyStatu", " cannot be null!");
+				throw new ArgumentNullException("aCopyStatus", " cannot be null!");
 			}
 	/*
-			if (!aCopyStatu.IsRootEntity())
+			if (!aCopyStatus.IsRootEntity())
 			{
-				aCopyStatu.ClearToRootEntity();
+				aCopyStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aCopyStatu.IsNew())
+			if (!aCopyStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"CopyStatu Insert failed. Record has failed \"IsNew\" test.";
+					"CopyStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-			aCopyStatu.AssignNewPK();
-			_Db.CopyStatuDb.Add(aCopyStatu);
+			aCopyStatus.AssignNewPK();
+			_Db.CopyStatusDb.Add(aCopyStatus);
 			_Db.SaveChanges();
 		}
 	
@@ -189,48 +189,48 @@ namespace FbcBookIt.Repository
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public System.Int32 InsertAndReturnPrimaryKey(CopyStatu aCopyStatu)
+		public System.Int32 InsertAndReturnPrimaryKey(CopyStatus aCopyStatus)
 		{
-			if (aCopyStatu == null)
+			if (aCopyStatus == null)
 			{
-				throw new ArgumentNullException("aCopyStatu", " cannot be null!");
+				throw new ArgumentNullException("aCopyStatus", " cannot be null!");
 			}
 	/*
-			if (!aCopyStatu.IsRootEntity())
+			if (!aCopyStatus.IsRootEntity())
 			{
-				aCopyStatu.ClearToRootEntity();
+				aCopyStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aCopyStatu.IsNew())
+			if (!aCopyStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"CopyStatu Insert failed. Record has failed \"IsNew\" test.";
+					"CopyStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-			aCopyStatu.AssignNewPK();
-			aCopyStatu = _Db.CopyStatuDb.Add(aCopyStatu);
+			aCopyStatus.AssignNewPK();
+			aCopyStatus = _Db.CopyStatusDb.Add(aCopyStatus);
 			_Db.SaveChanges();
-			System.Int32 vResult = aCopyStatu.CopyStatusId;
+			System.Int32 vResult = aCopyStatus.CopyStatusId;
 			return vResult;
 		}
 	
-		public void Update(CopyStatu aCopyStatu)
+		public void Update(CopyStatus aCopyStatus)
 		{
-			CopyStatu vRec = 
-				_Db.CopyStatuDb.FirstOrDefault(aRec => aRec.CopyStatusId == aCopyStatu.CopyStatusId);
-			vRec.AssignFromNoPrimaryKeys(aCopyStatu);
+			CopyStatus vRec = 
+				_Db.CopyStatusDb.FirstOrDefault(aRec => aRec.CopyStatusId == aCopyStatus.CopyStatusId);
+			vRec.AssignFromNoPrimaryKeys(aCopyStatus);
 			_Db.SaveChanges();
 		}
 	
 		public void Delete(System.Int32 aCopyStatusId)
 		{
-			CopyStatu vRec = 
-				_Db.CopyStatuDb.FirstOrDefault(aRec => aRec.CopyStatusId == aCopyStatusId);
+			CopyStatus vRec = 
+				_Db.CopyStatusDb.FirstOrDefault(aRec => aRec.CopyStatusId == aCopyStatusId);
 			if (vRec == null)
 			{
 				return; // Record is already gone, no worries!
 			}
-			_Db.CopyStatuDb.Remove(vRec);
+			_Db.CopyStatusDb.Remove(vRec);
 			_Db.SaveChanges();
 		}
 	

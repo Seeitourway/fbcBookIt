@@ -35,7 +35,7 @@ namespace FbcBookIt.Entity
 		public System.Int32? Hours { get; set; }
 		public System.Int32? Pages { get; set; }
 		public System.Boolean? ProofRead { get; set; }
-		// Foreign Key to CopyStatu
+		// Foreign Key to CopyStatus
 		public System.Int32? StatusID { get; set; }
 		// Foreign Key to Title
 		public System.Guid TitleID { get; set; }

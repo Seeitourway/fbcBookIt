@@ -31,7 +31,7 @@ namespace FbcBookIt.Entity
 		// Foreign Key to FormatType
 		public System.Guid FormatTypeId { get; set; }
 		public System.DateTime? RequestDate { get; set; }
-		// Foreign Key to RequestStatu
+		// Foreign Key to RequestStatus
 		public System.Int32? RequestStatusId { get; set; }
 		// Foreign Key to StudentTeacherSchool
 		public System.Guid StudentTeacherSchoolId { get; set; }

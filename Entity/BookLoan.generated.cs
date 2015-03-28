@@ -34,7 +34,7 @@ namespace FbcBookIt.Entity
 		public System.Guid CopyID { get; set; }
 		public System.DateTime? InDate { get; set; }
 		public System.DateTime? OutDate { get; set; }
-		// Foreign Key to LoanStatu
+		// Foreign Key to LoanStatus
 		public System.Int32 StatusID { get; set; }
 	
 	}

@@ -33,27 +33,14 @@ namespace FbcBookIt.Repository
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		RequestStatu Find(System.Int32 aRequestStatusId);
+		RequestStatus Find(System.Int32 aRequestStatusId);
 	
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		RequestStatu Get(System.Int32 aRequestStatusId);
+		RequestStatus Get(System.Int32 aRequestStatusId);
 	
-		List<RequestStatu> GetAll();
-	
-		// There are several methods that add a record to a table:
-		//	1. Add
-		//  2. Insert
-		//  3. InsertAndReturnPrimaryKey
-		// - Add will add the record if possible and return the entity updated with
-		// the primary key information
-		// - Insert will add the record if possible and return void.
-		// - InsertAndReturnPrimaryKey will add the record if possible and then 
-		// return the new primary key (a single value for single primary key
-		// tables, an instance of a custom class containing all portions of the 
-		// primary key for a table with a compound primary key).
-		RequestStatu Add(RequestStatu aRequestStatu);
+		List<RequestStatus> GetAll();
 	
 		// There are several methods that add a record to a table:
 		//	1. Add
@@ -66,7 +53,7 @@ namespace FbcBookIt.Repository
 		// return the new primary key (a single value for single primary key
 		// tables, an instance of a custom class containing all portions of the 
 		// primary key for a table with a compound primary key).
-		void Insert(RequestStatu aRequestStatu);
+		RequestStatus Add(RequestStatus aRequestStatus);
 	
 		// There are several methods that add a record to a table:
 		//	1. Add
@@ -79,9 +66,22 @@ namespace FbcBookIt.Repository
 		// return the new primary key (a single value for single primary key
 		// tables, an instance of a custom class containing all portions of the 
 		// primary key for a table with a compound primary key).
-		System.Int32 InsertAndReturnPrimaryKey(RequestStatu aRequestStatu);
+		void Insert(RequestStatus aRequestStatus);
 	
-		void Update(RequestStatu aRequestStatu);
+		// There are several methods that add a record to a table:
+		//	1. Add
+		//  2. Insert
+		//  3. InsertAndReturnPrimaryKey
+		// - Add will add the record if possible and return the entity updated with
+		// the primary key information
+		// - Insert will add the record if possible and return void.
+		// - InsertAndReturnPrimaryKey will add the record if possible and then 
+		// return the new primary key (a single value for single primary key
+		// tables, an instance of a custom class containing all portions of the 
+		// primary key for a table with a compound primary key).
+		System.Int32 InsertAndReturnPrimaryKey(RequestStatus aRequestStatus);
+	
+		void Update(RequestStatus aRequestStatus);
 	
 		void Delete(System.Int32 aRequestStatusId);
 	
@@ -98,35 +98,35 @@ namespace FbcBookIt.Repository
 		public bool Any()
 		{
 			bool vResult;
-			vResult = _Db.RequestStatuDb.Any();
+			vResult = _Db.RequestStatusDb.Any();
 			return vResult;
 		}
 	
 		public bool Exists(System.Int32 aRequestStatusId)
 		{
 			bool vResult;
-				vResult = _Db.RequestStatuDb.Any(aRec => (aRec.RequestStatusId == aRequestStatusId));
+				vResult = _Db.RequestStatusDb.Any(aRec => (aRec.RequestStatusId == aRequestStatusId));
 			return vResult;
 		}
 	
-		public RequestStatu Find(System.Int32 aRequestStatusId)
+		public RequestStatus Find(System.Int32 aRequestStatusId)
 		{
-			RequestStatu vResult;
-			vResult = _Db.RequestStatuDb.Single(aRec => (aRec.RequestStatusId == aRequestStatusId));
+			RequestStatus vResult;
+			vResult = _Db.RequestStatusDb.Single(aRec => (aRec.RequestStatusId == aRequestStatusId));
 			return vResult;
 		}
 	
-		public RequestStatu Get(System.Int32 aRequestStatusId)
+		public RequestStatus Get(System.Int32 aRequestStatusId)
 		{
-			RequestStatu vResult;
-			vResult = _Db.RequestStatuDb.FirstOrDefault(aRec => aRec.RequestStatusId == aRequestStatusId);
+			RequestStatus vResult;
+			vResult = _Db.RequestStatusDb.FirstOrDefault(aRec => aRec.RequestStatusId == aRequestStatusId);
 			return vResult;
 		}
 	
-		public List<RequestStatu> GetAll()
+		public List<RequestStatus> GetAll()
 		{
-			List<RequestStatu> vResult;
-			vResult = _Db.RequestStatuDb.ToList();
+			List<RequestStatus> vResult;
+			vResult = _Db.RequestStatusDb.ToList();
 			return vResult;
 		}
 	
@@ -134,54 +134,54 @@ namespace FbcBookIt.Repository
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public RequestStatu Add(RequestStatu aRequestStatu)
+		public RequestStatus Add(RequestStatus aRequestStatus)
 		{
-			if (aRequestStatu == null)
+			if (aRequestStatus == null)
 			{
-				throw new ArgumentNullException("aRequestStatu", " cannot be null!");
+				throw new ArgumentNullException("aRequestStatus", " cannot be null!");
 			}
 	/*
-			if (!aRequestStatu.IsRootEntity())
+			if (!aRequestStatus.IsRootEntity())
 			{
-				aRequestStatu.ClearToRootEntity();
+				aRequestStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aRequestStatu.IsNew())
+			if (!aRequestStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"RequestStatu Insert failed. Record has failed \"IsNew\" test.";
+					"RequestStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-				aRequestStatu.AssignNewPK();
-			aRequestStatu = _Db.RequestStatuDb.Add(aRequestStatu);
+				aRequestStatus.AssignNewPK();
+			aRequestStatus = _Db.RequestStatusDb.Add(aRequestStatus);
 			_Db.SaveChanges();
-			return aRequestStatu;
+			return aRequestStatus;
 		}
 	
 		/// <remark>
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public void Insert(RequestStatu aRequestStatu)
+		public void Insert(RequestStatus aRequestStatus)
 		{
-			if (aRequestStatu == null)
+			if (aRequestStatus == null)
 			{
-				throw new ArgumentNullException("aRequestStatu", " cannot be null!");
+				throw new ArgumentNullException("aRequestStatus", " cannot be null!");
 			}
 	/*
-			if (!aRequestStatu.IsRootEntity())
+			if (!aRequestStatus.IsRootEntity())
 			{
-				aRequestStatu.ClearToRootEntity();
+				aRequestStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aRequestStatu.IsNew())
+			if (!aRequestStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"RequestStatu Insert failed. Record has failed \"IsNew\" test.";
+					"RequestStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-			aRequestStatu.AssignNewPK();
-			_Db.RequestStatuDb.Add(aRequestStatu);
+			aRequestStatus.AssignNewPK();
+			_Db.RequestStatusDb.Add(aRequestStatus);
 			_Db.SaveChanges();
 		}
 	
@@ -189,48 +189,48 @@ namespace FbcBookIt.Repository
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public System.Int32 InsertAndReturnPrimaryKey(RequestStatu aRequestStatu)
+		public System.Int32 InsertAndReturnPrimaryKey(RequestStatus aRequestStatus)
 		{
-			if (aRequestStatu == null)
+			if (aRequestStatus == null)
 			{
-				throw new ArgumentNullException("aRequestStatu", " cannot be null!");
+				throw new ArgumentNullException("aRequestStatus", " cannot be null!");
 			}
 	/*
-			if (!aRequestStatu.IsRootEntity())
+			if (!aRequestStatus.IsRootEntity())
 			{
-				aRequestStatu.ClearToRootEntity();
+				aRequestStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aRequestStatu.IsNew())
+			if (!aRequestStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"RequestStatu Insert failed. Record has failed \"IsNew\" test.";
+					"RequestStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-			aRequestStatu.AssignNewPK();
-			aRequestStatu = _Db.RequestStatuDb.Add(aRequestStatu);
+			aRequestStatus.AssignNewPK();
+			aRequestStatus = _Db.RequestStatusDb.Add(aRequestStatus);
 			_Db.SaveChanges();
-			System.Int32 vResult = aRequestStatu.RequestStatusId;
+			System.Int32 vResult = aRequestStatus.RequestStatusId;
 			return vResult;
 		}
 	
-		public void Update(RequestStatu aRequestStatu)
+		public void Update(RequestStatus aRequestStatus)
 		{
-			RequestStatu vRec = 
-				_Db.RequestStatuDb.FirstOrDefault(aRec => aRec.RequestStatusId == aRequestStatu.RequestStatusId);
-			vRec.AssignFromNoPrimaryKeys(aRequestStatu);
+			RequestStatus vRec = 
+				_Db.RequestStatusDb.FirstOrDefault(aRec => aRec.RequestStatusId == aRequestStatus.RequestStatusId);
+			vRec.AssignFromNoPrimaryKeys(aRequestStatus);
 			_Db.SaveChanges();
 		}
 	
 		public void Delete(System.Int32 aRequestStatusId)
 		{
-			RequestStatu vRec = 
-				_Db.RequestStatuDb.FirstOrDefault(aRec => aRec.RequestStatusId == aRequestStatusId);
+			RequestStatus vRec = 
+				_Db.RequestStatusDb.FirstOrDefault(aRec => aRec.RequestStatusId == aRequestStatusId);
 			if (vRec == null)
 			{
 				return; // Record is already gone, no worries!
 			}
-			_Db.RequestStatuDb.Remove(vRec);
+			_Db.RequestStatusDb.Remove(vRec);
 			_Db.SaveChanges();
 		}
 	

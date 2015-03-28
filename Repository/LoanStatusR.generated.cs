@@ -33,27 +33,14 @@ namespace FbcBookIt.Repository
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		LoanStatu Find(System.Int32 aLoanStatusId);
+		LoanStatus Find(System.Int32 aLoanStatusId);
 	
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		LoanStatu Get(System.Int32 aLoanStatusId);
+		LoanStatus Get(System.Int32 aLoanStatusId);
 	
-		List<LoanStatu> GetAll();
-	
-		// There are several methods that add a record to a table:
-		//	1. Add
-		//  2. Insert
-		//  3. InsertAndReturnPrimaryKey
-		// - Add will add the record if possible and return the entity updated with
-		// the primary key information
-		// - Insert will add the record if possible and return void.
-		// - InsertAndReturnPrimaryKey will add the record if possible and then 
-		// return the new primary key (a single value for single primary key
-		// tables, an instance of a custom class containing all portions of the 
-		// primary key for a table with a compound primary key).
-		LoanStatu Add(LoanStatu aLoanStatu);
+		List<LoanStatus> GetAll();
 	
 		// There are several methods that add a record to a table:
 		//	1. Add
@@ -66,7 +53,7 @@ namespace FbcBookIt.Repository
 		// return the new primary key (a single value for single primary key
 		// tables, an instance of a custom class containing all portions of the 
 		// primary key for a table with a compound primary key).
-		void Insert(LoanStatu aLoanStatu);
+		LoanStatus Add(LoanStatus aLoanStatus);
 	
 		// There are several methods that add a record to a table:
 		//	1. Add
@@ -79,9 +66,22 @@ namespace FbcBookIt.Repository
 		// return the new primary key (a single value for single primary key
 		// tables, an instance of a custom class containing all portions of the 
 		// primary key for a table with a compound primary key).
-		System.Int32 InsertAndReturnPrimaryKey(LoanStatu aLoanStatu);
+		void Insert(LoanStatus aLoanStatus);
 	
-		void Update(LoanStatu aLoanStatu);
+		// There are several methods that add a record to a table:
+		//	1. Add
+		//  2. Insert
+		//  3. InsertAndReturnPrimaryKey
+		// - Add will add the record if possible and return the entity updated with
+		// the primary key information
+		// - Insert will add the record if possible and return void.
+		// - InsertAndReturnPrimaryKey will add the record if possible and then 
+		// return the new primary key (a single value for single primary key
+		// tables, an instance of a custom class containing all portions of the 
+		// primary key for a table with a compound primary key).
+		System.Int32 InsertAndReturnPrimaryKey(LoanStatus aLoanStatus);
+	
+		void Update(LoanStatus aLoanStatus);
 	
 		void Delete(System.Int32 aLoanStatusId);
 	
@@ -98,35 +98,35 @@ namespace FbcBookIt.Repository
 		public bool Any()
 		{
 			bool vResult;
-			vResult = _Db.LoanStatuDb.Any();
+			vResult = _Db.LoanStatusDb.Any();
 			return vResult;
 		}
 	
 		public bool Exists(System.Int32 aLoanStatusId)
 		{
 			bool vResult;
-				vResult = _Db.LoanStatuDb.Any(aRec => (aRec.LoanStatusId == aLoanStatusId));
+				vResult = _Db.LoanStatusDb.Any(aRec => (aRec.LoanStatusId == aLoanStatusId));
 			return vResult;
 		}
 	
-		public LoanStatu Find(System.Int32 aLoanStatusId)
+		public LoanStatus Find(System.Int32 aLoanStatusId)
 		{
-			LoanStatu vResult;
-			vResult = _Db.LoanStatuDb.Single(aRec => (aRec.LoanStatusId == aLoanStatusId));
+			LoanStatus vResult;
+			vResult = _Db.LoanStatusDb.Single(aRec => (aRec.LoanStatusId == aLoanStatusId));
 			return vResult;
 		}
 	
-		public LoanStatu Get(System.Int32 aLoanStatusId)
+		public LoanStatus Get(System.Int32 aLoanStatusId)
 		{
-			LoanStatu vResult;
-			vResult = _Db.LoanStatuDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatusId);
+			LoanStatus vResult;
+			vResult = _Db.LoanStatusDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatusId);
 			return vResult;
 		}
 	
-		public List<LoanStatu> GetAll()
+		public List<LoanStatus> GetAll()
 		{
-			List<LoanStatu> vResult;
-			vResult = _Db.LoanStatuDb.ToList();
+			List<LoanStatus> vResult;
+			vResult = _Db.LoanStatusDb.ToList();
 			return vResult;
 		}
 	
@@ -134,54 +134,54 @@ namespace FbcBookIt.Repository
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public LoanStatu Add(LoanStatu aLoanStatu)
+		public LoanStatus Add(LoanStatus aLoanStatus)
 		{
-			if (aLoanStatu == null)
+			if (aLoanStatus == null)
 			{
-				throw new ArgumentNullException("aLoanStatu", " cannot be null!");
+				throw new ArgumentNullException("aLoanStatus", " cannot be null!");
 			}
 	/*
-			if (!aLoanStatu.IsRootEntity())
+			if (!aLoanStatus.IsRootEntity())
 			{
-				aLoanStatu.ClearToRootEntity();
+				aLoanStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aLoanStatu.IsNew())
+			if (!aLoanStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"LoanStatu Insert failed. Record has failed \"IsNew\" test.";
+					"LoanStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-				aLoanStatu.AssignNewPK();
-			aLoanStatu = _Db.LoanStatuDb.Add(aLoanStatu);
+				aLoanStatus.AssignNewPK();
+			aLoanStatus = _Db.LoanStatusDb.Add(aLoanStatus);
 			_Db.SaveChanges();
-			return aLoanStatu;
+			return aLoanStatus;
 		}
 	
 		/// <remark>
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public void Insert(LoanStatu aLoanStatu)
+		public void Insert(LoanStatus aLoanStatus)
 		{
-			if (aLoanStatu == null)
+			if (aLoanStatus == null)
 			{
-				throw new ArgumentNullException("aLoanStatu", " cannot be null!");
+				throw new ArgumentNullException("aLoanStatus", " cannot be null!");
 			}
 	/*
-			if (!aLoanStatu.IsRootEntity())
+			if (!aLoanStatus.IsRootEntity())
 			{
-				aLoanStatu.ClearToRootEntity();
+				aLoanStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aLoanStatu.IsNew())
+			if (!aLoanStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"LoanStatu Insert failed. Record has failed \"IsNew\" test.";
+					"LoanStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-			aLoanStatu.AssignNewPK();
-			_Db.LoanStatuDb.Add(aLoanStatu);
+			aLoanStatus.AssignNewPK();
+			_Db.LoanStatusDb.Add(aLoanStatus);
 			_Db.SaveChanges();
 		}
 	
@@ -189,48 +189,48 @@ namespace FbcBookIt.Repository
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public System.Int32 InsertAndReturnPrimaryKey(LoanStatu aLoanStatu)
+		public System.Int32 InsertAndReturnPrimaryKey(LoanStatus aLoanStatus)
 		{
-			if (aLoanStatu == null)
+			if (aLoanStatus == null)
 			{
-				throw new ArgumentNullException("aLoanStatu", " cannot be null!");
+				throw new ArgumentNullException("aLoanStatus", " cannot be null!");
 			}
 	/*
-			if (!aLoanStatu.IsRootEntity())
+			if (!aLoanStatus.IsRootEntity())
 			{
-				aLoanStatu.ClearToRootEntity();
+				aLoanStatus.ClearToRootEntity();
 			}
 	*/
-			if (!aLoanStatu.IsNew())
+			if (!aLoanStatus.IsNew())
 			{
 				const string MESSAGE = 
-					"LoanStatu Insert failed. Record has failed \"IsNew\" test.";
+					"LoanStatus Insert failed. Record has failed \"IsNew\" test.";
 				throw new Exception(MESSAGE);
 			}
-			aLoanStatu.AssignNewPK();
-			aLoanStatu = _Db.LoanStatuDb.Add(aLoanStatu);
+			aLoanStatus.AssignNewPK();
+			aLoanStatus = _Db.LoanStatusDb.Add(aLoanStatus);
 			_Db.SaveChanges();
-			System.Int32 vResult = aLoanStatu.LoanStatusId;
+			System.Int32 vResult = aLoanStatus.LoanStatusId;
 			return vResult;
 		}
 	
-		public void Update(LoanStatu aLoanStatu)
+		public void Update(LoanStatus aLoanStatus)
 		{
-			LoanStatu vRec = 
-				_Db.LoanStatuDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatu.LoanStatusId);
-			vRec.AssignFromNoPrimaryKeys(aLoanStatu);
+			LoanStatus vRec = 
+				_Db.LoanStatusDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatus.LoanStatusId);
+			vRec.AssignFromNoPrimaryKeys(aLoanStatus);
 			_Db.SaveChanges();
 		}
 	
 		public void Delete(System.Int32 aLoanStatusId)
 		{
-			LoanStatu vRec = 
-				_Db.LoanStatuDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatusId);
+			LoanStatus vRec = 
+				_Db.LoanStatusDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatusId);
 			if (vRec == null)
 			{
 				return; // Record is already gone, no worries!
 			}
-			_Db.LoanStatuDb.Remove(vRec);
+			_Db.LoanStatusDb.Remove(vRec);
 			_Db.SaveChanges();
 		}
 	

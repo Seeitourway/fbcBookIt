@@ -57,7 +57,7 @@
     </Compile>
     <Compile Include="Copy.generated.cs">
     </Compile>
-    <Compile Include="CopyStatu.generated.cs">
+    <Compile Include="CopyStatus.generated.cs">
     </Compile>
     <Compile Include="District.generated.cs">
     </Compile>
@@ -65,10 +65,10 @@
     </Compile>
     <Compile Include="FormatType.generated.cs">
     </Compile>
-    <Compile Include="LoanStatu.generated.cs">
+    <Compile Include="LoanStatus.generated.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestStatu.generated.cs">
+    <Compile Include="RequestStatus.generated.cs">
     </Compile>
     <Compile Include="School.generated.cs">
     </Compile>
