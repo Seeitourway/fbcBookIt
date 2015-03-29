@@ -91,7 +91,7 @@
         });
 
         $('#Search').on('click', function () {
-            var isbn = $('#ISBN').val();
+            var isbn = $('#ISBN10').val();
             var searchType = 'isbn';
             $('#bookResults').empty();
             if (isbn) {
@@ -107,24 +107,31 @@
                 url: 'https://www.googleapis.com/books/v1/volumes?q=' + searchType + ':' + encodeURIComponent(isbn),
                 datatype: 'json',
                 success: function (result) {
-                    if (searchType == 'isbn') {
+                    if (result) {
 
-                        $('#Name').val(result.items[0].volumeInfo.title);
-                        $('#cover').attr('src', result.items[0].volumeInfo.imageLinks.thumbnail);
-                        $('#tts').val(result.items[0].accessInfo.textToSpeechPermission);
-                    }
-                    else {
-                        $(function () {
-                            $.each(result.items, function (i, item) {
+
+                        if (searchType == 'isbn') {
+                            $('#ISBN13').val((result.items[0].volumeInfo.industryIdentifiers[1].identifier == null) ? '0' : result.items[0].volumeInfo.industryIdentifiers[1].identifier);
+                            $('#Name').val((result.items[0].volumeInfo.title == null) ? '0' : result.items[0].volumeInfo.title);
+                            $('#cover').attr('src', (result.items[0].volumeInfo.imageLinks.thumbnail == null) ? '0' : result.items[0].volumeInfo.imageLinks.thumbnail);
+                            $('#tts').val((result.items[0].accessInfo.textToSpeechPermission == null) ? '0' : result.items[0].accessInfo.textToSpeechPermission);
+                            $('#Publisher').val((result.items[0].volumeInfo.publisher == null) ? '0' : result.items[0].volumeInfo.publisher);
+                            $('#Author').val((result.items[0].volumeInfo.authors == null) ? '0' : result.items[0].volumeInfo.authors);
+                        }
+                        else {
+                            $.each(result.items, function (i, item) {                                
                                 var $tr = $('<tr>').append(
-                                    $('<td>').text(item.volumeInfo.title),
-                                    $('<td>').text(item.volumeInfo.industryIdentifiers[0].identifier),
-                                    $('<td>').text(item.accessInfo.textToSpeechPermission)
+                                    $('<td>').text((item.volumeInfo.title == null) ? '0' : item.volumeInfo.title),
+                                    $('<td>').text((item.volumeInfo.industryIdentifiers[0].identifier == null) ? '0' : item.volumeInfo.industryIdentifiers[0].identifier),
+                                    $('<td>').text((item.accessInfo.textToSpeechPermission == null) ? '0' : item.accessInfo.textToSpeechPermission)
                                 ).appendTo('#bookResults');
                             });
-                        });
+                        }
                     }
-
+                    else
+                    {
+                        toastr.error("No search results found.")
+                    }
                     $('#books').removeClass('hidden');
                 }
             });

@@ -54,6 +54,7 @@ namespace BookItAdmin.Controllers
         {
             var copy = new Copy();
             copy.TitleID = titleId;
+            copy.Active = true;
             LoadParentStuff(titleId);
 
             return View(copy);
@@ -64,12 +65,14 @@ namespace BookItAdmin.Controllers
         {
             try
             {
+                copy.Active = true;
                 var id = _copyR.InsertAndReturnPrimaryKey(copy);
 
                 return RedirectToAction(MVC.Copy.Index());
             }
             catch
             {
+                LoadParentStuff(copy.TitleID);
                 return View(copy);
             }
         }
@@ -94,6 +97,7 @@ namespace BookItAdmin.Controllers
             }
             catch
             {
+                LoadParentStuff(copy.TitleID);
                 return View(copy);
             }
         }
@@ -107,14 +111,14 @@ namespace BookItAdmin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Delete(Guid id, bool actuallyRemove)
+        public virtual ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
-                if (actuallyRemove)
+                _copyR.Remove(id);
+                var volumes = _volumeR.GetByCopyIDAsList(id);
+                if (volumes.Count == 0)
                     _copyR.Delete(id);
-                else
-                    _copyR.Remove(id);
 
                 return RedirectToAction(MVC.Copy.Index());
             }

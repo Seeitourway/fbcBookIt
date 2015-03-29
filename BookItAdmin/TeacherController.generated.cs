@@ -139,7 +139,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Delete
         {
             public readonly string id = "id";
-            public readonly string actuallyDelete = "actuallyDelete";
+            public readonly string collection = "collection";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -254,15 +254,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, bool actuallyDelete);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, System.Web.Mvc.FormCollection collection);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Delete(System.Guid id, bool actuallyDelete)
+        public override System.Web.Mvc.ActionResult Delete(System.Guid id, System.Web.Mvc.FormCollection collection)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actuallyDelete", actuallyDelete);
-            DeleteOverride(callInfo, id, actuallyDelete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            DeleteOverride(callInfo, id, collection);
             return callInfo;
         }
 

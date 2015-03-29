@@ -1,10 +1,11 @@
-﻿namespace FbcBookIt.Entity
-{
-	using System.Collections.Generic;
-	using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-	public partial class StudentTeacherSchool
-	{
-		public Student Student { get; set; }
-	}
+namespace FbcBookIt.Entity
+{
+    public partial class StudentTeacherSchool
+    {
+        [NotMapped]
+        public Student Student { get; set; }
+    }
 }

@@ -9,13 +9,14 @@
 <div>
     <h4>BookRequest</h4>
     <hr />
+    @Html.ActionLink("Create Book Loan", MVC.BookLoan.Create(Model.BookRequestId))
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FormatTypeId)
+            @Html.DisplayNameFor(model => model.FormatTypeID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FormatTypeId)
+            @Html.DisplayFor(model => model.FormatTypeID)
         </dd>
 
         <dt>

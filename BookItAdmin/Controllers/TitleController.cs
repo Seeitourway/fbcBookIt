@@ -39,6 +39,7 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Create()
         {
             var title = new Title();
+            title.Active = true;
             return View(title);
         }
 
@@ -47,6 +48,7 @@ namespace BookItAdmin.Controllers
         {
             try
             {
+                title.Active = true;
                 var id = _titleR.InsertAndReturnPrimaryKey(title);
 
                 return RedirectToAction(MVC.Title.Index());
@@ -86,14 +88,16 @@ namespace BookItAdmin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Delete(Guid id, bool actuallyRemove)
+        public virtual ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
-                if (actuallyRemove)
-                    _titleR.Delete(id);
-                else
+                var copies = _copyR.GetByTitleIDAsList(id);
+                if (copies.Count == 0)
+                {
                     _titleR.Remove(id);
+                    _titleR.Delete(id);
+                }
 
                 return RedirectToAction(MVC.Title.Index());
             }

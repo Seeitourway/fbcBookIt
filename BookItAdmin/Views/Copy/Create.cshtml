@@ -12,9 +12,15 @@
     
     <div class="form-horizontal">
         <h4>Copy</h4>
-        <h3><a href="@Url.Action(MVC.Title.Details(ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+        @if (ViewBag.TitleId != null)
+        {
+        <h3><a href="@Url.Action(MVC.Title.Details((Guid)ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+        }
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.TitleID)
+        @Html.HiddenFor(model => Model.Active)
+
         <div class="form-group">
             @Html.LabelFor(model => model.AccessionNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -28,16 +34,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AcquisitionDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AcquisitionDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Active)
-                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
 
@@ -58,18 +54,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CopyStatusID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CopyStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CopyStatusID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CopyStatusID, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.CopyStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CopyStatus, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DiscardedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StartLocation, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DiscardedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiscardedDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.StartLocation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartLocation, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -82,10 +78,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FormatID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FormatTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FormatID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FormatID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FormatTypeID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FormatTypeID, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -122,18 +118,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartLocation, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DiscardedDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartLocation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartLocation, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TitleID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TitleID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TitleID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DiscardedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiscardedDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
