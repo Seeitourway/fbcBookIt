@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FbcBookIt.Entity.Volume>
+
+@{
+    ViewBag.Title = "Volumes";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3><a href="@Url.Action(MVC.Title.Details(ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+<h3><a href="@Url.Action(MVC.Title.Details(ViewBag.CopyId))">@ViewBag.AccessionNumber</a></h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VolumeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VolumeStatusID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolumeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolumeStatusID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VolumeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VolumeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VolumeID })
+        </td>
+    </tr>
+}
+
+</table>

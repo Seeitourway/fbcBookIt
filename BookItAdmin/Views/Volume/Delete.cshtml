@@ -1,0 +1,58 @@
+﻿@model FbcBookIt.Entity.Volume
+
+@{
+    ViewBag.Title = "Delete Volume";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Volume</h4>
+    <h3><a href="@Url.Action(MVC.Title.Details(ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+    <h3><a href="@Url.Action(MVC.Title.Details(ViewBag.CopyId))">@ViewBag.AccessionNumber</a></h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumeNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumeNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumeStatusID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumeStatusID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
