@@ -78,13 +78,22 @@ namespace Web.Controllers
             StudentTeacherSchool sts = _stsR.GetByActiveAndStudentID(true, Guid.Parse(collection[1].ToString()));
             Title tit = new Title();
             TryUpdateModel<Title>(tit, collection.ToValueProvider());
-            tit.Active = true;
-            _titleR.Add(tit);
+            var title = _titleR.GetAll().Where(x => x.ISBN10 == tit.ISBN10);
+            if(_titleR.Any())
+            {
+                brq.TitleID = title.First().TitleID;
+            }
+            else
+            {
+                tit.Active = true;
+                _titleR.Add(tit);
+                brq.TitleID = tit.TitleID;
+            }
+
             FormatType ft = _formatTypeR.Get(int.Parse(collection[7].ToString()));
-            brq.TitleID = tit.TitleID;
+            
             brq.StudentTeacherSchoolId = sts.ID;
             brq.FormatTypeID = ft.FormatTypeId;
-
 
             string max = _bookRequestR.GetMaxRequestForYear(DateTime.Now.Year);
             string nextMax = (int.Parse(max) + 1).ToString();
