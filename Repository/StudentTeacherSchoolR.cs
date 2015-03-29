@@ -13,7 +13,8 @@
 		// matches the criteria. If no record matches, the method will return null.
 		StudentTeacherSchool GetByTeacherIdWithStudent(Guid aTeacherId);
 
-		List<StudentTeacherSchool> GetByTeacherIdWithStudentAsList(Guid aTeacherId);
+		List<StudentTeacherSchool> GetByTeacherIdWithStudentAsList
+			(Guid aTeacherId);
 
 	}
 
@@ -28,12 +29,14 @@
 			return vResult;
 		}
 
-		public List<StudentTeacherSchool> GetByTeacherIdWithStudentAsList(Guid aTeacherId)
+		public List<StudentTeacherSchool> GetByTeacherIdWithStudentAsList
+			(Guid aTeacherId)
 		{
 			List<StudentTeacherSchool> vResult;
 			vResult =
-				_Db.StudentTeacherSchoolDb.Include("Student")
+				_Db.StudentTeacherSchoolDb
 					.Where(aRec => aRec.TeacherID == aTeacherId)
+					.Include("Student")
 					.ToList();
 			return vResult;
 		}
