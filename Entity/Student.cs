@@ -13,5 +13,7 @@ namespace FbcBookIt.Entity
         public IList<Teacher> Teachers { get; set; }
         [NotMapped]
         public IList<BookRequest> BookRequests { get; set; }
+        [NotMapped]
+        public string School { get; set; }
     }
 }

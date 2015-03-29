@@ -1,6 +1,11 @@
-﻿using FbcBookIt.Repository;
+﻿using FbcBookIt.Entity;
+using FbcBookIt.Repository;
+using SecurityGuard.Interfaces;
+using SecurityGuard.Services;
 using System;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Linq;
 
 namespace Web.Controllers
 {
@@ -10,6 +15,7 @@ namespace Web.Controllers
         public readonly IStudentR _studentR;
         public readonly IStudentTeacherSchoolR _stsR;
         public readonly IFormatTypeR _formatTypeR;
+        private IMembershipService membershipService;
 
         public TeacherController(ITeacherR aTeacherR, IStudentR aStudentR, IStudentTeacherSchoolR aSTSR, IFormatTypeR aFormatTypeR)
         {
@@ -29,7 +35,8 @@ namespace Web.Controllers
             {
                 throw new ArgumentNullException("aFormatTypeR");
             }
-            
+
+            this.membershipService = new MembershipService(Membership.Provider);
             _formatTypeR = aFormatTypeR;
             _teacherR = aTeacherR;
             _studentR = aStudentR;
@@ -39,8 +46,24 @@ namespace Web.Controllers
         // GET: Teacher
         [Authorize(Roles = "Teacher, Admin, SecurityGuard")]
         public ActionResult Index()
-        {
-            var studs = _stsR.GetByTeacherIdWithStudentAsList(Guid.Parse("C49623B4-380D-46BE-9D2B-7C7E1CAA9C00"));
+        {            
+            if(Session["TeacherID"] == null)
+            {
+                var mu = membershipService.FindUsersByName(User.Identity.Name);
+                string email = "";
+
+                foreach (MembershipUser us in mu)
+                {
+                    if (us.UserName == User.Identity.Name)
+                    {
+                        email = us.Email;
+                    }
+
+                }
+
+                Session.Add("TeacherID", _teacherR.GetByActiveAsList(true).Where(x => x.Email == email).FirstOrDefault().TeacherID);
+            }
+            var studs = _stsR.GetStudentSTSByTeacherID(Guid.Parse(Session["TeacherID"].ToString())); // CHANGE THIS
             ViewBag.FormatType = _formatTypeR.GetAll();
             return View(studs);
         }
@@ -48,10 +71,10 @@ namespace Web.Controllers
         [Authorize(Roles = "Teacher, Admin, SecurityGuard")]
         public ActionResult ReleaseStudent(string studentID)
         {
-            var stud = _stsR.GetByStudentIDAndTeacherID(Guid.Parse(studentID), Guid.Parse("C49623B4-380D-46BE-9D2B-7C7E1CAA9C00"));
+            var stud = _stsR.GetByStudentIDAndTeacherID(Guid.Parse(studentID), Guid.Parse(Session["TeacherID"].ToString())); // CHANGE THIS
             stud.Active = false;
             _stsR.Update(stud);
-            return RedirectToAction("Index", new { TeacherID = Guid.Parse("C49623B4-380D-46BE-9D2B-7C7E1CAA9C00") });
+            return RedirectToAction("Index", new { TeacherID = Guid.Parse(Session["TeacherID"].ToString()) }); // CHANGE THIS
         }
     }
 }
