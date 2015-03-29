@@ -10,13 +10,28 @@ namespace Web.Controllers
     public class BookController : Controller
     {
         public readonly ICopyR _copyR;
-        public BookController(ICopyR aCopyR)
+        public readonly IBookRequestR _bookRequestR;
+        public readonly IBookLoanR _bookLoanR;
+
+        public BookController(ICopyR aCopyR, IBookRequestR aBookRequestR, IBookLoanR aBookLoanR)
         {
             if (aCopyR == null)
             {
                 throw new ArgumentNullException("aStudentR");
             }
+            if (aBookRequestR == null)
+            {
+                throw new ArgumentNullException("aBookRequestR");
+                
+            }
+            if (aBookLoanR == null)
+            {
+                throw new ArgumentNullException("aBookLoanR");
+            }
+
             _copyR = aCopyR;
+            _bookRequestR = aBookRequestR;
+            _bookLoanR = aBookLoanR;
         }
 
         // GET: Book
@@ -33,9 +48,11 @@ namespace Web.Controllers
             return View();
         }
 
-        // GET: Book/Create
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult CreateRequest(FormCollection collection)
         {
+            // create BookRequest based on teacher id in Session, and StudentID
+
             return View();
         }
 

@@ -42,6 +42,12 @@ namespace FbcBookIt.Repository
 	
 		List<District> GetAll();
 	
+		// GetByActive will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		District GetByActive(System.Boolean aActive);
+	
+			List<District> GetByActiveAsList(System.Boolean aActive);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -85,6 +91,8 @@ namespace FbcBookIt.Repository
 	
 		void Delete(System.Guid aDistrictId);
 	
+			void DeleteByActive(System.Boolean aActive);
+	
 		bool IsActive(System.Guid aDistrictId);
 	
 		void Remove(System.Guid aDistrictId);
@@ -99,7 +107,7 @@ namespace FbcBookIt.Repository
 		: BASE_RepositoryDbTable, IDistrictR
 	{
 		public DistrictR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
@@ -135,6 +143,26 @@ namespace FbcBookIt.Repository
 		{
 			List<District> vResult;
 			vResult = _Db.DistrictDb.ToList();
+			return vResult;
+		}
+	
+		public District GetByActive(System.Boolean aActive)
+		{
+			District vResult;
+			vResult = 
+				_Db.DistrictDb
+					.Where(aRec => aRec.Active == aActive)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<District> GetByActiveAsList(System.Boolean aActive)
+		{
+			List<District> vResult;
+			vResult = 
+				_Db.DistrictDb
+					.Where(aRec => aRec.Active == aActive)
+					.ToList();
 			return vResult;
 		}
 	
@@ -240,6 +268,23 @@ namespace FbcBookIt.Repository
 			}
 			_Db.DistrictDb.Remove(vRec);
 			_Db.SaveChanges();
+		}
+	
+		public void DeleteByActive(System.Boolean aActive)
+		{
+				List<District> vListToDelete = 
+					_Db.DistrictDb
+						.Where(aRec => aRec.Active == aActive)
+						.ToList();
+				if (vListToDelete.Count < 1)
+				{
+					return;
+				}
+				foreach (District vRec in vListToDelete)
+				{
+					_Db.DistrictDb.Remove(vRec);
+				}
+				_Db.SaveChanges();
 		}
 	
 		public bool IsActive(System.Guid aDistrictId)

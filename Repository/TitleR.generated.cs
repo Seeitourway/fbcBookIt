@@ -42,6 +42,12 @@ namespace FbcBookIt.Repository
 	
 		List<Title> GetAll();
 	
+		// GetByActive will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		Title GetByActive(System.Boolean aActive);
+	
+			List<Title> GetByActiveAsList(System.Boolean aActive);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -85,6 +91,8 @@ namespace FbcBookIt.Repository
 	
 		void Delete(System.Guid aID);
 	
+			void DeleteByActive(System.Boolean aActive);
+	
 		bool IsActive(System.Guid aID);
 	
 		void Remove(System.Guid aID);
@@ -99,7 +107,7 @@ namespace FbcBookIt.Repository
 		: BASE_RepositoryDbTable, ITitleR
 	{
 		public TitleR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
@@ -135,6 +143,26 @@ namespace FbcBookIt.Repository
 		{
 			List<Title> vResult;
 			vResult = _Db.TitleDb.ToList();
+			return vResult;
+		}
+	
+		public Title GetByActive(System.Boolean aActive)
+		{
+			Title vResult;
+			vResult = 
+				_Db.TitleDb
+					.Where(aRec => aRec.Active == aActive)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Title> GetByActiveAsList(System.Boolean aActive)
+		{
+			List<Title> vResult;
+			vResult = 
+				_Db.TitleDb
+					.Where(aRec => aRec.Active == aActive)
+					.ToList();
 			return vResult;
 		}
 	
@@ -240,6 +268,23 @@ namespace FbcBookIt.Repository
 			}
 			_Db.TitleDb.Remove(vRec);
 			_Db.SaveChanges();
+		}
+	
+		public void DeleteByActive(System.Boolean aActive)
+		{
+				List<Title> vListToDelete = 
+					_Db.TitleDb
+						.Where(aRec => aRec.Active == aActive)
+						.ToList();
+				if (vListToDelete.Count < 1)
+				{
+					return;
+				}
+				foreach (Title vRec in vListToDelete)
+				{
+					_Db.TitleDb.Remove(vRec);
+				}
+				_Db.SaveChanges();
 		}
 	
 		public bool IsActive(System.Guid aID)

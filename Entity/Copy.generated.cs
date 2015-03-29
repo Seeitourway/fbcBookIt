@@ -28,18 +28,19 @@ namespace FbcBookIt.Entity
 		public System.Guid CopyId { get; set; }
 	
 		// Non-Primary columns
+		public System.DateTime? AcquisitionDate { get; set; }
+		public System.Boolean Active { get; set; }
 		public System.Boolean? Consumable { get; set; }
-		public System.Int32 CopyNumber { get; set; }
+		// Foreign Key to CopyStatus
+		public System.Int32? CopyStatusID { get; set; }
+		public System.DateTime? DiscardedDate { get; set; }
+		public System.String EndLocation { get; set; }
 		// Foreign Key to FormatType
 		public System.Guid FormatID { get; set; }
-		public System.Int32? Hours { get; set; }
-		public System.Int32? Pages { get; set; }
 		public System.Boolean? ProofRead { get; set; }
-		// Foreign Key to CopyStatus
-		public System.Int32? StatusID { get; set; }
+		public System.String StartLocation { get; set; }
 		// Foreign Key to Title
 		public System.Guid TitleID { get; set; }
-		public System.Int32 Volume { get; set; }
 	
 	}
 	
@@ -51,34 +52,32 @@ namespace FbcBookIt.Entity
 			ToTable("Copy");
 	
 			// Map property to column
+			Property(t => t.AcquisitionDate).HasColumnName("AcquisitionDate");
+			Property(t => t.Active).HasColumnName("Active");
 			Property(t => t.Consumable).HasColumnName("Consumable");
 			Property(t => t.CopyId).HasColumnName("CopyId");
-			Property(t => t.CopyNumber).HasColumnName("CopyNumber");
+			Property(t => t.CopyStatusID).HasColumnName("CopyStatusID");
+			Property(t => t.DiscardedDate).HasColumnName("DiscardedDate");
+			Property(t => t.EndLocation).HasColumnName("EndLocation");
 			Property(t => t.FormatID).HasColumnName("FormatID");
-			Property(t => t.Hours).HasColumnName("Hours");
-			Property(t => t.Pages).HasColumnName("Pages");
 			Property(t => t.ProofRead).HasColumnName("ProofRead");
-			Property(t => t.StatusID).HasColumnName("StatusID");
+			Property(t => t.StartLocation).HasColumnName("StartLocation");
 			Property(t => t.TitleID).HasColumnName("TitleID");
-			Property(t => t.Volume).HasColumnName("Volume");
 	
 			// Primary Key
 			HasKey(t => t.CopyId);
 	
 			// Additional property mappings
-			Property(t => t.CopyId)
+			Property(t => t.Active)
 				.IsRequired();
 	
-			Property(t => t.CopyNumber)
+			Property(t => t.CopyId)
 				.IsRequired();
 	
 			Property(t => t.FormatID)
 				.IsRequired();
 	
 			Property(t => t.TitleID)
-				.IsRequired();
-	
-			Property(t => t.Volume)
 				.IsRequired();
 	
 	
@@ -120,30 +119,32 @@ namespace FbcBookIt.Entity
 		public static void AssignTo
 			(Copy aFrom, Copy aTo)
 		{
+			aTo.AcquisitionDate = aFrom.AcquisitionDate;
+			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;
 			aTo.CopyId = aFrom.CopyId;
-			aTo.CopyNumber = aFrom.CopyNumber;
+			aTo.CopyStatusID = aFrom.CopyStatusID;
+			aTo.DiscardedDate = aFrom.DiscardedDate;
+			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
-			aTo.Hours = aFrom.Hours;
-			aTo.Pages = aFrom.Pages;
 			aTo.ProofRead = aFrom.ProofRead;
-			aTo.StatusID = aFrom.StatusID;
+			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;
-			aTo.Volume = aFrom.Volume;
 		}
 	
 		public static void AssignToNoPrimaryKeys
 			(Copy aFrom, Copy aTo)
 		{
+			aTo.AcquisitionDate = aFrom.AcquisitionDate;
+			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;
-			aTo.CopyNumber = aFrom.CopyNumber;
+			aTo.CopyStatusID = aFrom.CopyStatusID;
+			aTo.DiscardedDate = aFrom.DiscardedDate;
+			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
-			aTo.Hours = aFrom.Hours;
-			aTo.Pages = aFrom.Pages;
 			aTo.ProofRead = aFrom.ProofRead;
-			aTo.StatusID = aFrom.StatusID;
+			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;
-			aTo.Volume = aFrom.Volume;
 		}
 	
 		public static void AssignToJustPrimaryKeys
@@ -155,30 +156,32 @@ namespace FbcBookIt.Entity
 		public static void AssignFrom
 			(this Copy aTo, Copy aFrom)
 		{
+			aTo.AcquisitionDate = aFrom.AcquisitionDate;
+			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;
 			aTo.CopyId = aFrom.CopyId;
-			aTo.CopyNumber = aFrom.CopyNumber;
+			aTo.CopyStatusID = aFrom.CopyStatusID;
+			aTo.DiscardedDate = aFrom.DiscardedDate;
+			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
-			aTo.Hours = aFrom.Hours;
-			aTo.Pages = aFrom.Pages;
 			aTo.ProofRead = aFrom.ProofRead;
-			aTo.StatusID = aFrom.StatusID;
+			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;
-			aTo.Volume = aFrom.Volume;
 		}
 	
 		public static void AssignFromNoPrimaryKeys
 			(this Copy aTo, Copy aFrom)
 		{
+			aTo.AcquisitionDate = aFrom.AcquisitionDate;
+			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;
-			aTo.CopyNumber = aFrom.CopyNumber;
+			aTo.CopyStatusID = aFrom.CopyStatusID;
+			aTo.DiscardedDate = aFrom.DiscardedDate;
+			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
-			aTo.Hours = aFrom.Hours;
-			aTo.Pages = aFrom.Pages;
 			aTo.ProofRead = aFrom.ProofRead;
-			aTo.StatusID = aFrom.StatusID;
+			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;
-			aTo.Volume = aFrom.Volume;
 		}
 	
 		public static void AssignFromJustPrimaryKeys

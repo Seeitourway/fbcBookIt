@@ -27,9 +27,9 @@ namespace FbcBookIt.Repository
 	
 	public abstract partial class BASE_Repository: IBASE_Repository
 	{
-		protected readonly IFbcBookItContext _Db;
+		protected readonly IBookInventoryContext _Db;
 	
-		protected BASE_Repository(IFbcBookItContext aDb)
+		protected BASE_Repository(IBookInventoryContext aDb)
 		{
 			if (aDb == null)
 			{
@@ -50,7 +50,7 @@ namespace FbcBookIt.Repository
 		: BASE_Repository, IBASE_RepositoryStoredProcs
 	{
 		protected BASE_RepositoryStoredProcs
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
@@ -64,7 +64,7 @@ namespace FbcBookIt.Repository
 	public abstract partial class BASE_RepositoryDbTable
 		: BASE_Repository, IBASE_RepositoryDbTable
 	{
-		protected BASE_RepositoryDbTable(IFbcBookItContext aDb)
+		protected BASE_RepositoryDbTable(IBookInventoryContext aDb)
 			: base(aDb)
 		{
 		}

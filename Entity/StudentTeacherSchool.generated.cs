@@ -28,6 +28,7 @@ namespace FbcBookIt.Entity
 		public System.Guid ID { get; set; }
 	
 		// Non-Primary columns
+		public System.Boolean Active { get; set; }
 		// Foreign Key to School
 		public System.Guid SchoolID { get; set; }
 		// Foreign Key to Student
@@ -45,6 +46,7 @@ namespace FbcBookIt.Entity
 			ToTable("StudentTeacherSchool");
 	
 			// Map property to column
+			Property(t => t.Active).HasColumnName("Active");
 			Property(t => t.ID).HasColumnName("ID");
 			Property(t => t.SchoolID).HasColumnName("SchoolID");
 			Property(t => t.StudentID).HasColumnName("StudentID");
@@ -54,6 +56,9 @@ namespace FbcBookIt.Entity
 			HasKey(t => t.ID);
 	
 			// Additional property mappings
+			Property(t => t.Active)
+				.IsRequired();
+	
 			Property(t => t.ID)
 				.IsRequired();
 	
@@ -105,6 +110,7 @@ namespace FbcBookIt.Entity
 		public static void AssignTo
 			(StudentTeacherSchool aFrom, StudentTeacherSchool aTo)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.ID = aFrom.ID;
 			aTo.SchoolID = aFrom.SchoolID;
 			aTo.StudentID = aFrom.StudentID;
@@ -114,6 +120,7 @@ namespace FbcBookIt.Entity
 		public static void AssignToNoPrimaryKeys
 			(StudentTeacherSchool aFrom, StudentTeacherSchool aTo)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.SchoolID = aFrom.SchoolID;
 			aTo.StudentID = aFrom.StudentID;
 			aTo.TeacherID = aFrom.TeacherID;
@@ -128,6 +135,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFrom
 			(this StudentTeacherSchool aTo, StudentTeacherSchool aFrom)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.ID = aFrom.ID;
 			aTo.SchoolID = aFrom.SchoolID;
 			aTo.StudentID = aFrom.StudentID;
@@ -137,6 +145,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFromNoPrimaryKeys
 			(this StudentTeacherSchool aTo, StudentTeacherSchool aFrom)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.SchoolID = aFrom.SchoolID;
 			aTo.StudentID = aFrom.StudentID;
 			aTo.TeacherID = aFrom.TeacherID;

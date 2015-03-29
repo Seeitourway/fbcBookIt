@@ -61,7 +61,7 @@ namespace Web.Controllers
             var key = _STSR.InsertAndReturnPrimaryKey(sts);
             if (key != null)
             {
-                return View();
+                return RedirectToAction("Index", "Teacher");
             }
             else
                 throw new Exception("StudentTeacherSchool Insert Failed.");

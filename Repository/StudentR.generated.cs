@@ -42,6 +42,12 @@ namespace FbcBookIt.Repository
 	
 		List<Student> GetAll();
 	
+		// GetByActive will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		Student GetByActive(System.Boolean aActive);
+	
+			List<Student> GetByActiveAsList(System.Boolean aActive);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -85,6 +91,8 @@ namespace FbcBookIt.Repository
 	
 		void Delete(System.Guid aStudentID);
 	
+			void DeleteByActive(System.Boolean aActive);
+	
 		bool IsActive(System.Guid aStudentID);
 	
 		void Remove(System.Guid aStudentID);
@@ -99,7 +107,7 @@ namespace FbcBookIt.Repository
 		: BASE_RepositoryDbTable, IStudentR
 	{
 		public StudentR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
@@ -135,6 +143,26 @@ namespace FbcBookIt.Repository
 		{
 			List<Student> vResult;
 			vResult = _Db.StudentDb.ToList();
+			return vResult;
+		}
+	
+		public Student GetByActive(System.Boolean aActive)
+		{
+			Student vResult;
+			vResult = 
+				_Db.StudentDb
+					.Where(aRec => aRec.Active == aActive)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Student> GetByActiveAsList(System.Boolean aActive)
+		{
+			List<Student> vResult;
+			vResult = 
+				_Db.StudentDb
+					.Where(aRec => aRec.Active == aActive)
+					.ToList();
 			return vResult;
 		}
 	
@@ -242,6 +270,23 @@ namespace FbcBookIt.Repository
 			_Db.SaveChanges();
 		}
 	
+		public void DeleteByActive(System.Boolean aActive)
+		{
+				List<Student> vListToDelete = 
+					_Db.StudentDb
+						.Where(aRec => aRec.Active == aActive)
+						.ToList();
+				if (vListToDelete.Count < 1)
+				{
+					return;
+				}
+				foreach (Student vRec in vListToDelete)
+				{
+					_Db.StudentDb.Remove(vRec);
+				}
+				_Db.SaveChanges();
+		}
+	
 		public bool IsActive(System.Guid aStudentID)
 		{
 			Student vRec = 
@@ -297,5 +342,4 @@ namespace FbcBookIt.Repository
 		}
 	
 	}
-
 }

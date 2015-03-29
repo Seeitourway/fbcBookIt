@@ -23,16 +23,16 @@ namespace FbcBookIt.DataAccess
 	// Server Db connection string: Not Set
 	// Web Service Url: Not Set
 	// Metadata key: DefaultMetaDataKey 
-	// MetaDataKey value: 71ab1f20-85d6-4a54-90fa-a4680170c8d1
-	public partial interface IFbcBookItFactory//: IDisposable
+	// MetaDataKey value: 43a11c94-dabe-4eee-a662-a46901085221
+	public partial interface IBookInventoryFactory//: IDisposable
 	{
-		IFbcBookItContext GetContext();
+		IBookInventoryContext GetContext();
 	
 	}
 	
-	public partial class FbcBookItFactory: IFbcBookItFactory
+	public partial class BookInventoryFactory: IBookInventoryFactory
 	{
-		public FbcBookItFactory()
+		public BookInventoryFactory()
 		{
 		}
 	
@@ -43,10 +43,10 @@ namespace FbcBookIt.DataAccess
 	//		}
 	//	}
 	
-		public IFbcBookItContext GetContext()
+		public IBookInventoryContext GetContext()
 		{
-			IFbcBookItContext vResult =
-				InstanceFactory.GetInstance<IFbcBookItContext>();
+			IBookInventoryContext vResult =
+				InstanceFactory.GetInstance<IBookInventoryContext>();
 			return vResult;
 		}
 	

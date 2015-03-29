@@ -42,6 +42,24 @@ namespace FbcBookIt.Repository
 	
 		List<StudentTeacherSchool> GetAll();
 	
+		StudentTeacherSchool GetByStudentIDAndTeacherID
+		(
+			System.Guid aStudentID
+			, System.Guid aTeacherID
+		);
+	
+		List<StudentTeacherSchool> GetByStudentIDAndTeacherIDAsList
+		(
+			System.Guid aStudentID
+			, System.Guid aTeacherID
+		);
+	
+		// GetByTeacherID will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		StudentTeacherSchool GetByTeacherID(System.Guid aTeacherID);
+	
+			List<StudentTeacherSchool> GetByTeacherIDAsList(System.Guid aTeacherID);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -85,13 +103,21 @@ namespace FbcBookIt.Repository
 	
 		void Delete(System.Guid aID);
 	
+		bool IsActive(System.Guid aID);
+	
+		void Remove(System.Guid aID);
+	
+		void Restore(System.Guid aID);
+	
+		void DeleteAllRemoved();
+	
 	}
 	
 	public partial class StudentTeacherSchoolR
 		: BASE_RepositoryDbTable, IStudentTeacherSchoolR
 	{
 		public StudentTeacherSchoolR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
@@ -127,6 +153,60 @@ namespace FbcBookIt.Repository
 		{
 			List<StudentTeacherSchool> vResult;
 			vResult = _Db.StudentTeacherSchoolDb.ToList();
+			return vResult;
+		}
+	
+		public StudentTeacherSchool GetByStudentIDAndTeacherID
+		(
+			System.Guid aStudentID
+			, System.Guid aTeacherID
+		)
+		{
+			StudentTeacherSchool vResult;
+			vResult = _Db.StudentTeacherSchoolDb
+				.Where
+					(
+						aRec => 
+								(aRec.StudentID == aStudentID)
+									&& (aRec.TeacherID == aTeacherID)
+					).FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<StudentTeacherSchool> GetByStudentIDAndTeacherIDAsList
+		(
+			System.Guid aStudentID
+			, System.Guid aTeacherID
+		)
+		{
+			List<StudentTeacherSchool> vResult;
+			vResult = _Db.StudentTeacherSchoolDb
+				.Where
+					(
+						aRec => 
+								(aRec.StudentID == aStudentID)
+									&& (aRec.TeacherID == aTeacherID)
+					).ToList();
+			return vResult;
+		}
+	
+		public StudentTeacherSchool GetByTeacherID(System.Guid aTeacherID)
+		{
+			StudentTeacherSchool vResult;
+			vResult = 
+				_Db.StudentTeacherSchoolDb
+					.Where(aRec => aRec.TeacherID == aTeacherID)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<StudentTeacherSchool> GetByTeacherIDAsList(System.Guid aTeacherID)
+		{
+			List<StudentTeacherSchool> vResult;
+			vResult = 
+				_Db.StudentTeacherSchoolDb
+					.Where(aRec => aRec.TeacherID == aTeacherID)
+					.ToList();
 			return vResult;
 		}
 	
@@ -231,6 +311,60 @@ namespace FbcBookIt.Repository
 				return; // Record is already gone, no worries!
 			}
 			_Db.StudentTeacherSchoolDb.Remove(vRec);
+			_Db.SaveChanges();
+		}
+	
+		public bool IsActive(System.Guid aID)
+		{
+			StudentTeacherSchool vRec = 
+				_Db.StudentTeacherSchoolDb.FirstOrDefault(aRec => aRec.ID == aID);
+			bool vResult = (vRec != null) && vRec.Active;
+			return vResult;
+		}
+	
+		public void Remove(System.Guid aID)
+		{
+			StudentTeacherSchool vRec = 
+				_Db.StudentTeacherSchoolDb.FirstOrDefault(aRec => aRec.ID == aID);
+			if (vRec == null)
+			{
+				return;
+			}
+			vRec.Active = false;
+			_Db.SaveChanges();
+		}
+	
+		public void Restore(System.Guid aID)
+		{
+			StudentTeacherSchool vRec = 
+				_Db.StudentTeacherSchoolDb.FirstOrDefault(aRec => aRec.ID == aID);
+			if (vRec == null)
+			{
+				return;
+			}
+			vRec.Active = true;
+			_Db.SaveChanges();
+		}
+	
+		/// <remark>
+		/// Note that this method in EF is Really Ugly in that EF requires that 
+		/// each record to be deleted must first be brought into the context, then 
+		/// "removed", then SaveChanges called to actually delete the record(s).
+		/// For a large number of records this gets memory intensive.
+		/// </remark>
+		public void DeleteAllRemoved()
+		{
+			List<StudentTeacherSchool> vToDelete =
+				_Db.StudentTeacherSchoolDb
+					.Where(aRec => !aRec.Active).ToList();
+			if (vToDelete.Count < 1)
+			{
+				return;
+			}
+			foreach (StudentTeacherSchool vRec in vToDelete)
+			{
+				_Db.StudentTeacherSchoolDb.Remove(vRec);
+			}
 			_Db.SaveChanges();
 		}
 	

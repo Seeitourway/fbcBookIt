@@ -10,7 +10,7 @@
 	code = new CodeGenerationTools(this);
 	codeNamespace = code.VsNamespaceSuggestion();
 	Server = @".\SqlExpress";
-	Database = "FbcBookIt";	
+	Database = "BookInventory";	
 	IntegratedSecurity = true;
 	User = string.Empty;
 	Pwd = string.Empty;
@@ -60,6 +60,7 @@ private void BuildEnum()
 		SqlDataReader vReader = vCmd.ExecuteReader();
 		PushIndent("\t\t");
 		WriteLine("\tUnknown = 0");
+/*
 		while (vReader.Read())
 		{
 			string vEnumLine = 
@@ -71,6 +72,7 @@ private void BuildEnum()
 					);
 			WriteLine(vEnumLine);
 		}
+*/
 		PopIndent();
 		vReader.Close();
 		vConnection.Close();

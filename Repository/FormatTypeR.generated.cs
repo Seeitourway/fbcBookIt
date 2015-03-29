@@ -42,6 +42,12 @@ namespace FbcBookIt.Repository
 	
 		List<FormatType> GetAll();
 	
+		// GetByActive will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		FormatType GetByActive(System.Boolean aActive);
+	
+			List<FormatType> GetByActiveAsList(System.Boolean aActive);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -85,6 +91,8 @@ namespace FbcBookIt.Repository
 	
 		void Delete(System.Guid aFormatTypeId);
 	
+			void DeleteByActive(System.Boolean aActive);
+	
 		bool IsActive(System.Guid aFormatTypeId);
 	
 		void Remove(System.Guid aFormatTypeId);
@@ -99,7 +107,7 @@ namespace FbcBookIt.Repository
 		: BASE_RepositoryDbTable, IFormatTypeR
 	{
 		public FormatTypeR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	
@@ -135,6 +143,26 @@ namespace FbcBookIt.Repository
 		{
 			List<FormatType> vResult;
 			vResult = _Db.FormatTypeDb.ToList();
+			return vResult;
+		}
+	
+		public FormatType GetByActive(System.Boolean aActive)
+		{
+			FormatType vResult;
+			vResult = 
+				_Db.FormatTypeDb
+					.Where(aRec => aRec.Active == aActive)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<FormatType> GetByActiveAsList(System.Boolean aActive)
+		{
+			List<FormatType> vResult;
+			vResult = 
+				_Db.FormatTypeDb
+					.Where(aRec => aRec.Active == aActive)
+					.ToList();
 			return vResult;
 		}
 	
@@ -240,6 +268,23 @@ namespace FbcBookIt.Repository
 			}
 			_Db.FormatTypeDb.Remove(vRec);
 			_Db.SaveChanges();
+		}
+	
+		public void DeleteByActive(System.Boolean aActive)
+		{
+				List<FormatType> vListToDelete = 
+					_Db.FormatTypeDb
+						.Where(aRec => aRec.Active == aActive)
+						.ToList();
+				if (vListToDelete.Count < 1)
+				{
+					return;
+				}
+				foreach (FormatType vRec in vListToDelete)
+				{
+					_Db.FormatTypeDb.Remove(vRec);
+				}
+				_Db.SaveChanges();
 		}
 	
 		public bool IsActive(System.Guid aFormatTypeId)

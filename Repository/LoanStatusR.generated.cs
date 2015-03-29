@@ -91,7 +91,7 @@ namespace FbcBookIt.Repository
 		: BASE_RepositoryDbTable, ILoanStatusR
 	{
 		public LoanStatusR
-			(IFbcBookItContext aDb): base(aDb)
+			(IBookInventoryContext aDb): base(aDb)
 		{
 		}
 	

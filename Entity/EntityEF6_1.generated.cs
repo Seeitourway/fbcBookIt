@@ -21,7 +21,7 @@ namespace FbcBookIt.Entity
 	// Server Db connection string: Not Set
 	// Web Service Url: Not Set
 	// Metadata key: DefaultMetaDataKey 
-	// MetaDataKey value: 71ab1f20-85d6-4a54-90fa-a4680170c8d1
+	// MetaDataKey value: 43a11c94-dabe-4eee-a662-a46901085221
 	public abstract class BASE_Entity 
 	{
 	}
