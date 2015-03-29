@@ -76,6 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BuildEnumFromTableVolumeStatus.tt</DependentUpon>
     </Compile>
+    <Compile Include="Copy.cs" />
     <Compile Include="Copy.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>
@@ -112,6 +113,7 @@
     <Compile Include="Teacher.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Title.cs" />
     <Compile Include="Title.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>

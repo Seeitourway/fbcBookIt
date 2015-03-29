@@ -48,7 +48,7 @@ namespace BookItAdmin.Controllers
             {
                 var id = _titleR.InsertAndReturnPrimaryKey(title);
 
-                return RedirectToAction(MVC.Inventory.Details(id));
+                return RedirectToAction(MVC.Inventory.Index());
             }
             catch
             {
@@ -59,7 +59,10 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Edit(Guid id)
         {
             var title = _titleR.Get(id);
-            return View(id);
+            //title.Copies = _copyR.GetByActiveAndTitleId(id);
+            //foreach (var copy in title.Copies)
+            //    copy.Volumes = _volumeR.GetByActiveAndCopyId(copy.CopyId);
+            return View(title);
         }
 
         [HttpPost]
@@ -69,7 +72,7 @@ namespace BookItAdmin.Controllers
             {
                 _titleR.Update(title);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.Inventory.Index());
             }
             catch
             {
@@ -80,7 +83,7 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Delete(Guid id)
         {
             var title = _titleR.Get(id);
-            return View(id);
+            return View(title);
         }
 
         [HttpPost]
