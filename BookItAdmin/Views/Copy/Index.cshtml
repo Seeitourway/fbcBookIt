@@ -1,0 +1,119 @@
+﻿@model IEnumerable<FbcBookIt.Entity.Copy>
+
+@{
+    ViewBag.Title = "Copies";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3><a href="@Url.Action(MVC.Title.Details(ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessionNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcquisitionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Consumable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CopyStatusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscardedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormatID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MasterCopy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfTactiles)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProofRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitleID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccessionNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcquisitionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consumable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CopyStatusID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscardedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormatID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MasterCopy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfTactiles)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProofRead)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TitleID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CopyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CopyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CopyId })
+        </td>
+    </tr>
+}
+
+</table>

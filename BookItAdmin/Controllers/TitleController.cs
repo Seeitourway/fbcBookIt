@@ -8,11 +8,11 @@ using FbcBookIt.Entity;
 
 namespace BookItAdmin.Controllers
 {
-    public partial class InventoryController : Controller
+    public partial class TitleController : Controller
     {
         private ITitleR _titleR = null;
         private ICopyR _copyR = null;
-        public InventoryController(FbcBookIt.Repository.ITitleR titleR, ICopyR copyR)
+        public TitleController(FbcBookIt.Repository.ITitleR titleR, ICopyR copyR)
         {
             if (titleR == null)
                 throw new ArgumentNullException("Title repository cannot be null");
@@ -32,6 +32,7 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Details(Guid id)
         {
             var title = _titleR.Get(id);
+            title.Copies = _copyR.GetByActiveAndTitleIDAsList(true, id);
             return View(title);
         }
 
@@ -48,7 +49,7 @@ namespace BookItAdmin.Controllers
             {
                 var id = _titleR.InsertAndReturnPrimaryKey(title);
 
-                return RedirectToAction(MVC.Inventory.Index());
+                return RedirectToAction(MVC.Title.Index());
             }
             catch
             {
@@ -59,9 +60,7 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Edit(Guid id)
         {
             var title = _titleR.Get(id);
-            //title.Copies = _copyR.GetByActiveAndTitleId(id);
-            //foreach (var copy in title.Copies)
-            //    copy.Volumes = _volumeR.GetByActiveAndCopyId(copy.CopyId);
+            title.Copies = _copyR.GetByActiveAndTitleIDAsList(true, id);
             return View(title);
         }
 
@@ -72,7 +71,7 @@ namespace BookItAdmin.Controllers
             {
                 _titleR.Update(title);
 
-                return RedirectToAction(MVC.Inventory.Index());
+                return RedirectToAction(MVC.Title.Index());
             }
             catch
             {
@@ -96,7 +95,7 @@ namespace BookItAdmin.Controllers
                 else
                     _titleR.Remove(id);
 
-                return RedirectToAction(MVC.Inventory.Index());
+                return RedirectToAction(MVC.Title.Index());
             }
             catch
             {
@@ -104,7 +103,7 @@ namespace BookItAdmin.Controllers
                 if (title != null)
                     return View(title);
                 else
-                    return RedirectToAction(MVC.Inventory.Index());
+                    return RedirectToAction(MVC.Title.Index());
             }
         }
     }

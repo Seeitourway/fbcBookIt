@@ -24,10 +24,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace BookItAdmin.Controllers
 {
-    public partial class InventoryController
+    public partial class CopyController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected InventoryController(Dummy d) { }
+        protected CopyController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -57,9 +57,21 @@ namespace BookItAdmin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Details()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Create()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -75,13 +87,13 @@ namespace BookItAdmin.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public InventoryController Actions { get { return MVC.Inventory; } }
+        public CopyController Actions { get { return MVC.Copy; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Inventory";
+        public readonly string Name = "Copy";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Inventory";
+        public const string NameConst = "Copy";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -107,6 +119,14 @@ namespace BookItAdmin.Controllers
         }
 
 
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
@@ -121,7 +141,8 @@ namespace BookItAdmin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string title = "title";
+            public readonly string titleId = "titleId";
+            public readonly string copy = "copy";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -130,7 +151,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string title = "title";
+            public readonly string copy = "copy";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -157,27 +178,28 @@ namespace BookItAdmin.Controllers
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Views/Inventory/Create.cshtml";
-            public readonly string Delete = "~/Views/Inventory/Delete.cshtml";
-            public readonly string Details = "~/Views/Inventory/Details.cshtml";
-            public readonly string Edit = "~/Views/Inventory/Edit.cshtml";
-            public readonly string Index = "~/Views/Inventory/Index.cshtml";
+            public readonly string Create = "~/Views/Copy/Create.cshtml";
+            public readonly string Delete = "~/Views/Copy/Delete.cshtml";
+            public readonly string Details = "~/Views/Copy/Details.cshtml";
+            public readonly string Edit = "~/Views/Copy/Edit.cshtml";
+            public readonly string Index = "~/Views/Copy/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_InventoryController : BookItAdmin.Controllers.InventoryController
+    public partial class T4MVC_CopyController : BookItAdmin.Controllers.CopyController
     {
-        public T4MVC_InventoryController() : base(Dummy.Instance) { }
+        public T4MVC_CopyController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult Index(System.Guid id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            IndexOverride(callInfo, id);
             return callInfo;
         }
 
@@ -194,25 +216,26 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid titleId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult Create(System.Guid titleId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "titleId", titleId);
+            CreateOverride(callInfo, titleId);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.Title title);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.Copy copy);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.Title title)
+        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.Copy copy)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "title", title);
-            CreateOverride(callInfo, title);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "copy", copy);
+            CreateOverride(callInfo, copy);
             return callInfo;
         }
 
@@ -229,15 +252,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.Title title);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.Copy copy);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.Title title)
+        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.Copy copy)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "title", title);
-            EditOverride(callInfo, id, title);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "copy", copy);
+            EditOverride(callInfo, id, copy);
             return callInfo;
         }
 

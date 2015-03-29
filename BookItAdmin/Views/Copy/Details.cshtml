@@ -1,0 +1,139 @@
+﻿@model FbcBookIt.Entity.Copy
+
+@{
+    ViewBag.Title = Model.AccessionNumber;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Copy</h4>
+    <h3><a href="@Url.Action(MVC.Title.Details(ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessionNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessionNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AcquisitionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcquisitionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consumable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consumable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CopyStatusID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CopyStatusID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscardedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscardedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FormatID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormatID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MasterCopy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MasterCopy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfTactiles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfTactiles)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProofRead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProofRead)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CopyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

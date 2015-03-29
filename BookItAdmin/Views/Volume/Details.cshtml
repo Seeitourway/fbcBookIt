@@ -1,0 +1,52 @@
+﻿@model FbcBookIt.Entity.Volume
+
+@{
+    ViewBag.Title = Model.VolumeNumber;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Volume</h4>
+    <h3><a href="@Url.Action(MVC.Title.Details(ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+    <h3><a href="@Url.Action(MVC.Title.Details(ViewBag.CopyId))">@ViewBag.AccessionNumber</a></h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumeNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumeNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumeStatusID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumeStatusID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VolumeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
