@@ -188,13 +188,18 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookRequestController.cs" />
+    <Compile Include="Controllers\CopyController.cs" />
     <Compile Include="Controllers\DataManagerController.cs" />
     <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\VolumeController.cs" />
+    <Compile Include="CopyController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataManagerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -205,9 +210,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InventoryController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +228,12 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="TeacherController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TitleController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VolumeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -299,11 +307,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Inventory\Index.cshtml" />
-    <Content Include="Views\Inventory\Details.cshtml" />
-    <Content Include="Views\Inventory\Edit.cshtml" />
-    <Content Include="Views\Inventory\Delete.cshtml" />
-    <Content Include="Views\Inventory\Create.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\Details.cshtml" />
     <Content Include="Views\Teacher\Create.cshtml" />
@@ -330,6 +333,21 @@
     <Content Include="Views\BookRequest\Create.cshtml" />
     <Content Include="Views\BookRequest\Delete.cshtml" />
     <Content Include="Views\DataManager\Index.cshtml" />
+    <Content Include="Views\Title\Details.cshtml" />
+    <Content Include="Views\Title\Index.cshtml" />
+    <Content Include="Views\Title\Create.cshtml" />
+    <Content Include="Views\Title\Edit.cshtml" />
+    <Content Include="Views\Title\Delete.cshtml" />
+    <Content Include="Views\Volume\Index.cshtml" />
+    <Content Include="Views\Volume\Create.cshtml" />
+    <Content Include="Views\Volume\Details.cshtml" />
+    <Content Include="Views\Volume\Edit.cshtml" />
+    <Content Include="Views\Volume\Delete.cshtml" />
+    <Content Include="Views\Copy\Index.cshtml" />
+    <Content Include="Views\Copy\Create.cshtml" />
+    <Content Include="Views\Copy\Details.cshtml" />
+    <Content Include="Views\Copy\Edit.cshtml" />
+    <Content Include="Views\Copy\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

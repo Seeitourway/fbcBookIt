@@ -28,6 +28,7 @@ namespace FbcBookIt.Entity
 		public System.Int32 VolumeStatusId { get; set; }
 	
 		// Non-Primary columns
+		public System.Boolean Active { get; set; }
 		public System.String StatusDescription { get; set; }
 	
 	}
@@ -40,6 +41,7 @@ namespace FbcBookIt.Entity
 			ToTable("VolumeStatus");
 	
 			// Map property to column
+			Property(t => t.Active).HasColumnName("Active");
 			Property(t => t.StatusDescription).HasColumnName("StatusDescription");
 			Property(t => t.VolumeStatusId).HasColumnName("VolumeStatusId");
 	
@@ -47,6 +49,9 @@ namespace FbcBookIt.Entity
 			HasKey(t => t.VolumeStatusId);
 	
 			// Additional property mappings
+			Property(t => t.Active)
+				.IsRequired();
+	
 			Property(t => t.VolumeStatusId)
 				.IsRequired();
 	
@@ -88,6 +93,7 @@ namespace FbcBookIt.Entity
 		public static void AssignTo
 			(VolumeStatus aFrom, VolumeStatus aTo)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.StatusDescription = aFrom.StatusDescription;
 			aTo.VolumeStatusId = aFrom.VolumeStatusId;
 		}
@@ -95,6 +101,7 @@ namespace FbcBookIt.Entity
 		public static void AssignToNoPrimaryKeys
 			(VolumeStatus aFrom, VolumeStatus aTo)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
@@ -107,6 +114,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFrom
 			(this VolumeStatus aTo, VolumeStatus aFrom)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.StatusDescription = aFrom.StatusDescription;
 			aTo.VolumeStatusId = aFrom.VolumeStatusId;
 		}
@@ -114,6 +122,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFromNoPrimaryKeys
 			(this VolumeStatus aTo, VolumeStatus aFrom)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	

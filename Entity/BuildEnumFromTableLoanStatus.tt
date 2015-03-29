@@ -60,7 +60,6 @@ private void BuildEnum()
 		SqlDataReader vReader = vCmd.ExecuteReader();
 		PushIndent("\t\t");
 		WriteLine("\tUnknown = 0");
-/*
 		while (vReader.Read())
 		{
 			string vEnumLine = 
@@ -72,7 +71,6 @@ private void BuildEnum()
 					);
 			WriteLine(vEnumLine);
 		}
-*/
 		PopIndent();
 		vReader.Close();
 		vConnection.Close();
@@ -83,7 +81,7 @@ private string CreateValidIdentifier(string aInput)
 {
 	string vPattern = @"[\.\[\]\s]";
 	Regex vRegEx = new Regex(vPattern, RegexOptions.None);
-	string vResult = vRegEx.Replace(aInput, "");
+	string vResult = vRegEx.Replace(aInput, "").Replace('-', '_');
 	return vResult;
 }
 

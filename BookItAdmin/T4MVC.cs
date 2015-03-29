@@ -28,13 +28,15 @@ public static partial class MVC
 {
     public static BookItAdmin.Controllers.AccountController Account = new BookItAdmin.Controllers.T4MVC_AccountController();
     public static BookItAdmin.Controllers.BookRequestController BookRequest = new BookItAdmin.Controllers.T4MVC_BookRequestController();
+    public static BookItAdmin.Controllers.CopyController Copy = new BookItAdmin.Controllers.T4MVC_CopyController();
     public static BookItAdmin.Controllers.DataManagerController DataManager = new BookItAdmin.Controllers.T4MVC_DataManagerController();
     public static BookItAdmin.Controllers.DistrictController District = new BookItAdmin.Controllers.T4MVC_DistrictController();
     public static BookItAdmin.Controllers.HomeController Home = new BookItAdmin.Controllers.T4MVC_HomeController();
-    public static BookItAdmin.Controllers.InventoryController Inventory = new BookItAdmin.Controllers.T4MVC_InventoryController();
     public static BookItAdmin.Controllers.SchoolController School = new BookItAdmin.Controllers.T4MVC_SchoolController();
     public static BookItAdmin.Controllers.StudentController Student = new BookItAdmin.Controllers.T4MVC_StudentController();
     public static BookItAdmin.Controllers.TeacherController Teacher = new BookItAdmin.Controllers.T4MVC_TeacherController();
+    public static BookItAdmin.Controllers.TitleController Title = new BookItAdmin.Controllers.T4MVC_TitleController();
+    public static BookItAdmin.Controllers.VolumeController Volume = new BookItAdmin.Controllers.T4MVC_VolumeController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

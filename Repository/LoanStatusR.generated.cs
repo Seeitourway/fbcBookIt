@@ -85,6 +85,14 @@ namespace FbcBookIt.Repository
 	
 		void Delete(System.Int32 aLoanStatusId);
 	
+		bool IsActive(System.Int32 aLoanStatusId);
+	
+		void Remove(System.Int32 aLoanStatusId);
+	
+		void Restore(System.Int32 aLoanStatusId);
+	
+		void DeleteAllRemoved();
+	
 	}
 	
 	public partial class LoanStatusR
@@ -231,6 +239,60 @@ namespace FbcBookIt.Repository
 				return; // Record is already gone, no worries!
 			}
 			_Db.LoanStatusDb.Remove(vRec);
+			_Db.SaveChanges();
+		}
+	
+		public bool IsActive(System.Int32 aLoanStatusId)
+		{
+			LoanStatus vRec = 
+				_Db.LoanStatusDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatusId);
+			bool vResult = (vRec != null) && vRec.Active;
+			return vResult;
+		}
+	
+		public void Remove(System.Int32 aLoanStatusId)
+		{
+			LoanStatus vRec = 
+				_Db.LoanStatusDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatusId);
+			if (vRec == null)
+			{
+				return;
+			}
+			vRec.Active = false;
+			_Db.SaveChanges();
+		}
+	
+		public void Restore(System.Int32 aLoanStatusId)
+		{
+			LoanStatus vRec = 
+				_Db.LoanStatusDb.FirstOrDefault(aRec => aRec.LoanStatusId == aLoanStatusId);
+			if (vRec == null)
+			{
+				return;
+			}
+			vRec.Active = true;
+			_Db.SaveChanges();
+		}
+	
+		/// <remark>
+		/// Note that this method in EF is Really Ugly in that EF requires that 
+		/// each record to be deleted must first be brought into the context, then 
+		/// "removed", then SaveChanges called to actually delete the record(s).
+		/// For a large number of records this gets memory intensive.
+		/// </remark>
+		public void DeleteAllRemoved()
+		{
+			List<LoanStatus> vToDelete =
+				_Db.LoanStatusDb
+					.Where(aRec => !aRec.Active).ToList();
+			if (vToDelete.Count < 1)
+			{
+				return;
+			}
+			foreach (LoanStatus vRec in vToDelete)
+			{
+				_Db.LoanStatusDb.Remove(vRec);
+			}
 			_Db.SaveChanges();
 		}
 	
