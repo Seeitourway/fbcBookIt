@@ -28,16 +28,17 @@ namespace FbcBookIt.Entity
 		public System.Guid CopyId { get; set; }
 	
 		// Non-Primary columns
+		public System.String AccessionNumber { get; set; }
 		public System.DateTime? AcquisitionDate { get; set; }
 		public System.Boolean Active { get; set; }
-		public System.Boolean? Consumable { get; set; }
+		public System.Boolean Consumable { get; set; }
 		// Foreign Key to CopyStatus
 		public System.Int32? CopyStatusID { get; set; }
 		public System.DateTime? DiscardedDate { get; set; }
 		public System.String EndLocation { get; set; }
 		// Foreign Key to FormatType
 		public System.Int32? FormatTypeID { get; set; }
-		public System.Boolean? ProofRead { get; set; }
+		public System.Boolean ProofRead { get; set; }
 		public System.String StartLocation { get; set; }
 		// Foreign Key to Title
 		public System.Guid TitleID { get; set; }
@@ -52,6 +53,7 @@ namespace FbcBookIt.Entity
 			ToTable("Copy");
 	
 			// Map property to column
+			Property(t => t.AccessionNumber).HasColumnName("AccessionNumber");
 			Property(t => t.AcquisitionDate).HasColumnName("AcquisitionDate");
 			Property(t => t.Active).HasColumnName("Active");
 			Property(t => t.Consumable).HasColumnName("Consumable");
@@ -68,10 +70,19 @@ namespace FbcBookIt.Entity
 			HasKey(t => t.CopyId);
 	
 			// Additional property mappings
+			Property(t => t.AccessionNumber)
+				.IsRequired();
+	
 			Property(t => t.Active)
 				.IsRequired();
 	
+			Property(t => t.Consumable)
+				.IsRequired();
+	
 			Property(t => t.CopyId)
+				.IsRequired();
+	
+			Property(t => t.ProofRead)
 				.IsRequired();
 	
 			Property(t => t.TitleID)
@@ -116,6 +127,7 @@ namespace FbcBookIt.Entity
 		public static void AssignTo
 			(Copy aFrom, Copy aTo)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;
@@ -132,6 +144,7 @@ namespace FbcBookIt.Entity
 		public static void AssignToNoPrimaryKeys
 			(Copy aFrom, Copy aTo)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;
@@ -153,6 +166,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFrom
 			(this Copy aTo, Copy aFrom)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;
@@ -169,6 +183,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFromNoPrimaryKeys
 			(this Copy aTo, Copy aFrom)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
 			aTo.Consumable = aFrom.Consumable;

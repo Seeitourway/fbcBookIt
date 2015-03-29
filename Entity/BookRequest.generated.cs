@@ -31,6 +31,7 @@ namespace FbcBookIt.Entity
 		// Foreign Key to FormatType
 		public System.Int32? FormatTypeID { get; set; }
 		public System.DateTime? RequestDate { get; set; }
+		public System.String RequestNumber { get; set; }
 		// Foreign Key to RequestStatus
 		public System.Int32? RequestStatusId { get; set; }
 		// Foreign Key to StudentTeacherSchool
@@ -51,6 +52,7 @@ namespace FbcBookIt.Entity
 			Property(t => t.BookRequestId).HasColumnName("BookRequestId");
 			Property(t => t.FormatTypeID).HasColumnName("FormatTypeID");
 			Property(t => t.RequestDate).HasColumnName("RequestDate");
+			Property(t => t.RequestNumber).HasColumnName("RequestNumber");
 			Property(t => t.RequestStatusId).HasColumnName("RequestStatusId");
 			Property(t => t.StudentTeacherSchoolId).HasColumnName("StudentTeacherSchoolId");
 			Property(t => t.TitleID).HasColumnName("TitleID");
@@ -60,6 +62,9 @@ namespace FbcBookIt.Entity
 	
 			// Additional property mappings
 			Property(t => t.BookRequestId)
+				.IsRequired();
+	
+			Property(t => t.RequestNumber)
 				.IsRequired();
 	
 			Property(t => t.StudentTeacherSchoolId)
@@ -110,6 +115,7 @@ namespace FbcBookIt.Entity
 			aTo.BookRequestId = aFrom.BookRequestId;
 			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
+			aTo.RequestNumber = aFrom.RequestNumber;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
 			aTo.TitleID = aFrom.TitleID;
@@ -120,6 +126,7 @@ namespace FbcBookIt.Entity
 		{
 			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
+			aTo.RequestNumber = aFrom.RequestNumber;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
 			aTo.TitleID = aFrom.TitleID;
@@ -137,6 +144,7 @@ namespace FbcBookIt.Entity
 			aTo.BookRequestId = aFrom.BookRequestId;
 			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
+			aTo.RequestNumber = aFrom.RequestNumber;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
 			aTo.TitleID = aFrom.TitleID;
@@ -147,6 +155,7 @@ namespace FbcBookIt.Entity
 		{
 			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
+			aTo.RequestNumber = aFrom.RequestNumber;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
 			aTo.TitleID = aFrom.TitleID;

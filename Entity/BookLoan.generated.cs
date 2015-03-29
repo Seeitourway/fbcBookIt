@@ -31,9 +31,10 @@ namespace FbcBookIt.Entity
 		// Foreign Key to BookRequest
 		public System.Guid BookRequestID { get; set; }
 		public System.DateTime? InDate { get; set; }
-		public System.DateTime? OutDate { get; set; }
+		public System.Int32 LoanNumber { get; set; }
 		// Foreign Key to LoanStatus
-		public System.Int32 StatusID { get; set; }
+		public System.Int32 LoanStatusID { get; set; }
+		public System.DateTime? OutDate { get; set; }
 		// Foreign Key to Volume
 		public System.Guid VolumeID { get; set; }
 	
@@ -50,8 +51,9 @@ namespace FbcBookIt.Entity
 			Property(t => t.BookLoanId).HasColumnName("BookLoanId");
 			Property(t => t.BookRequestID).HasColumnName("BookRequestID");
 			Property(t => t.InDate).HasColumnName("InDate");
+			Property(t => t.LoanNumber).HasColumnName("LoanNumber");
+			Property(t => t.LoanStatusID).HasColumnName("LoanStatusID");
 			Property(t => t.OutDate).HasColumnName("OutDate");
-			Property(t => t.StatusID).HasColumnName("StatusID");
 			Property(t => t.VolumeID).HasColumnName("VolumeID");
 	
 			// Primary Key
@@ -64,7 +66,10 @@ namespace FbcBookIt.Entity
 			Property(t => t.BookRequestID)
 				.IsRequired();
 	
-			Property(t => t.StatusID)
+			Property(t => t.LoanNumber)
+				.IsRequired();
+	
+			Property(t => t.LoanStatusID)
 				.IsRequired();
 	
 			Property(t => t.VolumeID)
@@ -112,8 +117,9 @@ namespace FbcBookIt.Entity
 			aTo.BookLoanId = aFrom.BookLoanId;
 			aTo.BookRequestID = aFrom.BookRequestID;
 			aTo.InDate = aFrom.InDate;
+			aTo.LoanNumber = aFrom.LoanNumber;
+			aTo.LoanStatusID = aFrom.LoanStatusID;
 			aTo.OutDate = aFrom.OutDate;
-			aTo.StatusID = aFrom.StatusID;
 			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
@@ -122,8 +128,9 @@ namespace FbcBookIt.Entity
 		{
 			aTo.BookRequestID = aFrom.BookRequestID;
 			aTo.InDate = aFrom.InDate;
+			aTo.LoanNumber = aFrom.LoanNumber;
+			aTo.LoanStatusID = aFrom.LoanStatusID;
 			aTo.OutDate = aFrom.OutDate;
-			aTo.StatusID = aFrom.StatusID;
 			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
@@ -139,8 +146,9 @@ namespace FbcBookIt.Entity
 			aTo.BookLoanId = aFrom.BookLoanId;
 			aTo.BookRequestID = aFrom.BookRequestID;
 			aTo.InDate = aFrom.InDate;
+			aTo.LoanNumber = aFrom.LoanNumber;
+			aTo.LoanStatusID = aFrom.LoanStatusID;
 			aTo.OutDate = aFrom.OutDate;
-			aTo.StatusID = aFrom.StatusID;
 			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
@@ -149,8 +157,9 @@ namespace FbcBookIt.Entity
 		{
 			aTo.BookRequestID = aFrom.BookRequestID;
 			aTo.InDate = aFrom.InDate;
+			aTo.LoanNumber = aFrom.LoanNumber;
+			aTo.LoanStatusID = aFrom.LoanStatusID;
 			aTo.OutDate = aFrom.OutDate;
-			aTo.StatusID = aFrom.StatusID;
 			aTo.VolumeID = aFrom.VolumeID;
 		}
 	
