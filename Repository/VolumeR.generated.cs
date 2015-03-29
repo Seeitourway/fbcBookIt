@@ -42,6 +42,12 @@ namespace FbcBookIt.Repository
 	
 		List<Volume> GetAll();
 	
+		// GetByCopyID will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		Volume GetByCopyID(System.Guid? aCopyID);
+	
+			List<Volume> GetByCopyIDAsList(System.Guid? aCopyID);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -127,6 +133,26 @@ namespace FbcBookIt.Repository
 		{
 			List<Volume> vResult;
 			vResult = _Db.VolumeDb.ToList();
+			return vResult;
+		}
+	
+		public Volume GetByCopyID(System.Guid? aCopyID)
+		{
+			Volume vResult;
+			vResult = 
+				_Db.VolumeDb
+					.Where(aRec => aRec.CopyID == aCopyID)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Volume> GetByCopyIDAsList(System.Guid? aCopyID)
+		{
+			List<Volume> vResult;
+			vResult = 
+				_Db.VolumeDb
+					.Where(aRec => aRec.CopyID == aCopyID)
+					.ToList();
 			return vResult;
 		}
 	

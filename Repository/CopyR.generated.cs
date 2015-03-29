@@ -54,6 +54,24 @@ namespace FbcBookIt.Repository
 			, System.Guid aCopyId
 		);
 	
+		Copy GetByActiveAndTitleID
+		(
+			System.Boolean aActive
+			, System.Guid aTitleID
+		);
+	
+		List<Copy> GetByActiveAndTitleIDAsList
+		(
+			System.Boolean aActive
+			, System.Guid aTitleID
+		);
+	
+		// GetByTitleID will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		Copy GetByTitleID(System.Guid aTitleID);
+	
+			List<Copy> GetByTitleIDAsList(System.Guid aTitleID);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -181,6 +199,60 @@ namespace FbcBookIt.Repository
 								(aRec.Active == aActive)
 									&& (aRec.CopyId == aCopyId)
 					).ToList();
+			return vResult;
+		}
+	
+		public Copy GetByActiveAndTitleID
+		(
+			System.Boolean aActive
+			, System.Guid aTitleID
+		)
+		{
+			Copy vResult;
+			vResult = _Db.CopyDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.TitleID == aTitleID)
+					).FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Copy> GetByActiveAndTitleIDAsList
+		(
+			System.Boolean aActive
+			, System.Guid aTitleID
+		)
+		{
+			List<Copy> vResult;
+			vResult = _Db.CopyDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.TitleID == aTitleID)
+					).ToList();
+			return vResult;
+		}
+	
+		public Copy GetByTitleID(System.Guid aTitleID)
+		{
+			Copy vResult;
+			vResult = 
+				_Db.CopyDb
+					.Where(aRec => aRec.TitleID == aTitleID)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Copy> GetByTitleIDAsList(System.Guid aTitleID)
+		{
+			List<Copy> vResult;
+			vResult = 
+				_Db.CopyDb
+					.Where(aRec => aRec.TitleID == aTitleID)
+					.ToList();
 			return vResult;
 		}
 	

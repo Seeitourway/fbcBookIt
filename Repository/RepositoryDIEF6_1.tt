@@ -64,8 +64,11 @@
 			, "StudentTeacherSchool:Active,StudentId"
 			, "District:Active,DistrictId"
 			, "Copy:Active,CopyId"
+			, "Copy:Active,TitleId"
+			, "Copy:TitleId"
 			, "School:Active,SchoolId"
 			, "Title:Active,TitleId"
+			, "Volume:CopyId"
 		};
 	vDeleteByNamedColumn = 
 		new List<string>
