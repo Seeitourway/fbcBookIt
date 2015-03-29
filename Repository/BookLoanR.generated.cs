@@ -42,6 +42,12 @@ namespace FbcBookIt.Repository
 	
 		List<BookLoan> GetAll();
 	
+		// GetByBookRequestID will return the first occurrence of a record that
+		// matches the criteria. If no record matches, the method will return null.
+		BookLoan GetByBookRequestID(System.Guid aBookRequestID);
+	
+			List<BookLoan> GetByBookRequestIDAsList(System.Guid aBookRequestID);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -127,6 +133,26 @@ namespace FbcBookIt.Repository
 		{
 			List<BookLoan> vResult;
 			vResult = _Db.BookLoanDb.ToList();
+			return vResult;
+		}
+	
+		public BookLoan GetByBookRequestID(System.Guid aBookRequestID)
+		{
+			BookLoan vResult;
+			vResult = 
+				_Db.BookLoanDb
+					.Where(aRec => aRec.BookRequestID == aBookRequestID)
+					.FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<BookLoan> GetByBookRequestIDAsList(System.Guid aBookRequestID)
+		{
+			List<BookLoan> vResult;
+			vResult = 
+				_Db.BookLoanDb
+					.Where(aRec => aRec.BookRequestID == aBookRequestID)
+					.ToList();
 			return vResult;
 		}
 	

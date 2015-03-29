@@ -27,9 +27,10 @@ namespace Web.Controllers
         }
 
         // GET: Student
+        [Authorize(Roles="Teacher, Admin, SecurityGuard")]
         public ActionResult Index(Guid? StudentId)
         {
-            Session.Add("TeacherID", "15a950c2-c846-6853-1ceb-000b146a3df7");
+            Session.Add("TeacherID", "C49623B4-380D-46BE-9D2B-7C7E1CAA9C00");
 
             if (StudentId == null)
             {
@@ -44,6 +45,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Teacher, Admin, SecurityGuard")]
         public ActionResult getStudentByNameAndDOB(string FirstName, string LastName, string DateOfBirth)
         {
             // get a list of students matching criteria
@@ -59,9 +61,16 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Teacher, Admin, SecurityGuard")]
         public ActionResult SaveStudent(Student stud)
         {
             // create student/teacher junction record
+            if(stud.StudentID.ToString() == "00000000-0000-0000-0000-000000000000")
+            {
+                stud.Active = true;
+                Guid studentGuid = _StudentR.InsertAndReturnPrimaryKey(stud);
+                stud.StudentID = studentGuid;
+            }
             var teachId = Session["TeacherID"].ToString();
             StudentTeacherSchool sts = new StudentTeacherSchool();
             sts.TeacherID = Guid.Parse(teachId);

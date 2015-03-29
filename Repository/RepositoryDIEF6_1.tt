@@ -69,6 +69,7 @@
 			, "School:Active,SchoolId"
 			, "Title:Active,TitleId"
 			, "Volume:CopyId"
+			, "BookLoan:BookRequestId"
 		};
 	vDeleteByNamedColumn = 
 		new List<string>
