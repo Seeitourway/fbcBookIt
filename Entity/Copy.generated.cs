@@ -28,8 +28,10 @@ namespace FbcBookIt.Entity
 		public System.Guid CopyId { get; set; }
 	
 		// Non-Primary columns
+		public System.String AccessionNumber { get; set; }
 		public System.DateTime? AcquisitionDate { get; set; }
 		public System.Boolean Active { get; set; }
+		public System.String Comment { get; set; }
 		public System.Boolean? Consumable { get; set; }
 		// Foreign Key to CopyStatus
 		public System.Int32? CopyStatusID { get; set; }
@@ -37,6 +39,9 @@ namespace FbcBookIt.Entity
 		public System.String EndLocation { get; set; }
 		// Foreign Key to FormatType
 		public System.Guid FormatID { get; set; }
+		public System.Boolean? MasterCopy { get; set; }
+		public System.Int32? NumberOfTactiles { get; set; }
+		public System.Decimal? Price { get; set; }
 		public System.Boolean? ProofRead { get; set; }
 		public System.String StartLocation { get; set; }
 		// Foreign Key to Title
@@ -52,14 +57,19 @@ namespace FbcBookIt.Entity
 			ToTable("Copy");
 	
 			// Map property to column
+			Property(t => t.AccessionNumber).HasColumnName("AccessionNumber");
 			Property(t => t.AcquisitionDate).HasColumnName("AcquisitionDate");
 			Property(t => t.Active).HasColumnName("Active");
+			Property(t => t.Comment).HasColumnName("Comment");
 			Property(t => t.Consumable).HasColumnName("Consumable");
 			Property(t => t.CopyId).HasColumnName("CopyId");
 			Property(t => t.CopyStatusID).HasColumnName("CopyStatusID");
 			Property(t => t.DiscardedDate).HasColumnName("DiscardedDate");
 			Property(t => t.EndLocation).HasColumnName("EndLocation");
 			Property(t => t.FormatID).HasColumnName("FormatID");
+			Property(t => t.MasterCopy).HasColumnName("MasterCopy");
+			Property(t => t.NumberOfTactiles).HasColumnName("NumberOfTactiles");
+			Property(t => t.Price).HasColumnName("Price");
 			Property(t => t.ProofRead).HasColumnName("ProofRead");
 			Property(t => t.StartLocation).HasColumnName("StartLocation");
 			Property(t => t.TitleID).HasColumnName("TitleID");
@@ -119,14 +129,19 @@ namespace FbcBookIt.Entity
 		public static void AssignTo
 			(Copy aFrom, Copy aTo)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
+			aTo.Comment = aFrom.Comment;
 			aTo.Consumable = aFrom.Consumable;
 			aTo.CopyId = aFrom.CopyId;
 			aTo.CopyStatusID = aFrom.CopyStatusID;
 			aTo.DiscardedDate = aFrom.DiscardedDate;
 			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
+			aTo.MasterCopy = aFrom.MasterCopy;
+			aTo.NumberOfTactiles = aFrom.NumberOfTactiles;
+			aTo.Price = aFrom.Price;
 			aTo.ProofRead = aFrom.ProofRead;
 			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;
@@ -135,13 +150,18 @@ namespace FbcBookIt.Entity
 		public static void AssignToNoPrimaryKeys
 			(Copy aFrom, Copy aTo)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
+			aTo.Comment = aFrom.Comment;
 			aTo.Consumable = aFrom.Consumable;
 			aTo.CopyStatusID = aFrom.CopyStatusID;
 			aTo.DiscardedDate = aFrom.DiscardedDate;
 			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
+			aTo.MasterCopy = aFrom.MasterCopy;
+			aTo.NumberOfTactiles = aFrom.NumberOfTactiles;
+			aTo.Price = aFrom.Price;
 			aTo.ProofRead = aFrom.ProofRead;
 			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;
@@ -156,14 +176,19 @@ namespace FbcBookIt.Entity
 		public static void AssignFrom
 			(this Copy aTo, Copy aFrom)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
+			aTo.Comment = aFrom.Comment;
 			aTo.Consumable = aFrom.Consumable;
 			aTo.CopyId = aFrom.CopyId;
 			aTo.CopyStatusID = aFrom.CopyStatusID;
 			aTo.DiscardedDate = aFrom.DiscardedDate;
 			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
+			aTo.MasterCopy = aFrom.MasterCopy;
+			aTo.NumberOfTactiles = aFrom.NumberOfTactiles;
+			aTo.Price = aFrom.Price;
 			aTo.ProofRead = aFrom.ProofRead;
 			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;
@@ -172,13 +197,18 @@ namespace FbcBookIt.Entity
 		public static void AssignFromNoPrimaryKeys
 			(this Copy aTo, Copy aFrom)
 		{
+			aTo.AccessionNumber = aFrom.AccessionNumber;
 			aTo.AcquisitionDate = aFrom.AcquisitionDate;
 			aTo.Active = aFrom.Active;
+			aTo.Comment = aFrom.Comment;
 			aTo.Consumable = aFrom.Consumable;
 			aTo.CopyStatusID = aFrom.CopyStatusID;
 			aTo.DiscardedDate = aFrom.DiscardedDate;
 			aTo.EndLocation = aFrom.EndLocation;
 			aTo.FormatID = aFrom.FormatID;
+			aTo.MasterCopy = aFrom.MasterCopy;
+			aTo.NumberOfTactiles = aFrom.NumberOfTactiles;
+			aTo.Price = aFrom.Price;
 			aTo.ProofRead = aFrom.ProofRead;
 			aTo.StartLocation = aFrom.StartLocation;
 			aTo.TitleID = aFrom.TitleID;

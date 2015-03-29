@@ -25,12 +25,18 @@ namespace FbcBookIt.Entity
 	public partial class Title: BASE_Entity
 	{
 		// Primary Keys
-		public System.Guid TitleId { get; set; }
+		public System.Guid TitleID { get; set; }
 	
 		// Non-Primary columns
+		public System.Decimal? AcceleratedReading { get; set; }
 		public System.Boolean Active { get; set; }
-		public System.String ISBN { get; set; }
+		public System.String Author { get; set; }
+		public System.String Copyright { get; set; }
+		public System.String Grade { get; set; }
+		public System.String ISBN10 { get; set; }
+		public System.String ISBN13 { get; set; }
 		public System.String Name { get; set; }
+		public System.String Publisher { get; set; }
 	
 	}
 	
@@ -42,25 +48,28 @@ namespace FbcBookIt.Entity
 			ToTable("Title");
 	
 			// Map property to column
+			Property(t => t.AcceleratedReading).HasColumnName("AcceleratedReading");
 			Property(t => t.Active).HasColumnName("Active");
-			Property(t => t.ISBN).HasColumnName("ISBN");
+			Property(t => t.Author).HasColumnName("Author");
+			Property(t => t.Copyright).HasColumnName("Copyright");
+			Property(t => t.Grade).HasColumnName("Grade");
+			Property(t => t.ISBN10).HasColumnName("ISBN10");
+			Property(t => t.ISBN13).HasColumnName("ISBN13");
 			Property(t => t.Name).HasColumnName("Name");
-			Property(t => t.TitleId).HasColumnName("TitleId");
+			Property(t => t.Publisher).HasColumnName("Publisher");
+			Property(t => t.TitleID).HasColumnName("TitleID");
 	
 			// Primary Key
-			HasKey(t => t.TitleId);
+			HasKey(t => t.TitleID);
 	
 			// Additional property mappings
 			Property(t => t.Active)
 				.IsRequired();
 	
-			Property(t => t.ISBN)
-				.IsRequired();
-	
 			Property(t => t.Name)
 				.IsRequired();
 	
-			Property(t => t.TitleId)
+			Property(t => t.TitleID)
 				.IsRequired();
 	
 	
@@ -72,7 +81,7 @@ namespace FbcBookIt.Entity
 		public static void AssignNewPK
 			(this Title aTitle)
 		{
-			aTitle.TitleId = Guid.NewGuid().CombGuid();
+			aTitle.TitleID = Guid.NewGuid().CombGuid();
 		}
 	
 		/// <summary> 
@@ -95,54 +104,78 @@ namespace FbcBookIt.Entity
 						);
 			}
 			bool vResult = 
-				(aTitle.TitleId == Guid.Empty);
+				(aTitle.TitleID == Guid.Empty);
 			return vResult;
 		}
 	
 		public static void AssignTo
 			(Title aFrom, Title aTo)
 		{
+			aTo.AcceleratedReading = aFrom.AcceleratedReading;
 			aTo.Active = aFrom.Active;
-			aTo.ISBN = aFrom.ISBN;
+			aTo.Author = aFrom.Author;
+			aTo.Copyright = aFrom.Copyright;
+			aTo.Grade = aFrom.Grade;
+			aTo.ISBN10 = aFrom.ISBN10;
+			aTo.ISBN13 = aFrom.ISBN13;
 			aTo.Name = aFrom.Name;
-			aTo.TitleId = aFrom.TitleId;
+			aTo.Publisher = aFrom.Publisher;
+			aTo.TitleID = aFrom.TitleID;
 		}
 	
 		public static void AssignToNoPrimaryKeys
 			(Title aFrom, Title aTo)
 		{
+			aTo.AcceleratedReading = aFrom.AcceleratedReading;
 			aTo.Active = aFrom.Active;
-			aTo.ISBN = aFrom.ISBN;
+			aTo.Author = aFrom.Author;
+			aTo.Copyright = aFrom.Copyright;
+			aTo.Grade = aFrom.Grade;
+			aTo.ISBN10 = aFrom.ISBN10;
+			aTo.ISBN13 = aFrom.ISBN13;
 			aTo.Name = aFrom.Name;
+			aTo.Publisher = aFrom.Publisher;
 		}
 	
 		public static void AssignToJustPrimaryKeys
 			(Title aFrom, Title aTo)
 		{
-			aTo.TitleId = aFrom.TitleId;
+			aTo.TitleID = aFrom.TitleID;
 		}
 	
 		public static void AssignFrom
 			(this Title aTo, Title aFrom)
 		{
+			aTo.AcceleratedReading = aFrom.AcceleratedReading;
 			aTo.Active = aFrom.Active;
-			aTo.ISBN = aFrom.ISBN;
+			aTo.Author = aFrom.Author;
+			aTo.Copyright = aFrom.Copyright;
+			aTo.Grade = aFrom.Grade;
+			aTo.ISBN10 = aFrom.ISBN10;
+			aTo.ISBN13 = aFrom.ISBN13;
 			aTo.Name = aFrom.Name;
-			aTo.TitleId = aFrom.TitleId;
+			aTo.Publisher = aFrom.Publisher;
+			aTo.TitleID = aFrom.TitleID;
 		}
 	
 		public static void AssignFromNoPrimaryKeys
 			(this Title aTo, Title aFrom)
 		{
+			aTo.AcceleratedReading = aFrom.AcceleratedReading;
 			aTo.Active = aFrom.Active;
-			aTo.ISBN = aFrom.ISBN;
+			aTo.Author = aFrom.Author;
+			aTo.Copyright = aFrom.Copyright;
+			aTo.Grade = aFrom.Grade;
+			aTo.ISBN10 = aFrom.ISBN10;
+			aTo.ISBN13 = aFrom.ISBN13;
 			aTo.Name = aFrom.Name;
+			aTo.Publisher = aFrom.Publisher;
 		}
 	
 		public static void AssignFromJustPrimaryKeys
 			(this Title aTo, Title aFrom)
 		{
-			aTo.TitleId = aFrom.TitleId;
+			aTo.TitleID = aFrom.TitleID;
 		}
 	
 	}
