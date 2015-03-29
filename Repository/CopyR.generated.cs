@@ -42,6 +42,18 @@ namespace FbcBookIt.Repository
 	
 		List<Copy> GetAll();
 	
+		Copy GetByActiveAndCopyId
+		(
+			System.Boolean aActive
+			, System.Guid aCopyId
+		);
+	
+		List<Copy> GetByActiveAndCopyIdAsList
+		(
+			System.Boolean aActive
+			, System.Guid aCopyId
+		);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -135,6 +147,40 @@ namespace FbcBookIt.Repository
 		{
 			List<Copy> vResult;
 			vResult = _Db.CopyDb.ToList();
+			return vResult;
+		}
+	
+		public Copy GetByActiveAndCopyId
+		(
+			System.Boolean aActive
+			, System.Guid aCopyId
+		)
+		{
+			Copy vResult;
+			vResult = _Db.CopyDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.CopyId == aCopyId)
+					).FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Copy> GetByActiveAndCopyIdAsList
+		(
+			System.Boolean aActive
+			, System.Guid aCopyId
+		)
+		{
+			List<Copy> vResult;
+			vResult = _Db.CopyDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.CopyId == aCopyId)
+					).ToList();
 			return vResult;
 		}
 	

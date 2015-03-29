@@ -48,6 +48,18 @@ namespace FbcBookIt.Repository
 	
 			List<District> GetByActiveAsList(System.Boolean aActive);
 	
+		District GetByActiveAndDistrictId
+		(
+			System.Boolean aActive
+			, System.Guid aDistrictId
+		);
+	
+		List<District> GetByActiveAndDistrictIdAsList
+		(
+			System.Boolean aActive
+			, System.Guid aDistrictId
+		);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -163,6 +175,40 @@ namespace FbcBookIt.Repository
 				_Db.DistrictDb
 					.Where(aRec => aRec.Active == aActive)
 					.ToList();
+			return vResult;
+		}
+	
+		public District GetByActiveAndDistrictId
+		(
+			System.Boolean aActive
+			, System.Guid aDistrictId
+		)
+		{
+			District vResult;
+			vResult = _Db.DistrictDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.DistrictId == aDistrictId)
+					).FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<District> GetByActiveAndDistrictIdAsList
+		(
+			System.Boolean aActive
+			, System.Guid aDistrictId
+		)
+		{
+			List<District> vResult;
+			vResult = _Db.DistrictDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.DistrictId == aDistrictId)
+					).ToList();
 			return vResult;
 		}
 	

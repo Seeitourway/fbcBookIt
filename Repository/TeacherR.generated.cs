@@ -48,6 +48,18 @@ namespace FbcBookIt.Repository
 	
 			List<Teacher> GetByActiveAsList(System.Boolean aActive);
 	
+		Teacher GetByActiveAndTeacherID
+		(
+			System.Boolean aActive
+			, System.Guid aTeacherID
+		);
+	
+		List<Teacher> GetByActiveAndTeacherIDAsList
+		(
+			System.Boolean aActive
+			, System.Guid aTeacherID
+		);
+	
 		// There are several methods that add a record to a table:
 		//	1. Add
 		//  2. Insert
@@ -163,6 +175,40 @@ namespace FbcBookIt.Repository
 				_Db.TeacherDb
 					.Where(aRec => aRec.Active == aActive)
 					.ToList();
+			return vResult;
+		}
+	
+		public Teacher GetByActiveAndTeacherID
+		(
+			System.Boolean aActive
+			, System.Guid aTeacherID
+		)
+		{
+			Teacher vResult;
+			vResult = _Db.TeacherDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.TeacherID == aTeacherID)
+					).FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Teacher> GetByActiveAndTeacherIDAsList
+		(
+			System.Boolean aActive
+			, System.Guid aTeacherID
+		)
+		{
+			List<Teacher> vResult;
+			vResult = _Db.TeacherDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.TeacherID == aTeacherID)
+					).ToList();
 			return vResult;
 		}
 	
