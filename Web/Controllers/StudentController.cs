@@ -29,7 +29,7 @@ namespace Web.Controllers
         // GET: Student
         public ActionResult Index(Guid? StudentId)
         {
-            Session.Add("TeacherID", "818dc049-0fde-417d-9158-cd3f1ee08e9c");
+            Session.Add("TeacherID", "15a950c2-c846-6853-1ceb-000b146a3df7");
 
             if (StudentId == null)
             {
@@ -44,11 +44,12 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult getStudentByNameAndDOB(string FirstName, string LastName, string dob)
+        public ActionResult getStudentByNameAndDOB(string FirstName, string LastName, string DateOfBirth)
         {
             // get a list of students matching criteria
+
             List<Student> studs = _StudentR.GetAll();
-            DateTime dateofbirth = DateTime.Parse(dob);
+            DateTime dateofbirth = DateTime.Parse(DateOfBirth);
 
             var q = studs.Where(x => x.DateOfBirth == dateofbirth);
             var w = q.Where(x => x.FirstName == FirstName);
@@ -65,6 +66,7 @@ namespace Web.Controllers
             StudentTeacherSchool sts = new StudentTeacherSchool();
             sts.TeacherID = Guid.Parse(teachId);
             sts.StudentID = stud.StudentID;
+            sts.SchoolID = _STSR.GetByStudentIDAndTeacherID(sts.StudentID, sts.TeacherID).SchoolID;
             var key = _STSR.InsertAndReturnPrimaryKey(sts);
             if (key != null)
             {
