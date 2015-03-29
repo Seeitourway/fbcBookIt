@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FbcBookIt.Entity
+﻿namespace FbcBookIt.Entity
 {
-    partial class Copy
-    {
-        public IList<Volume> Volumes { get; set; }
-    }
+	using System.Collections.Generic;
+
+	partial class Copy
+	{
+		public IList<Volume> Volumes { get; set; }
+		public FormatType FormatType { get; set; }
+
+	}
 }

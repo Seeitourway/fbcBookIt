@@ -49,6 +49,7 @@
     <Compile Include="BookRequestR.generated.cs">
       <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CopyR.cs" />
     <Compile Include="CopyR.generated.cs">
       <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
