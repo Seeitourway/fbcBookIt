@@ -28,6 +28,7 @@ namespace FbcBookIt.Entity
 		public System.Int32 CopyStatusId { get; set; }
 	
 		// Non-Primary columns
+		public System.Boolean Active { get; set; }
 		public System.String StatusDescription { get; set; }
 	
 	}
@@ -40,6 +41,7 @@ namespace FbcBookIt.Entity
 			ToTable("CopyStatus");
 	
 			// Map property to column
+			Property(t => t.Active).HasColumnName("Active");
 			Property(t => t.CopyStatusId).HasColumnName("CopyStatusId");
 			Property(t => t.StatusDescription).HasColumnName("StatusDescription");
 	
@@ -47,6 +49,9 @@ namespace FbcBookIt.Entity
 			HasKey(t => t.CopyStatusId);
 	
 			// Additional property mappings
+			Property(t => t.Active)
+				.IsRequired();
+	
 			Property(t => t.CopyStatusId)
 				.IsRequired();
 	
@@ -88,6 +93,7 @@ namespace FbcBookIt.Entity
 		public static void AssignTo
 			(CopyStatus aFrom, CopyStatus aTo)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.CopyStatusId = aFrom.CopyStatusId;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
@@ -95,6 +101,7 @@ namespace FbcBookIt.Entity
 		public static void AssignToNoPrimaryKeys
 			(CopyStatus aFrom, CopyStatus aTo)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	
@@ -107,6 +114,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFrom
 			(this CopyStatus aTo, CopyStatus aFrom)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.CopyStatusId = aFrom.CopyStatusId;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
@@ -114,6 +122,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFromNoPrimaryKeys
 			(this CopyStatus aTo, CopyStatus aFrom)
 		{
+			aTo.Active = aFrom.Active;
 			aTo.StatusDescription = aFrom.StatusDescription;
 		}
 	

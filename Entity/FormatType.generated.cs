@@ -25,10 +25,11 @@ namespace FbcBookIt.Entity
 	public partial class FormatType: BASE_Entity
 	{
 		// Primary Keys
-		public System.Guid FormatTypeId { get; set; }
+		public System.Int32 FormatTypeId { get; set; }
 	
 		// Non-Primary columns
 		public System.Boolean Active { get; set; }
+		public System.String Category { get; set; }
 		public System.String FormatDescription { get; set; }
 	
 	}
@@ -42,6 +43,7 @@ namespace FbcBookIt.Entity
 	
 			// Map property to column
 			Property(t => t.Active).HasColumnName("Active");
+			Property(t => t.Category).HasColumnName("Category");
 			Property(t => t.FormatDescription).HasColumnName("FormatDescription");
 			Property(t => t.FormatTypeId).HasColumnName("FormatTypeId");
 	
@@ -50,6 +52,11 @@ namespace FbcBookIt.Entity
 	
 			// Additional property mappings
 			Property(t => t.Active)
+				.IsRequired();
+	
+			Property(t => t.Category)
+				.IsFixedLength()
+				.HasMaxLength(1)
 				.IsRequired();
 	
 			Property(t => t.FormatDescription)
@@ -67,7 +74,6 @@ namespace FbcBookIt.Entity
 		public static void AssignNewPK
 			(this FormatType aFormatType)
 		{
-			aFormatType.FormatTypeId = Guid.NewGuid().CombGuid();
 		}
 	
 		/// <summary> 
@@ -90,7 +96,7 @@ namespace FbcBookIt.Entity
 						);
 			}
 			bool vResult = 
-				(aFormatType.FormatTypeId == Guid.Empty);
+				(aFormatType.FormatTypeId < 1);
 			return vResult;
 		}
 	
@@ -98,6 +104,7 @@ namespace FbcBookIt.Entity
 			(FormatType aFrom, FormatType aTo)
 		{
 			aTo.Active = aFrom.Active;
+			aTo.Category = aFrom.Category;
 			aTo.FormatDescription = aFrom.FormatDescription;
 			aTo.FormatTypeId = aFrom.FormatTypeId;
 		}
@@ -106,6 +113,7 @@ namespace FbcBookIt.Entity
 			(FormatType aFrom, FormatType aTo)
 		{
 			aTo.Active = aFrom.Active;
+			aTo.Category = aFrom.Category;
 			aTo.FormatDescription = aFrom.FormatDescription;
 		}
 	
@@ -119,6 +127,7 @@ namespace FbcBookIt.Entity
 			(this FormatType aTo, FormatType aFrom)
 		{
 			aTo.Active = aFrom.Active;
+			aTo.Category = aFrom.Category;
 			aTo.FormatDescription = aFrom.FormatDescription;
 			aTo.FormatTypeId = aFrom.FormatTypeId;
 		}
@@ -127,6 +136,7 @@ namespace FbcBookIt.Entity
 			(this FormatType aTo, FormatType aFrom)
 		{
 			aTo.Active = aFrom.Active;
+			aTo.Category = aFrom.Category;
 			aTo.FormatDescription = aFrom.FormatDescription;
 		}
 	

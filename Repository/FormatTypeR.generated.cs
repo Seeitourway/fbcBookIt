@@ -28,17 +28,17 @@ namespace FbcBookIt.Repository
 	{
 		bool Any();
 	
-		bool Exists(System.Guid aFormatTypeId);
+		bool Exists(System.Int32 aFormatTypeId);
 	
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		FormatType Find(System.Guid aFormatTypeId);
+		FormatType Find(System.Int32 aFormatTypeId);
 	
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		FormatType Get(System.Guid aFormatTypeId);
+		FormatType Get(System.Int32 aFormatTypeId);
 	
 		List<FormatType> GetAll();
 	
@@ -85,19 +85,19 @@ namespace FbcBookIt.Repository
 		// return the new primary key (a single value for single primary key
 		// tables, an instance of a custom class containing all portions of the 
 		// primary key for a table with a compound primary key).
-		System.Guid InsertAndReturnPrimaryKey(FormatType aFormatType);
+		System.Int32 InsertAndReturnPrimaryKey(FormatType aFormatType);
 	
 		void Update(FormatType aFormatType);
 	
-		void Delete(System.Guid aFormatTypeId);
+		void Delete(System.Int32 aFormatTypeId);
 	
 			void DeleteByActive(System.Boolean aActive);
 	
-		bool IsActive(System.Guid aFormatTypeId);
+		bool IsActive(System.Int32 aFormatTypeId);
 	
-		void Remove(System.Guid aFormatTypeId);
+		void Remove(System.Int32 aFormatTypeId);
 	
-		void Restore(System.Guid aFormatTypeId);
+		void Restore(System.Int32 aFormatTypeId);
 	
 		void DeleteAllRemoved();
 	
@@ -118,21 +118,21 @@ namespace FbcBookIt.Repository
 			return vResult;
 		}
 	
-		public bool Exists(System.Guid aFormatTypeId)
+		public bool Exists(System.Int32 aFormatTypeId)
 		{
 			bool vResult;
 				vResult = _Db.FormatTypeDb.Any(aRec => (aRec.FormatTypeId == aFormatTypeId));
 			return vResult;
 		}
 	
-		public FormatType Find(System.Guid aFormatTypeId)
+		public FormatType Find(System.Int32 aFormatTypeId)
 		{
 			FormatType vResult;
 			vResult = _Db.FormatTypeDb.Single(aRec => (aRec.FormatTypeId == aFormatTypeId));
 			return vResult;
 		}
 	
-		public FormatType Get(System.Guid aFormatTypeId)
+		public FormatType Get(System.Int32 aFormatTypeId)
 		{
 			FormatType vResult;
 			vResult = _Db.FormatTypeDb.FirstOrDefault(aRec => aRec.FormatTypeId == aFormatTypeId);
@@ -225,7 +225,7 @@ namespace FbcBookIt.Repository
 		/// Fragile:	This method presumes that any integer keys are
 		///						auto-incrementing.
 		/// </remark>
-		public System.Guid InsertAndReturnPrimaryKey(FormatType aFormatType)
+		public System.Int32 InsertAndReturnPrimaryKey(FormatType aFormatType)
 		{
 			if (aFormatType == null)
 			{
@@ -246,7 +246,7 @@ namespace FbcBookIt.Repository
 			aFormatType.AssignNewPK();
 			aFormatType = _Db.FormatTypeDb.Add(aFormatType);
 			_Db.SaveChanges();
-			System.Guid vResult = aFormatType.FormatTypeId;
+			System.Int32 vResult = aFormatType.FormatTypeId;
 			return vResult;
 		}
 	
@@ -258,7 +258,7 @@ namespace FbcBookIt.Repository
 			_Db.SaveChanges();
 		}
 	
-		public void Delete(System.Guid aFormatTypeId)
+		public void Delete(System.Int32 aFormatTypeId)
 		{
 			FormatType vRec = 
 				_Db.FormatTypeDb.FirstOrDefault(aRec => aRec.FormatTypeId == aFormatTypeId);
@@ -287,7 +287,7 @@ namespace FbcBookIt.Repository
 				_Db.SaveChanges();
 		}
 	
-		public bool IsActive(System.Guid aFormatTypeId)
+		public bool IsActive(System.Int32 aFormatTypeId)
 		{
 			FormatType vRec = 
 				_Db.FormatTypeDb.FirstOrDefault(aRec => aRec.FormatTypeId == aFormatTypeId);
@@ -295,7 +295,7 @@ namespace FbcBookIt.Repository
 			return vResult;
 		}
 	
-		public void Remove(System.Guid aFormatTypeId)
+		public void Remove(System.Int32 aFormatTypeId)
 		{
 			FormatType vRec = 
 				_Db.FormatTypeDb.FirstOrDefault(aRec => aRec.FormatTypeId == aFormatTypeId);
@@ -307,7 +307,7 @@ namespace FbcBookIt.Repository
 			_Db.SaveChanges();
 		}
 	
-		public void Restore(System.Guid aFormatTypeId)
+		public void Restore(System.Int32 aFormatTypeId)
 		{
 			FormatType vRec = 
 				_Db.FormatTypeDb.FirstOrDefault(aRec => aRec.FormatTypeId == aFormatTypeId);

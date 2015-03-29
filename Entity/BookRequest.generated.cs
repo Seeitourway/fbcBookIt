@@ -29,7 +29,7 @@ namespace FbcBookIt.Entity
 	
 		// Non-Primary columns
 		// Foreign Key to FormatType
-		public System.Guid FormatTypeId { get; set; }
+		public System.Int32? FormatTypeID { get; set; }
 		public System.DateTime? RequestDate { get; set; }
 		// Foreign Key to RequestStatus
 		public System.Int32? RequestStatusId { get; set; }
@@ -49,7 +49,7 @@ namespace FbcBookIt.Entity
 	
 			// Map property to column
 			Property(t => t.BookRequestId).HasColumnName("BookRequestId");
-			Property(t => t.FormatTypeId).HasColumnName("FormatTypeId");
+			Property(t => t.FormatTypeID).HasColumnName("FormatTypeID");
 			Property(t => t.RequestDate).HasColumnName("RequestDate");
 			Property(t => t.RequestStatusId).HasColumnName("RequestStatusId");
 			Property(t => t.StudentTeacherSchoolId).HasColumnName("StudentTeacherSchoolId");
@@ -60,9 +60,6 @@ namespace FbcBookIt.Entity
 	
 			// Additional property mappings
 			Property(t => t.BookRequestId)
-				.IsRequired();
-	
-			Property(t => t.FormatTypeId)
 				.IsRequired();
 	
 			Property(t => t.StudentTeacherSchoolId)
@@ -111,7 +108,7 @@ namespace FbcBookIt.Entity
 			(BookRequest aFrom, BookRequest aTo)
 		{
 			aTo.BookRequestId = aFrom.BookRequestId;
-			aTo.FormatTypeId = aFrom.FormatTypeId;
+			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
@@ -121,7 +118,7 @@ namespace FbcBookIt.Entity
 		public static void AssignToNoPrimaryKeys
 			(BookRequest aFrom, BookRequest aTo)
 		{
-			aTo.FormatTypeId = aFrom.FormatTypeId;
+			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
@@ -138,7 +135,7 @@ namespace FbcBookIt.Entity
 			(this BookRequest aTo, BookRequest aFrom)
 		{
 			aTo.BookRequestId = aFrom.BookRequestId;
-			aTo.FormatTypeId = aFrom.FormatTypeId;
+			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
@@ -148,7 +145,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFromNoPrimaryKeys
 			(this BookRequest aTo, BookRequest aFrom)
 		{
-			aTo.FormatTypeId = aFrom.FormatTypeId;
+			aTo.FormatTypeID = aFrom.FormatTypeID;
 			aTo.RequestDate = aFrom.RequestDate;
 			aTo.RequestStatusId = aFrom.RequestStatusId;
 			aTo.StudentTeacherSchoolId = aFrom.StudentTeacherSchoolId;
