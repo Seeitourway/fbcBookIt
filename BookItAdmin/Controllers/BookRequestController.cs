@@ -83,18 +83,13 @@ namespace BookItAdmin.Controllers
             var title = _titleR.Get(bookRequest.TitleID);
             bookRequest.Title = title.Name;
 
-            //TODO: Change to this once Bruce implements it
-            //var loans = _bookLoanR.GetByBookRequestId(bookRequest.BookRequestId);
-            var loans = _bookLoanR.GetAll();
-            var id = bookRequest.BookRequestId;
-            var theseloans = from loan in loans where loan.BookRequestID == id orderby loan.LoanNumber select loan;
-            var goodLoans = theseloans.ToList();
-            for (var i = 0; i < goodLoans.Count; i++)
+            var loans = _bookLoanR.GetByBookRequestIDAsList(bookRequest.BookRequestId);
+            for (var i = 0; i < loans.Count; i++)
             {
-                var loan = goodLoans[i];
-                LoadStuff(ref loan, false);
+                var loan = loans[i];
+                loan.Volume = _volumeR.Get(loan.VolumeID);
             }
-            bookRequest.Loans = theseloans.ToList();
+            bookRequest.Loans = loans.ToList();
         }
 
         private void LoadStuff(ref BookLoan bookLoan, bool? includeCopies = false)

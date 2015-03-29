@@ -91,31 +91,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Loans.First().RequestNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loans.First().Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loans.First().Teacher)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loans.First().Student)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loans.First().School)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loans.First().District)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loans.First().InDate)
+            @Html.DisplayNameFor(model => model.Loans.First().Volume.VolumeNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Loans.First().LoanNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Loans.First().LoanStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().InDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Loans.First().OutDate)
@@ -125,31 +110,16 @@
     @foreach (var item in Model.Loans) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RequestNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teacher)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Student)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.School)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.District)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InDate)
+                @Html.DisplayFor(modelItem => item.Volume.VolumeNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LoanNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LoanStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OutDate)

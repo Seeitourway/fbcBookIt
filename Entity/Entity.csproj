@@ -120,7 +120,6 @@
     <Compile Include="Title.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Volume.cs" />
     <Compile Include="Volume.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>
