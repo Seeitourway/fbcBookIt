@@ -103,6 +103,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
+    <Reference Include="Mvc.Mailer">
+      <HintPath>..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -118,6 +121,9 @@
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SecurityGuard">
+      <HintPath>..\packages\SecurityGuard.MVC5.1.0.5\lib\net40\SecurityGuard.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -147,6 +153,9 @@
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -204,17 +213,39 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\SecurityGuard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\SecurityGuard\Controllers\MembershipController.cs" />
+    <Compile Include="Areas\SecurityGuard\Controllers\RoleController.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\DashboardViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ForgotPasswordViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\GrantRolesToUserViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\JsonResponse.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ManageRolesViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ManageUsersViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\RegisterViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ResponseItem.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\RoleViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\SelectObject.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\UserViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\SecurityGuardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SGAccountController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mailers\IPasswordResetMailer.cs" />
+    <Compile Include="Mailers\Models\MailerModel.cs" />
+    <Compile Include="Mailers\PasswordResetMailer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -224,6 +255,33 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\SecurityGuard\images\blue_ico.png" />
+    <Content Include="Content\SecurityGuard\images\blue_message.gif" />
+    <Content Include="Content\SecurityGuard\images\go.gif" />
+    <Content Include="Content\SecurityGuard\images\green_ico.png" />
+    <Content Include="Content\SecurityGuard\images\green_message.gif" />
+    <Content Include="Content\SecurityGuard\images\negative.gif" />
+    <Content Include="Content\SecurityGuard\images\next.gif" />
+    <Content Include="Content\SecurityGuard\images\pag_bg.gif" />
+    <Content Include="Content\SecurityGuard\images\positive.gif" />
+    <Content Include="Content\SecurityGuard\images\prev.gif" />
+    <Content Include="Content\SecurityGuard\images\red_ico.png" />
+    <Content Include="Content\SecurityGuard\images\red_message.gif" />
+    <Content Include="Content\SecurityGuard\images\td_bg1.gif" />
+    <Content Include="Content\SecurityGuard\images\td_bg2.gif" />
+    <Content Include="Content\SecurityGuard\images\white_ico.png" />
+    <Content Include="Content\SecurityGuard\images\white_message.gif" />
+    <Content Include="Content\SecurityGuard\images\yellow_ico.png" />
+    <Content Include="Content\SecurityGuard\images\yellow_message.gif" />
+    <Content Include="Content\SecurityGuard\pagination.css" />
+    <Content Include="Content\SecurityGuard\scripts\jquery-1.6.1.min.js" />
+    <Content Include="Content\SecurityGuard\scripts\jquery.jqia.selects.js" />
+    <Content Include="Content\SecurityGuard\scripts\jquery.validate.min.js" />
+    <Content Include="Content\SecurityGuard\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\SecurityGuard\scripts\modernizr-1.7.min.js" />
+    <Content Include="Content\SecurityGuard\securityguard.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -234,6 +292,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Areas\SecurityGuard\Views\Web.config" />
+    <Content Include="Areas\SecurityGuard\Views\Shared\_SecurityGuardLayoutPage.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Role\Index.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\Update.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\Index.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\GrantRolesToUser.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\CreateUser.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Dashboard\Index.cshtml" />
+    <Content Include="installer.config" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -252,6 +321,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -266,8 +337,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -294,6 +363,15 @@
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\_BookRequest.cshtml" />
     <Content Include="Views\Teacher\_studentList.cshtml" />
+    <Content Include="Views\SGAccount\Register.cshtml" />
+    <Content Include="Views\SGAccount\Login.cshtml" />
+    <Content Include="Views\SGAccount\ForgotPasswordSuccess.cshtml" />
+    <Content Include="Views\SGAccount\ForgotPassword.cshtml" />
+    <Content Include="Views\SGAccount\EnterSecretAnswer.cshtml" />
+    <Content Include="Views\SGAccount\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\SGAccount\ChangePassword.cshtml" />
+    <Content Include="Views\PasswordResetMailer\PasswordReset.cshtml" />
+    <Content Include="Views\PasswordResetMailer\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

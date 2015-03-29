@@ -8,7 +8,7 @@
                 <h4 class="modal-title">Book Request</h4>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("createRequest", "Book", FormMethod.Post, new { }))
+                @using (Html.BeginForm("CreateRequest", "Book", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
 
@@ -41,7 +41,26 @@
                                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Publisher, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Publisher, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <Label for="FormatType" class="col-md-2">Format Type</Label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("Format Type", new SelectList(ViewBag.FormatType, "FormatTypeId", "FormatDescription"), "-select-", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <label for"tts">Text 2 Speech</label>
