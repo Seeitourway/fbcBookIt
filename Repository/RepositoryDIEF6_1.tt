@@ -52,36 +52,28 @@
 	vGetByNamedColumn = 
 		new List<string>
 		{
-			//"BookLoan:Active"
-			//, "BookRequest:Active"
-			//, "Copy:Active"
-			//, "CopyStatus:Active"
 			"District:Active"
 			, "FormatType:Active"
-			//, "LoanStatus:Active"
-			//, "RequestStatus:Active"
 			, "School:Active"
 			, "Student:Active"
-			//, "StudentTeacherSchool:Active"
 			, "Teacher:Active"
 			, "Title:Active"
 			, "StudentTeacherSchool:StudentId,TeacherId"
 			, "StudentTeacherSchool:TeacherId"
+			, "Teacher:Active,TeacherId"
+			, "StudentTeacherSchool:Active,StudentId"
+			, "District:Active,DistrictId"
+			, "Copy:Active,CopyId"
+			, "School:Active,SchoolId"
+			, "Title:Active,TitleId"
 		};
 	vDeleteByNamedColumn = 
 		new List<string>
 		{
-			//"BookLoan:Active"
-			//, "BookRequest:Active"
-			//, "Copy:Active"
-			//, "CopyStatus:Active"
 			"District:Active"
 			, "FormatType:Active"
-			//, "LoanStatus:Active"
-			//, "RequestStatus:Active"
 			, "School:Active"
 			, "Student:Active"
-			//, "StudentTeacherSchool:Active"
 			, "Teacher:Active"
 			, "Title:Active"
 		};

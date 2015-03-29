@@ -25,7 +25,7 @@ namespace FbcBookIt.Entity
 	public partial class Title: BASE_Entity
 	{
 		// Primary Keys
-		public System.Guid ID { get; set; }
+		public System.Guid TitleId { get; set; }
 	
 		// Non-Primary columns
 		public System.Boolean Active { get; set; }
@@ -43,24 +43,24 @@ namespace FbcBookIt.Entity
 	
 			// Map property to column
 			Property(t => t.Active).HasColumnName("Active");
-			Property(t => t.ID).HasColumnName("ID");
 			Property(t => t.ISBN).HasColumnName("ISBN");
 			Property(t => t.Name).HasColumnName("Name");
+			Property(t => t.TitleId).HasColumnName("TitleId");
 	
 			// Primary Key
-			HasKey(t => t.ID);
+			HasKey(t => t.TitleId);
 	
 			// Additional property mappings
 			Property(t => t.Active)
-				.IsRequired();
-	
-			Property(t => t.ID)
 				.IsRequired();
 	
 			Property(t => t.ISBN)
 				.IsRequired();
 	
 			Property(t => t.Name)
+				.IsRequired();
+	
+			Property(t => t.TitleId)
 				.IsRequired();
 	
 	
@@ -72,7 +72,7 @@ namespace FbcBookIt.Entity
 		public static void AssignNewPK
 			(this Title aTitle)
 		{
-			aTitle.ID = Guid.NewGuid().CombGuid();
+			aTitle.TitleId = Guid.NewGuid().CombGuid();
 		}
 	
 		/// <summary> 
@@ -95,7 +95,7 @@ namespace FbcBookIt.Entity
 						);
 			}
 			bool vResult = 
-				(aTitle.ID == Guid.Empty);
+				(aTitle.TitleId == Guid.Empty);
 			return vResult;
 		}
 	
@@ -103,9 +103,9 @@ namespace FbcBookIt.Entity
 			(Title aFrom, Title aTo)
 		{
 			aTo.Active = aFrom.Active;
-			aTo.ID = aFrom.ID;
 			aTo.ISBN = aFrom.ISBN;
 			aTo.Name = aFrom.Name;
+			aTo.TitleId = aFrom.TitleId;
 		}
 	
 		public static void AssignToNoPrimaryKeys
@@ -119,16 +119,16 @@ namespace FbcBookIt.Entity
 		public static void AssignToJustPrimaryKeys
 			(Title aFrom, Title aTo)
 		{
-			aTo.ID = aFrom.ID;
+			aTo.TitleId = aFrom.TitleId;
 		}
 	
 		public static void AssignFrom
 			(this Title aTo, Title aFrom)
 		{
 			aTo.Active = aFrom.Active;
-			aTo.ID = aFrom.ID;
 			aTo.ISBN = aFrom.ISBN;
 			aTo.Name = aFrom.Name;
+			aTo.TitleId = aFrom.TitleId;
 		}
 	
 		public static void AssignFromNoPrimaryKeys
@@ -142,7 +142,7 @@ namespace FbcBookIt.Entity
 		public static void AssignFromJustPrimaryKeys
 			(this Title aTo, Title aFrom)
 		{
-			aTo.ID = aFrom.ID;
+			aTo.TitleId = aFrom.TitleId;
 		}
 	
 	}

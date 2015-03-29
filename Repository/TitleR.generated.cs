@@ -28,17 +28,17 @@ namespace FbcBookIt.Repository
 	{
 		bool Any();
 	
-		bool Exists(System.Guid aID);
+		bool Exists(System.Guid aTitleId);
 	
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		Title Find(System.Guid aID);
+		Title Find(System.Guid aTitleId);
 	
 		// The only difference between "Find" and "Get" is that "Get" will return
 		// a null if the record sought is not found whereas "Find" will throw
 		// an exception.
-		Title Get(System.Guid aID);
+		Title Get(System.Guid aTitleId);
 	
 		List<Title> GetAll();
 	
@@ -47,6 +47,18 @@ namespace FbcBookIt.Repository
 		Title GetByActive(System.Boolean aActive);
 	
 			List<Title> GetByActiveAsList(System.Boolean aActive);
+	
+		Title GetByActiveAndTitleId
+		(
+			System.Boolean aActive
+			, System.Guid aTitleId
+		);
+	
+		List<Title> GetByActiveAndTitleIdAsList
+		(
+			System.Boolean aActive
+			, System.Guid aTitleId
+		);
 	
 		// There are several methods that add a record to a table:
 		//	1. Add
@@ -89,15 +101,15 @@ namespace FbcBookIt.Repository
 	
 		void Update(Title aTitle);
 	
-		void Delete(System.Guid aID);
+		void Delete(System.Guid aTitleId);
 	
 			void DeleteByActive(System.Boolean aActive);
 	
-		bool IsActive(System.Guid aID);
+		bool IsActive(System.Guid aTitleId);
 	
-		void Remove(System.Guid aID);
+		void Remove(System.Guid aTitleId);
 	
-		void Restore(System.Guid aID);
+		void Restore(System.Guid aTitleId);
 	
 		void DeleteAllRemoved();
 	
@@ -118,24 +130,24 @@ namespace FbcBookIt.Repository
 			return vResult;
 		}
 	
-		public bool Exists(System.Guid aID)
+		public bool Exists(System.Guid aTitleId)
 		{
 			bool vResult;
-				vResult = _Db.TitleDb.Any(aRec => (aRec.ID == aID));
+				vResult = _Db.TitleDb.Any(aRec => (aRec.TitleId == aTitleId));
 			return vResult;
 		}
 	
-		public Title Find(System.Guid aID)
+		public Title Find(System.Guid aTitleId)
 		{
 			Title vResult;
-			vResult = _Db.TitleDb.Single(aRec => (aRec.ID == aID));
+			vResult = _Db.TitleDb.Single(aRec => (aRec.TitleId == aTitleId));
 			return vResult;
 		}
 	
-		public Title Get(System.Guid aID)
+		public Title Get(System.Guid aTitleId)
 		{
 			Title vResult;
-			vResult = _Db.TitleDb.FirstOrDefault(aRec => aRec.ID == aID);
+			vResult = _Db.TitleDb.FirstOrDefault(aRec => aRec.TitleId == aTitleId);
 			return vResult;
 		}
 	
@@ -163,6 +175,40 @@ namespace FbcBookIt.Repository
 				_Db.TitleDb
 					.Where(aRec => aRec.Active == aActive)
 					.ToList();
+			return vResult;
+		}
+	
+		public Title GetByActiveAndTitleId
+		(
+			System.Boolean aActive
+			, System.Guid aTitleId
+		)
+		{
+			Title vResult;
+			vResult = _Db.TitleDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.TitleId == aTitleId)
+					).FirstOrDefault();
+			return vResult;
+		}
+	
+		public List<Title> GetByActiveAndTitleIdAsList
+		(
+			System.Boolean aActive
+			, System.Guid aTitleId
+		)
+		{
+			List<Title> vResult;
+			vResult = _Db.TitleDb
+				.Where
+					(
+						aRec => 
+								(aRec.Active == aActive)
+									&& (aRec.TitleId == aTitleId)
+					).ToList();
 			return vResult;
 		}
 	
@@ -246,22 +292,22 @@ namespace FbcBookIt.Repository
 			aTitle.AssignNewPK();
 			aTitle = _Db.TitleDb.Add(aTitle);
 			_Db.SaveChanges();
-			System.Guid vResult = aTitle.ID;
+			System.Guid vResult = aTitle.TitleId;
 			return vResult;
 		}
 	
 		public void Update(Title aTitle)
 		{
 			Title vRec = 
-				_Db.TitleDb.FirstOrDefault(aRec => aRec.ID == aTitle.ID);
+				_Db.TitleDb.FirstOrDefault(aRec => aRec.TitleId == aTitle.TitleId);
 			vRec.AssignFromNoPrimaryKeys(aTitle);
 			_Db.SaveChanges();
 		}
 	
-		public void Delete(System.Guid aID)
+		public void Delete(System.Guid aTitleId)
 		{
 			Title vRec = 
-				_Db.TitleDb.FirstOrDefault(aRec => aRec.ID == aID);
+				_Db.TitleDb.FirstOrDefault(aRec => aRec.TitleId == aTitleId);
 			if (vRec == null)
 			{
 				return; // Record is already gone, no worries!
@@ -287,18 +333,18 @@ namespace FbcBookIt.Repository
 				_Db.SaveChanges();
 		}
 	
-		public bool IsActive(System.Guid aID)
+		public bool IsActive(System.Guid aTitleId)
 		{
 			Title vRec = 
-				_Db.TitleDb.FirstOrDefault(aRec => aRec.ID == aID);
+				_Db.TitleDb.FirstOrDefault(aRec => aRec.TitleId == aTitleId);
 			bool vResult = (vRec != null) && vRec.Active;
 			return vResult;
 		}
 	
-		public void Remove(System.Guid aID)
+		public void Remove(System.Guid aTitleId)
 		{
 			Title vRec = 
-				_Db.TitleDb.FirstOrDefault(aRec => aRec.ID == aID);
+				_Db.TitleDb.FirstOrDefault(aRec => aRec.TitleId == aTitleId);
 			if (vRec == null)
 			{
 				return;
@@ -307,10 +353,10 @@ namespace FbcBookIt.Repository
 			_Db.SaveChanges();
 		}
 	
-		public void Restore(System.Guid aID)
+		public void Restore(System.Guid aTitleId)
 		{
 			Title vRec = 
-				_Db.TitleDb.FirstOrDefault(aRec => aRec.ID == aID);
+				_Db.TitleDb.FirstOrDefault(aRec => aRec.TitleId == aTitleId);
 			if (vRec == null)
 			{
 				return;
