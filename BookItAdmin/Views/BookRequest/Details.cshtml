@@ -126,7 +126,7 @@
                 @Html.DisplayFor(modelItem => item.OutDate)
             </td>
             <td>
-                @if (!item.InDate.HasValue && item.LoanStatus != FbcBookIt.Entity.LoanStatusE.Closed)
+                @if (true || !item.InDate.HasValue && item.LoanStatus != FbcBookIt.Entity.LoanStatusE.Closed)
                 {
                     using (Html.BeginForm(MVC.BookRequest.CheckIn()))
                     {
@@ -143,6 +143,20 @@
     }
 </table>
 }
+
+@if (true)
+{
+    using (Html.BeginForm(MVC.BookRequest.CheckIn()))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(modelItem => Model.BookRequestId);
+        @Html.EnumDropDownListFor(modelItem => Model.Loans.First().LoanStatus)
+        <div class="form-actions no-color">
+            <input type="submit" value="Check-in all checked-out" class="btn btn-default" />
+        </div>
+    }
+}
+
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.BookRequestId }) |
             @Html.ActionLink("Back to List", "Index")

@@ -199,10 +199,31 @@ namespace BookItAdmin.Controllers
         [HttpPost]
         public virtual ActionResult CheckIn(Guid id, LoanStatusE loanStatus)
         {
+            Guid bookRequestId = Guid.Empty;
             var loan = _bookLoanR.Get(id);
-            var bookRequestId = loan.BookRequestID;
-            loan.InDate = DateTime.Now.Date;
-            loan.LoanStatus = loanStatus;
+            if (loan == null)
+            {
+                var bookRequest = _bookRequestR.Get(id);
+                if (bookRequest != null)
+                {
+                    bookRequestId = id;
+                    var loans = _bookLoanR.GetByBookRequestIDAsList(id);
+                    var checkedout = from l in loans where !l.InDate.HasValue && l.LoanStatus == LoanStatusE.Closed orderby l.LoanNumber select l;
+                    foreach (var turnedin in checkedout)
+                    {
+                        turnedin.InDate = DateTime.Now.Date;
+                        turnedin.LoanStatus = loanStatus;
+                        _bookLoanR.Update(turnedin);
+                    }
+                }
+            }
+            else
+            {
+                bookRequestId = loan.BookRequestID;
+                loan.InDate = DateTime.Now.Date;
+                loan.LoanStatus = loanStatus;
+                _bookLoanR.Update(loan);
+            }
             return RedirectToAction(MVC.BookRequest.Details(bookRequestId));
         }
     }
