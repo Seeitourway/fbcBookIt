@@ -107,6 +107,7 @@
     <Compile Include="Student.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>
+    <Compile Include="StudentTeacherSchool.cs" />
     <Compile Include="StudentTeacherSchool.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>

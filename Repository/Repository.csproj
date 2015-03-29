@@ -79,6 +79,7 @@
     <Compile Include="StudentR.generated.cs">
       <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
+    <Compile Include="StudentTeacherSchoolR.cs" />
     <Compile Include="StudentTeacherSchoolR.generated.cs">
       <DependentUpon>RepositoryDIEF6_1.tt</DependentUpon>
     </Compile>
