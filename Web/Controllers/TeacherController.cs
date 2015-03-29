@@ -1,9 +1,5 @@
-﻿using FbcBookIt.Entity;
-using FbcBookIt.Repository;
+﻿using FbcBookIt.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Web.Controllers
@@ -37,14 +33,17 @@ namespace Web.Controllers
         // GET: Teacher
         public ActionResult Index()
         {
-            List<Student> studs =_studentR.GetAll();
+            // need all STUDENT records joined with StudentTeacherSchool based on TeacherID
+            var studs = _stsR.GetByTeacherIdWithStudentAsList(Guid.Parse("15A950C2-C846-6853-1CEB-000B146A3DF7"));
             return View(studs);
         }
 
         public ActionResult ReleaseStudent(string studentID)
         {
-            
-            return null;
+            var stud = _stsR.GetByStudentIDAndTeacherID(Guid.Parse(studentID), Guid.Parse("15A950C2-C846-6853-1CEB-000B146A3DF7"));
+            stud.Active = false;
+            _stsR.Update(stud);
+            return RedirectToAction("Index", new { TeacherID = Guid.Parse("15A950C2-C846-6853-1CEB-000B146A3DF7") });
         }
     }
 }
