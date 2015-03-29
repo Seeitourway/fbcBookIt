@@ -3,7 +3,27 @@
 @{
     ViewBag.Title = "Request Books";
 }
+<style>
+    table#bookResults {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border: 1px solid #999999;
+        border-collapse: collapse;
+    }
 
+        table#bookResults th {
+            background: #b5cfd2 url('cell-blue.jpg');
+            padding: 8px;
+            border: 1px solid #999999;
+        }
+
+        table#bookResults td {
+            background: #dcddc0 url('cell-grey.jpg');
+            padding: 8px;
+            border: 1px solid #999999;
+        }
+</style>
 <h2>@ViewBag.Title</h2>
 
 <div id="studentList">
@@ -18,7 +38,6 @@
     <script>
         $(document).ready(function () {
             $('#bookRequestModal').modal('hide');
-            $('#bookResults').DataTable();
             $('#studentList').on('click', '.pickStudent', function (e) {
                 if (e.button !== 0) {
                     return; // not a left click
@@ -27,8 +46,8 @@
                 var tr = that.closest('tr');
                 var studentId = tr.data('id');
                 // do something
-                
-                $('#StudentID').val(studentId);                
+
+                $('#StudentID').val(studentId);
             });
         });
 
@@ -42,10 +61,8 @@
                 url: '/Teacher/ReleaseStudent',
                 data: { "StudentID": studentID },
                 datatype: 'json',
-                success: function(result)
-                {
-                    if(result)
-                    {
+                success: function (result) {
+                    if (result) {
                         //
                     }
                 }
@@ -53,11 +70,10 @@
         });
 
         $(document).on('click', '.pickStudent', function (e) {
-            if(e.button !== 0)
-            {
+            if (e.button !== 0) {
                 return; // not a left click
             }
-            
+
             var that = $(this);
             var tr = that.closest('tr');
             $('#modalStudentID').val(tr.data('id'));
@@ -71,56 +87,47 @@
         $('#Close').on('click', function () {
             $(this).closest('form')[0].reset();
             $('#cover').attr('src', '#');
+            $('#bookResults').empty();
         });
 
         $('#Search').on('click', function () {
             var isbn = $('#ISBN').val();
             var searchType = 'isbn';
-            if (isbn)
-            {
-               
+            $('#bookResults').empty();
+            if (isbn) {
+
             }
-            else
-            {
+            else {
                 searchType = 'intitle'
                 isbn = $('#Name').val();
             }
 
             $.ajax({
                 type: "GET",
-                url: 'https://www.googleapis.com/books/v1/volumes?q='+ searchType +':'+ encodeURIComponent(isbn),
+                url: 'https://www.googleapis.com/books/v1/volumes?q=' + searchType + ':' + encodeURIComponent(isbn),
                 datatype: 'json',
                 success: function (result) {
+                    if (searchType == 'isbn') {
 
-                    $(function () {
-                        $.each(result.items, function (i, item) {
-                            var $tr = $('<tr>').append(
-                                $('<td>').text(item.volumeInfo.title),
-                                $('<td>').text(item.volumeInfo.industryIdentifiers[0].identifier),
-                                $('<td>').text(item.accessInfo.textToSpeechPermission)
-                            ).appendTo('#bookResults');
+                        $('#Name').val(result.items[0].volumeInfo.title);
+                        $('#cover').attr('src', result.items[0].volumeInfo.imageLinks.thumbnail);
+                        $('#tts').val(result.items[0].accessInfo.textToSpeechPermission);
+                    }
+                    else {
+                        $(function () {
+                            $.each(result.items, function (i, item) {
+                                var $tr = $('<tr>').append(
+                                    $('<td>').text(item.volumeInfo.title),
+                                    $('<td>').text(item.volumeInfo.industryIdentifiers[0].identifier),
+                                    $('<td>').text(item.accessInfo.textToSpeechPermission)
+                                ).appendTo('#bookResults');
+                            });
                         });
-                    });
+                    }
 
                     $('#books').removeClass('hidden');
-                    //if (result) {
-                    //    if($('#ISBN').val())
-                    //    {
-                    //        $('#Name').val(result.items[0].volumeInfo.title);
-                    //    }
-                    //    else
-                    //    {
-                    //        $('#ISBN').val(result.items[0].volumeInfo.industryIdentifiers[0].identifier);
-                    //    }
-                    //    $('#cover').attr('src', result.items[0].volumeInfo.imageLinks.thumbnail);
-                    //    $('#tts').val(result.items[0].accessInfo.textToSpeechPermission);
-                    //}
-                    //else {
-                    //    // do nothing, let them continue
-                    //}
                 }
             });
         });
-
     </script>
 }

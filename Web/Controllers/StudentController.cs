@@ -2,6 +2,7 @@
 using FbcBookIt.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Web.Controllers
@@ -10,6 +11,7 @@ namespace Web.Controllers
     {
         public readonly IStudentR _StudentR;
         public readonly IStudentTeacherSchoolR _STSR;
+
         public StudentController(IStudentR aStudentR, IStudentTeacherSchoolR aSTSR)
         {
             if (aStudentR == null)
@@ -46,8 +48,13 @@ namespace Web.Controllers
         {
             // get a list of students matching criteria
             List<Student> studs = _StudentR.GetAll();
+            DateTime dateofbirth = DateTime.Parse(dob);
 
-            return PartialView("_studentList", studs);
+            var q = studs.Where(x => x.DateOfBirth == dateofbirth);
+            var w = q.Where(x => x.FirstName == FirstName);
+            var y = w.Where(x => x.LastName == LastName);
+
+            return PartialView("_studentList", y.ToList());
         }
 
         [HttpPost]
@@ -57,7 +64,7 @@ namespace Web.Controllers
             var teachId = Session["TeacherID"].ToString();
             StudentTeacherSchool sts = new StudentTeacherSchool();
             sts.TeacherID = Guid.Parse(teachId);
-            sts.StudentID = stud.StudentID;            
+            sts.StudentID = stud.StudentID;
             var key = _STSR.InsertAndReturnPrimaryKey(sts);
             if (key != null)
             {
@@ -65,7 +72,6 @@ namespace Web.Controllers
             }
             else
                 throw new Exception("StudentTeacherSchool Insert Failed.");
-            
         }
     }
 }
