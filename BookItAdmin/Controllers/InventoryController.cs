@@ -3,86 +3,105 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FbcBookIt.Repository;
+using FbcBookIt.Entity;
 
 namespace BookItAdmin.Controllers
 {
     public partial class InventoryController : Controller
     {
-        // GET: Inventory
+        private ITitleR _titleR = null;
+        private ICopyR _copyR = null;
+        public InventoryController(FbcBookIt.Repository.ITitleR titleR, ICopyR copyR)
+        {
+            if (titleR == null)
+                throw new ArgumentNullException("Title repository cannot be null");
+            if (copyR == null)
+                throw new ArgumentNullException("Copy repository cannot be null");
+
+            _titleR = titleR;
+            _copyR = copyR;
+        }
+
         public virtual ActionResult Index()
         {
-            return View();
+            var titles = _titleR.GetAll();
+            return View(titles);
         }
 
-        // GET: Inventory/Details/5
-        public virtual ActionResult Details(int id)
+        public virtual ActionResult Details(Guid id)
         {
-            return View();
+            var title = _titleR.Get(id);
+            return View(title);
         }
 
-        // GET: Inventory/Create
         public virtual ActionResult Create()
         {
-            return View();
+            var title = new Title();
+            return View(title);
         }
 
-        // POST: Inventory/Create
         [HttpPost]
-        public virtual ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(Title title)
         {
             try
             {
-                // TODO: Add insert logic here
+                var id = _titleR.InsertAndReturnPrimaryKey(title);
+
+                return RedirectToAction(MVC.Inventory.Details(id));
+            }
+            catch
+            {
+                return View(title);
+            }
+        }
+
+        public virtual ActionResult Edit(Guid id)
+        {
+            var title = _titleR.Get(id);
+            return View(id);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Edit(Guid id, Title title)
+        {
+            try
+            {
+                _titleR.Update(title);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(title);
             }
         }
 
-        // GET: Inventory/Edit/5
-        public virtual ActionResult Edit(int id)
+        public virtual ActionResult Delete(Guid id)
         {
-            return View();
+            var title = _titleR.Get(id);
+            return View(id);
         }
 
-        // POST: Inventory/Edit/5
         [HttpPost]
-        public virtual ActionResult Edit(int id, FormCollection collection)
+        public virtual ActionResult Delete(Guid id, bool actuallyRemove)
         {
             try
             {
-                // TODO: Add update logic here
+                if (actuallyRemove)
+                    _titleR.Delete(id);
+                else
+                    _titleR.Remove(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.Inventory.Index());
             }
             catch
             {
-                return View();
-            }
-        }
-
-        // GET: Inventory/Delete/5
-        public virtual ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Inventory/Delete/5
-        [HttpPost]
-        public virtual ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                var title = _titleR.Get(id);
+                if (title != null)
+                    return View(title);
+                else
+                    return RedirectToAction(MVC.Inventory.Index());
             }
         }
     }

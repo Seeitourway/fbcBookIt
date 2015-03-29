@@ -1,0 +1,58 @@
+﻿@model FbcBookIt.Entity.BookRequest
+
+@{
+    ViewBag.Title = "Book Request Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>BookRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FormatTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormatTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentTeacherSchoolId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentTeacherSchoolId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookRequestId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

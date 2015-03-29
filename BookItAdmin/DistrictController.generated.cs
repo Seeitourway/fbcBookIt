@@ -24,10 +24,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace BookItAdmin.Controllers
 {
-    public partial class BookRequestController
+    public partial class DistrictController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected BookRequestController(Dummy d) { }
+        protected DistrictController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -75,13 +75,13 @@ namespace BookItAdmin.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public BookRequestController Actions { get { return MVC.BookRequest; } }
+        public DistrictController Actions { get { return MVC.District; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "BookRequest";
+        public readonly string Name = "District";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "BookRequest";
+        public const string NameConst = "District";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -121,7 +121,7 @@ namespace BookItAdmin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string BookRequest = "BookRequest";
+            public readonly string District = "District";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -130,7 +130,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string BookRequest = "BookRequest";
+            public readonly string District = "District";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -139,7 +139,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Delete
         {
             public readonly string id = "id";
-            public readonly string collection = "collection";
+            public readonly string actuallyDelete = "actuallyDelete";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -157,18 +157,18 @@ namespace BookItAdmin.Controllers
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Views/BookRequest/Create.cshtml";
-            public readonly string Delete = "~/Views/BookRequest/Delete.cshtml";
-            public readonly string Details = "~/Views/BookRequest/Details.cshtml";
-            public readonly string Edit = "~/Views/BookRequest/Edit.cshtml";
-            public readonly string Index = "~/Views/BookRequest/Index.cshtml";
+            public readonly string Create = "~/Views/District/Create.cshtml";
+            public readonly string Delete = "~/Views/District/Delete.cshtml";
+            public readonly string Details = "~/Views/District/Details.cshtml";
+            public readonly string Edit = "~/Views/District/Edit.cshtml";
+            public readonly string Index = "~/Views/District/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_BookRequestController : BookItAdmin.Controllers.BookRequestController
+    public partial class T4MVC_DistrictController : BookItAdmin.Controllers.DistrictController
     {
-        public T4MVC_BookRequestController() : base(Dummy.Instance) { }
+        public T4MVC_DistrictController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -205,14 +205,14 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.BookRequest BookRequest);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.District District);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.BookRequest BookRequest)
+        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.District District)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "BookRequest", BookRequest);
-            CreateOverride(callInfo, BookRequest);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "District", District);
+            CreateOverride(callInfo, District);
             return callInfo;
         }
 
@@ -229,15 +229,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.BookRequest BookRequest);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.District District);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.BookRequest BookRequest)
+        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.District District)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "BookRequest", BookRequest);
-            EditOverride(callInfo, id, BookRequest);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "District", District);
+            EditOverride(callInfo, id, District);
             return callInfo;
         }
 
@@ -254,15 +254,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, System.Web.Mvc.FormCollection collection);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, bool actuallyDelete);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Delete(System.Guid id, System.Web.Mvc.FormCollection collection)
+        public override System.Web.Mvc.ActionResult Delete(System.Guid id, bool actuallyDelete)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
-            DeleteOverride(callInfo, id, collection);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actuallyDelete", actuallyDelete);
+            DeleteOverride(callInfo, id, actuallyDelete);
             return callInfo;
         }
 

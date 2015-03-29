@@ -1,13 +1,15 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BookItAdmin.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(BookItAdmin.App_Start.NinjectWebCommon), "Stop")]
+using BookItAdmin.App_Start;
+using WebActivatorEx;
+
+[assembly: PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
 namespace BookItAdmin.App_Start
 {
     using System;
     using System.Web;
-
+    using FbcBookIt.Utility;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
 
@@ -61,6 +63,8 @@ namespace BookItAdmin.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            InitializeNinject.StartUpWithExternalKernel
+                (kernel, typeof(NinjectWebCommon), true);
         }
     }
 }

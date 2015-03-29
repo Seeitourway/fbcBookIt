@@ -1,0 +1,64 @@
+﻿@model FbcBookIt.Entity.BookRequest
+
+@{
+    ViewBag.Title = "Delete Book Request";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BookRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FormatTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormatTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentTeacherSchoolId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentTeacherSchoolId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

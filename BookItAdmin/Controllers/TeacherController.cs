@@ -3,86 +3,97 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FbcBookIt.Repository;
+using FbcBookIt.Entity;
 
 namespace BookItAdmin.Controllers
 {
     public partial class TeacherController : Controller
     {
-        // GET: Teacher
+        ITeacherR _teacherR;
+        public TeacherController(ITeacherR teacherR)
+        {
+            if (teacherR == null)
+                throw new NullReferenceException("Teacher repo is null");
+
+            _teacherR = teacherR;
+        }
+
         public virtual ActionResult Index()
         {
-            return View();
+            var teachers = _teacherR.GetAll();
+            return View(teachers);
         }
 
-        // GET: Teacher/Details/5
-        public virtual ActionResult Details(int id)
+        public virtual ActionResult Details(Guid id)
         {
+            var teacher = _teacherR.Get(id);
             return View();
         }
 
-        // GET: Teacher/Create
         public virtual ActionResult Create()
         {
-            return View();
+            var teacher = new Teacher();
+            return View(teacher);
         }
 
-        // POST: Teacher/Create
         [HttpPost]
-        public virtual ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(Teacher teacher)
         {
             try
             {
-                // TODO: Add insert logic here
+                var id = _teacherR.InsertAndReturnPrimaryKey(teacher);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.Teacher.Details(id));
             }
             catch
             {
-                return View();
+                return View(teacher);
             }
         }
 
-        // GET: Teacher/Edit/5
-        public virtual ActionResult Edit(int id)
+        public virtual ActionResult Edit(Guid id)
         {
-            return View();
+            var teacher = _teacherR.Get(id);
+            return View(teacher);
         }
 
-        // POST: Teacher/Edit/5
         [HttpPost]
-        public virtual ActionResult Edit(int id, FormCollection collection)
+        public virtual ActionResult Edit(Guid id, Teacher teacher)
         {
             try
             {
-                // TODO: Add update logic here
+                _teacherR.Update(teacher);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.Teacher.Details(id));
             }
             catch
             {
-                return View();
+                return View(teacher);
             }
         }
 
-        // GET: Teacher/Delete/5
-        public virtual ActionResult Delete(int id)
+        public virtual ActionResult Delete(Guid id)
         {
+            var teacher = _teacherR.Get(id);
             return View();
         }
 
-        // POST: Teacher/Delete/5
         [HttpPost]
-        public virtual ActionResult Delete(int id, FormCollection collection)
+        public virtual ActionResult Delete(Guid id, bool actuallyDelete)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (actuallyDelete)
+                    _teacherR.Delete(id);
+                else
+                    _teacherR.Remove(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.Teacher.Index());
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
     }

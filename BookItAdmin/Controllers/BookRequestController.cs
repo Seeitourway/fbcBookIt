@@ -3,86 +3,93 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FbcBookIt.Repository;
+using FbcBookIt.Entity;
 
 namespace BookItAdmin.Controllers
 {
     public partial class BookRequestController : Controller
     {
-        // GET: BookRequest
+        IBookRequestR _BookRequestR;
+        public BookRequestController(IBookRequestR BookRequestR)
+        {
+            if (BookRequestR == null)
+                throw new NullReferenceException("BookRequest repo is null");
+
+            _BookRequestR = BookRequestR;
+        }
         public virtual ActionResult Index()
         {
-            return View();
+            var BookRequests = _BookRequestR.GetAll();
+            return View(BookRequests);
         }
 
-        // GET: BookRequest/Details/5
-        public virtual ActionResult Details(int id)
+        public virtual ActionResult Details(Guid id)
         {
+            var BookRequest = _BookRequestR.Get(id);
             return View();
         }
 
-        // GET: BookRequest/Create
         public virtual ActionResult Create()
         {
-            return View();
+            var BookRequest = new BookRequest();
+            return View(BookRequest);
         }
 
-        // POST: BookRequest/Create
         [HttpPost]
-        public virtual ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(BookRequest BookRequest)
         {
             try
             {
-                // TODO: Add insert logic here
+                var id = _BookRequestR.InsertAndReturnPrimaryKey(BookRequest);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.BookRequest.Details(id));
             }
             catch
             {
-                return View();
+                return View(BookRequest);
             }
         }
 
-        // GET: BookRequest/Edit/5
-        public virtual ActionResult Edit(int id)
+        public virtual ActionResult Edit(Guid id)
         {
-            return View();
+            var BookRequest = _BookRequestR.Get(id);
+            return View(BookRequest);
         }
 
-        // POST: BookRequest/Edit/5
         [HttpPost]
-        public virtual ActionResult Edit(int id, FormCollection collection)
+        public virtual ActionResult Edit(Guid id, BookRequest BookRequest)
         {
             try
             {
-                // TODO: Add update logic here
+                _BookRequestR.Update(BookRequest);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.BookRequest.Details(id));
             }
             catch
             {
-                return View();
+                return View(BookRequest);
             }
         }
 
-        // GET: BookRequest/Delete/5
-        public virtual ActionResult Delete(int id)
+        public virtual ActionResult Delete(Guid id)
         {
+            var BookRequest = _BookRequestR.Get(id);
             return View();
         }
 
-        // POST: BookRequest/Delete/5
         [HttpPost]
-        public virtual ActionResult Delete(int id, FormCollection collection)
+        public virtual ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                _BookRequestR.Delete(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction(MVC.BookRequest.Index());
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
     }
