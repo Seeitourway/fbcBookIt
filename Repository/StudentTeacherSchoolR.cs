@@ -46,7 +46,7 @@
             vResult =
                 _Db.StudentTeacherSchoolDb
                     .Where(aRec => aRec.TeacherID == aTeacherId)
-                    .Include("Student")
+                    .Include(s=>s.StudentID)
                     .ToList();
             return vResult;
         }

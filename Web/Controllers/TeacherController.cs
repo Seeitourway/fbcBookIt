@@ -34,7 +34,7 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             // need all STUDENT records joined with StudentTeacherSchool based on TeacherID
-            var studs = _stsR.GetByTeacherIdWithStudentAsList(Guid.Parse("15A950C2-C846-6853-1CEB-000B146A3DF7"));
+            var studs = _stsR.GetStudentSTSByTeacherID(Guid.Parse("15A950C2-C846-6853-1CEB-000B146A3DF7"));
             return View(studs);
         }
 
