@@ -8,27 +8,14 @@
 
     public partial interface IStudentTeacherSchoolR
     {
+      List<Student> GetStudentSTSByTeacherID(Guid aTeacherId);
 
-        // GetByTeacherID will return the first occurrence of a record that
-        // matches the criteria. If no record matches, the method will return null.
-        StudentTeacherSchool GetByTeacherIdWithStudent(Guid aTeacherId);
-
-        List<Student> GetStudentSTSByTeacherID(Guid aTeacherId);
-        List<Student> GetByTeacherIdWithStudentAsList(Guid aTeacherId);
+			List<Student> GetByTeacherIdWithStudentAsList(Guid aTeacherId);
 
     }
 
     public partial class StudentTeacherSchoolR
     {
-        public StudentTeacherSchool GetByTeacherIdWithStudent(Guid aTeacherId)
-        {
-            StudentTeacherSchool vResult;
-            vResult =
-                _Db.StudentTeacherSchoolDb.Include(s => s.Student)
-                    .FirstOrDefault(aRec => aRec.TeacherID == aTeacherId);
-            return vResult;
-        }
-
         public List<Student> GetStudentSTSByTeacherID(Guid aTeacherId)
         {
             var vResult = (_Db.StudentTeacherSchoolDb.Join
