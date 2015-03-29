@@ -41,7 +41,7 @@
 						(
 			        _Db.StudentTeacherSchoolDb.Where
 				        (sts => sts.TeacherID == aTeacherId)
-			        .Select(sts => sts.Student)
+			        .Select(sts => sts.Student) 
 		        )
 		        .Distinct()
 		        .ToList();
