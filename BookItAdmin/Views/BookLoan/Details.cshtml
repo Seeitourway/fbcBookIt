@@ -1,21 +1,61 @@
 ﻿@model FbcBookIt.Entity.BookLoan
 
 @{
-    ViewBag.Title = "Details " + Model.LoanNumber;
+    ViewBag.Title = "Details";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Details</h2>
 
 <div>
     <h4>BookLoan</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BookRequestID)
+            @Html.DisplayNameFor(model => model.RequestNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookRequestID)
+            @Html.DisplayFor(model => model.RequestNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.School)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.School)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.District)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.District)
         </dd>
 
         <dt>
@@ -35,11 +75,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LoanStatusID)
+            @Html.DisplayNameFor(model => model.LoanStatus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LoanStatusID)
+            @Html.DisplayFor(model => model.LoanStatus)
         </dd>
 
         <dt>
@@ -48,14 +88,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.OutDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VolumeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VolumeID)
         </dd>
 
     </dl>

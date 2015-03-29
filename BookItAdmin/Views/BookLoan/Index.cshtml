@@ -1,33 +1,46 @@
 ﻿@model IEnumerable<FbcBookIt.Entity.BookLoan>
 
 @{
-    ViewBag.Title = "Book Loans";
+    ViewBag.Title = "Index";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Index</h2>
 
+@Html.ActionLink("Prev", MVC.BookLoan.Index(((int)ViewBag.Page) - 1))&nbsp;Page @ViewBag.Page&nbsp;@Html.ActionLink("Next", MVC.BookLoan.Index(((int)ViewBag.Page) + 1))
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BookRequestID)
+            @Html.DisplayNameFor(model => model.RequestNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LoanNumber)
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.School)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.InDate)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.LoanNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanStatus)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.OutDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoanStatusID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VolumeID)
         </th>
         <th></th>
     </tr>
@@ -35,27 +48,38 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BookRequestID)
+            @Html.DisplayFor(modelItem => item.RequestNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LoanNumber)
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.School)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.District)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InDate)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.LoanNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanStatus)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.OutDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LoanStatusID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VolumeID)
-        </td>
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BookLoanId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookLoanId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookLoanId })
+            @Html.ActionLink("Details", "Details", new { id=item.BookLoanId })
         </td>
     </tr>
 }

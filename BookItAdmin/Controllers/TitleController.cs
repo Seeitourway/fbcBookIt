@@ -23,9 +23,14 @@ namespace BookItAdmin.Controllers
             _copyR = copyR;
         }
 
-        public virtual ActionResult Index()
+        int pageSize = 25;
+        public virtual ActionResult Index(int? page)
         {
-            var titles = _titleR.GetAll();
+            if (!page.HasValue)
+                page = 0;
+            ViewBag.Page = page.Value;
+
+            var titles = _titleR.GetAll().Skip(page.Value * pageSize).Take(pageSize).ToList();
             return View(titles);
         }
 
@@ -51,7 +56,7 @@ namespace BookItAdmin.Controllers
                 title.Active = true;
                 var id = _titleR.InsertAndReturnPrimaryKey(title);
 
-                return RedirectToAction(MVC.Title.Index());
+                return RedirectToAction(MVC.Title.Index(0));
             }
             catch
             {
@@ -73,7 +78,7 @@ namespace BookItAdmin.Controllers
             {
                 _titleR.Update(title);
 
-                return RedirectToAction(MVC.Title.Index());
+                return RedirectToAction(MVC.Title.Index(0));
             }
             catch
             {
@@ -99,7 +104,7 @@ namespace BookItAdmin.Controllers
                     _titleR.Delete(id);
                 }
 
-                return RedirectToAction(MVC.Title.Index());
+                return RedirectToAction(MVC.Title.Index(0));
             }
             catch
             {
@@ -107,7 +112,7 @@ namespace BookItAdmin.Controllers
                 if (title != null)
                     return View(title);
                 else
-                    return RedirectToAction(MVC.Title.Index());
+                    return RedirectToAction(MVC.Title.Index(0));
             }
         }
     }

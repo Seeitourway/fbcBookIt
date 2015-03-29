@@ -57,6 +57,12 @@ namespace BookItAdmin.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Details()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
@@ -113,6 +119,14 @@ namespace BookItAdmin.Controllers
         }
 
 
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string page = "page";
+        }
         static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
@@ -128,7 +142,8 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string id = "id";
-            public readonly string bookLoan = "bookLoan";
+            public readonly string BookRequestID = "BookRequestID";
+            public readonly string selected = "selected";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -178,13 +193,14 @@ namespace BookItAdmin.Controllers
         public T4MVC_BookLoanController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? page);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult Index(int? page)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
+            IndexOverride(callInfo, page);
             return callInfo;
         }
 
@@ -213,14 +229,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.BookLoan bookLoan);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid BookRequestID, string selected);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.BookLoan bookLoan)
+        public override System.Web.Mvc.ActionResult Create(System.Guid BookRequestID, string selected)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "bookLoan", bookLoan);
-            CreateOverride(callInfo, bookLoan);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "BookRequestID", BookRequestID);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "selected", selected);
+            CreateOverride(callInfo, BookRequestID, selected);
             return callInfo;
         }
 

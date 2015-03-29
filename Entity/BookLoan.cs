@@ -22,6 +22,8 @@ namespace FbcBookIt.Entity
         [NotMapped]
         public string School { get; set; }
         [NotMapped]
+        public string District { get; set; }
+        [NotMapped]
         public FormatTypeE FormatType { get; set; }
         [NotMapped]
         public LoanStatusE LoanStatus
@@ -35,5 +37,7 @@ namespace FbcBookIt.Entity
                 LoanStatusID = (int)value;
             }
         }
+        [NotMapped]
+        public List<Copy> AvailableCopies { get; set; }
     }
 }

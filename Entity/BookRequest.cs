@@ -18,18 +18,22 @@ namespace FbcBookIt.Entity
         [NotMapped]
         public string School { get; set; }
         [NotMapped]
+        public string District { get; set; }
+        [NotMapped]
         public string FormatType { get; set; }
         [NotMapped]
-        public RequestStatusE RequestStatus
+        public RequestStatusE? RequestStatus
         {
             get
             {
-                return (RequestStatusE)RequestStatusId;
+                return (RequestStatusE?)RequestStatusId;
             }
             set
             {
                 RequestStatusId = (int)value;
             }
         }
+        [NotMapped]
+        public List<BookLoan> Loans { get; set; }
     }
 }

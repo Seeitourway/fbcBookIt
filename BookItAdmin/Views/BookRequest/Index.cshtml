@@ -1,30 +1,43 @@
 ﻿@model IEnumerable<FbcBookIt.Entity.BookRequest>
 
 @{
-    ViewBag.Title = "Book Requests";
+    ViewBag.Title = "Index";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Index</h2>
 
+@Html.ActionLink("Prev", MVC.BookRequest.Index(((int)ViewBag.Page) - 1))&nbsp;Page @ViewBag.Page&nbsp;@Html.ActionLink("Next", MVC.BookRequest.Index(((int)ViewBag.Page) + 1))
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FormatTypeID)
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.School)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormatType)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RequestDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RequestStatusId)
+            @Html.DisplayNameFor(model => model.RequestNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StudentTeacherSchoolId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TitleID)
+            @Html.DisplayNameFor(model => model.RequestStatus)
         </th>
         <th></th>
     </tr>
@@ -32,24 +45,35 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FormatTypeID)
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.School)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.District)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormatType)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RequestDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RequestStatusId)
+            @Html.DisplayFor(modelItem => item.RequestNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StudentTeacherSchoolId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TitleID)
+            @Html.DisplayFor(modelItem => item.RequestStatus)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BookRequestId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookRequestId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookRequestId })
+            @Html.ActionLink("Details", "Details", new { id=item.BookRequestId })
         </td>
     </tr>
 }

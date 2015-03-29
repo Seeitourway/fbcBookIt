@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -12,54 +12,198 @@
     
     <div class="form-horizontal">
         <h4>BookLoan</h4>
+        <h3>@Html.ActionLink(Model.RequestNumber, MVC.BookRequest.Details(Model.BookRequestID))</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.BookLoanId)
+
         @Html.HiddenFor(model => model.BookRequestID)
+        @Html.HiddenFor(model => model.RequestNumber)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LoanNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RequestNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LoanNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LoanNumber, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.RequestNumber, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.InDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div role="tabpanel">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OutDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OutDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OutDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <!-- Nav tabs -->
+                <ul id="tabs" class="nav nav-tabs" role="tablist">
+                    @foreach(var copy in Model.AvailableCopies)
+                    {
+                    <li role="presentation"><a href="#@copy.CopyId.GetHashCode().ToString("X")" role="tab" data-toggle="tab">@copy.AccessionNumber</a></li>
+                    }
+                </ul>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LoanStatusID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LoanStatusID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LoanStatusID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <!-- Tab panes -->
+                <div class="tab-content well">
+                    @foreach (var copy in Model.AvailableCopies)
+                    {
+                        <div role="tabpanel" class="tab-pane active" id="@copy.CopyId.GetHashCode().ToString("X")">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.AccessionNumber)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.AccessionNumber)
+                                </dd>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VolumeID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VolumeID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VolumeID, "", new { @class = "text-danger" })
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.AcquisitionDate)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.AcquisitionDate)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.Active)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.Active)
+                                </dd>
+
+                                @if (!string.IsNullOrWhiteSpace(copy.Comment))
+                                {
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.Comment)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.Comment)
+                                </dd>
+                                }
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.Consumable)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.Consumable)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.CopyStatus)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.CopyStatus)
+                                </dd>
+
+                                @if (copy.DiscardedDate.HasValue)
+                                {
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.DiscardedDate)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.DiscardedDate)
+                                </dd>
+                                }
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.StartLocation)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.StartLocation)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.EndLocation)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.EndLocation)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.FormatType)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.FormatType)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.MasterCopy)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.MasterCopy)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.NumberOfTactiles)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.NumberOfTactiles)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.Price)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.Price)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => copy.ProofRead)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => copy.ProofRead)
+                                </dd>
+
+                            </dl>
+                            <hr />
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Select</th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => copy.Volumes.First().Barcode)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => copy.Volumes.First().Pages)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => copy.Volumes.First().VolumeNumber)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => copy.Volumes.First().VolumeStatusID)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in copy.Volumes)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input class="volumeselect" id="@item.VolumeID" name="@item.VolumeID" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Barcode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Pages)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.VolumeNumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.VolumeStatusID)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    }
+                </div>
+
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="hidden" value="" id="selected" name="selected" />
+                <input type="submit" value="Loan Selected" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -68,3 +212,43 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts {
+<script>
+    $().ready(function () {
+        $('#tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+
+        });
+        setTimeout(function () {
+            $('#tabs a:first').tab('show');
+
+            Array.prototype.remove = function () {
+                var what, a = arguments, L = a.length, ax;
+                while (L && this.length) {
+                    what = a[--L];
+                    while ((ax = this.indexOf(what)) !== -1) {
+                        this.splice(ax, 1);
+                    }
+                }
+                return this;
+            };
+
+            $('.volumeselect').on('click', function (e) {
+                var it = $(this)[0];
+                var val = $('#selected').val();
+                var vals = val.split(',');
+                if (it.checked) {
+                    vals.push(it.id);
+                }
+                else {
+                    vals.remove(it.id);
+                }
+                val = vals.join(',');
+                $('#selected').val(val);
+            });
+        }, 200);
+    });
+</script>
+}

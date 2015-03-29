@@ -1,22 +1,62 @@
 ﻿@model FbcBookIt.Entity.BookRequest
 
 @{
-    ViewBag.Title = "Book Request Details";
+    ViewBag.Title = "Details";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Details</h2>
 
 <div>
     <h4>BookRequest</h4>
     <hr />
-    @Html.ActionLink("Create Book Loan", MVC.BookLoan.Create(Model.BookRequestId))
+    @Html.ActionLink("Create Book Loan", MVC.BookLoan.Create(Model.BookRequestId))<br />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FormatTypeID)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FormatTypeID)
+            @Html.ActionLink(Model.Title, MVC.Title.Details(Model.TitleID), new { target="_blank" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.School)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.School)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.District)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.District)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FormatType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormatType)
         </dd>
 
         <dt>
@@ -28,32 +68,97 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RequestStatusId)
+            @Html.DisplayNameFor(model => model.RequestNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RequestStatusId)
+            @Html.DisplayFor(model => model.RequestNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StudentTeacherSchoolId)
+            @Html.DisplayNameFor(model => model.RequestStatus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StudentTeacherSchoolId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TitleID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TitleID)
+            @Html.DisplayFor(model => model.RequestStatus)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BookRequestId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@if (Model.Loans.Any())
+{
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().RequestNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().Teacher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().Student)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().School)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().InDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().LoanNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().LoanStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loans.First().OutDate)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Loans) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.School)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutDate)
+            </td>
+        </tr>
+    }
+</table>
+}
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.BookRequestId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

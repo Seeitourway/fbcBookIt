@@ -12,7 +12,21 @@ namespace FbcBookIt.Entity
         [NotMapped]
         public IList<Volume> Volumes { get; set; }
         [NotMapped]
-        public FormatType FormatType { get; set; }
+        public FormatTypeE? FormatType
+        {
+            get
+            {
+                return (FormatTypeE?)FormatTypeID;
+            }
+            set
+            {
+                if (value.HasValue)
+                    FormatTypeID = (int)value.Value;
+                else
+                    FormatTypeID = null;
+            }
+        }
+
         [NotMapped]
         public CopyStatusE? CopyStatus
         {

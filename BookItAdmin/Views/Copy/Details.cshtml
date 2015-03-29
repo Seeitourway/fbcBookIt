@@ -8,7 +8,7 @@
 
 <div>
     <h4>Copy</h4>
-    <h3><a href="@Url.Action(MVC.Title.Details(ViewBag.TitleId))">@ViewBag.TitleName</a></h3>
+    <h3>@Html.ActionLink((string)@ViewBag.TitleName, MVC.Title.Details(ViewBag.TitleId))</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>

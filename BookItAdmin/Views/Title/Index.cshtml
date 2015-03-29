@@ -6,6 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
+@Html.ActionLink("Prev", MVC.Title.Index(((int)ViewBag.Page) - 1))&nbsp;Page @ViewBag.Page&nbsp;@Html.ActionLink("Next", MVC.Title.Index(((int)ViewBag.Page) + 1))
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
