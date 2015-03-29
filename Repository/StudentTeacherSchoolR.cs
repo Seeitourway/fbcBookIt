@@ -10,7 +10,7 @@
     {
       List<Student> GetStudentSTSByTeacherID(Guid aTeacherId);
 
-			List<Student> GetByTeacherIdWithStudentAsList(Guid aTeacherId);
+            List<Student> GetByTeacherIdWithStudentAsList(Guid aTeacherId);
 
     }
 
@@ -19,17 +19,17 @@
         public List<Student> GetStudentSTSByTeacherID(Guid aTeacherId)
         {
             var vResult = (_Db.StudentTeacherSchoolDb.Join
-	            (
-		            _Db.StudentDb,
-		            sts => sts.StudentID,
-		            s => s.StudentID,
-		            (sts, s) => new
-		            {
-			            sts,
-			            s
-		            })
-	            .Where(@vT => @vT.sts.TeacherID == aTeacherId)
-	            .Select(@vT => @vT.s)).ToList();
+                (
+                    _Db.StudentDb,
+                    sts => sts.StudentID,
+                    s => s.StudentID,
+                    (sts, s) => new
+                    {
+                        sts,
+                        s
+                    })
+                .Where(@vT => @vT.sts.TeacherID == aTeacherId)
+                .Select(@vT => @vT.s)).ToList();
                 
             return vResult;
         }
@@ -37,15 +37,15 @@
         public List<Student> GetByTeacherIdWithStudentAsList
             (Guid aTeacherId)
         {
-	        List<Student> vResult = 
-						(
-			        _Db.StudentTeacherSchoolDb.Where
-				        (sts => sts.TeacherID == aTeacherId)
-			        .Select(sts => sts.Student) 
-		        )
-		        .Distinct()
-		        .ToList();
-	        return vResult;
+            List<Student> vResult = 
+                        (
+                    _Db.StudentTeacherSchoolDb.Where
+                        (sts => sts.TeacherID == aTeacherId)
+                    .Select(sts => sts.Student) 
+                )
+                .Distinct()
+                .ToList();
+            return vResult;
         }
     }
 }

@@ -84,6 +84,12 @@ namespace Web.Controllers
             brq.TitleID = tit.TitleID;
             brq.StudentTeacherSchoolId = sts.ID;
             brq.FormatTypeID = ft.FormatTypeId;
+
+
+            string max = _bookRequestR.GetMaxRequestForYear(DateTime.Now.Year);
+            string nextMax = (int.Parse(max) + 1).ToString();
+
+            brq.RequestNumber = nextMax;
             brq.RequestDate = DateTime.Now;
             brq.RequestStatusId = 1;
             if(TryUpdateModel<BookRequest>(brq, collection.ToValueProvider()))
