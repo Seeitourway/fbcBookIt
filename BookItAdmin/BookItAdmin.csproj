@@ -367,6 +367,7 @@
     <Content Include="Views\BookLoan\Edit.cshtml" />
     <Content Include="Views\BookLoan\Details.cshtml" />
     <Content Include="Views\BookLoan\Delete.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

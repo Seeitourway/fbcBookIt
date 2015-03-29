@@ -7,13 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FbcBookIt.Entity
 {
-    partial class Title
+    partial class Student
     {
         [NotMapped]
-        public IList<Copy> Copies { get; set; }
+        public IList<Teacher> Teachers { get; set; }
         [NotMapped]
         public IList<BookRequest> BookRequests { get; set; }
-        [NotMapped]
-        public IList<BookLoan> BookLoans { get; set; }
     }
 }

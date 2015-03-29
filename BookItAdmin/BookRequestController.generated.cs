@@ -79,6 +79,12 @@ namespace BookItAdmin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CheckIn()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckIn);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public BookRequestController Actions { get { return MVC.BookRequest; } }
@@ -100,6 +106,7 @@ namespace BookItAdmin.Controllers
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
+            public readonly string CheckIn = "CheckIn";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -110,6 +117,7 @@ namespace BookItAdmin.Controllers
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
+            public const string CheckIn = "CheckIn";
         }
 
 
@@ -154,6 +162,15 @@ namespace BookItAdmin.Controllers
         {
             public readonly string id = "id";
             public readonly string collection = "collection";
+        }
+        static readonly ActionParamsClass_CheckIn s_params_CheckIn = new ActionParamsClass_CheckIn();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CheckIn CheckInParams { get { return s_params_CheckIn; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CheckIn
+        {
+            public readonly string id = "id";
+            public readonly string loanStatus = "loanStatus";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -278,6 +295,19 @@ namespace BookItAdmin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
             DeleteOverride(callInfo, id, collection);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckInOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.LoanStatusE loanStatus);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CheckIn(System.Guid id, FbcBookIt.Entity.LoanStatusE loanStatus)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckIn);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "loanStatus", loanStatus);
+            CheckInOverride(callInfo, id, loanStatus);
             return callInfo;
         }
 

@@ -34,6 +34,6 @@ namespace FbcBookIt.Entity
             }
         }
         [NotMapped]
-        public List<BookLoan> Loans { get; set; }
+        public IList<BookLoan> Loans { get; set; }
     }
 }

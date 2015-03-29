@@ -38,6 +38,6 @@ namespace FbcBookIt.Entity
             }
         }
         [NotMapped]
-        public List<Copy> AvailableCopies { get; set; }
+        public IList<Copy> AvailableCopies { get; set; }
     }
 }

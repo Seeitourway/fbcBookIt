@@ -195,5 +195,15 @@ namespace BookItAdmin.Controllers
                 return View(id);
             }
         }
+
+        [HttpPost]
+        public virtual ActionResult CheckIn(Guid id, LoanStatusE loanStatus)
+        {
+            var loan = _bookLoanR.Get(id);
+            var bookRequestId = loan.BookRequestID;
+            loan.InDate = DateTime.Now.Date;
+            loan.LoanStatus = loanStatus;
+            return RedirectToAction(MVC.BookRequest.Details(bookRequestId));
+        }
     }
 }

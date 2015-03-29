@@ -11,12 +11,18 @@ namespace BookItAdmin.Controllers
     public partial class StudentController : Controller
     {
         IStudentR _StudentR;
-        public StudentController(IStudentR StudentR)
+        IStudentTeacherSchoolR _studentTeacherSchoolR;
+        ITeacherR _teacherR;
+        IBookRequestR _bookRequestR;
+        public StudentController(IStudentR StudentR, IStudentTeacherSchoolR studentTeacherSchoolR, ITeacherR teacherR, IBookRequestR bookRequestR)
         {
             if (StudentR == null)
                 throw new NullReferenceException("Student repo is null");
 
             _StudentR = StudentR;
+            _studentTeacherSchoolR = studentTeacherSchoolR;
+            _teacherR = teacherR;
+            _bookRequestR = bookRequestR;
         }
 
         public virtual ActionResult Index()
@@ -28,7 +34,13 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Details(Guid id)
         {
             var student = _StudentR.Get(id);
+            LoadStuff(ref student);
             return View(student);
+        }
+
+        private void LoadStuff(ref Student student)
+        {
+            //var request = _bookRequestR.GetByActiveAndStudent(true, student.StudentID);
         }
 
         public virtual ActionResult Create()

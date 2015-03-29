@@ -1,0 +1,5 @@
+﻿@model System.DateTime?
+
+@if (Model.HasValue) {
+    @Html.Encode(Model.Value.ToShortDateString())
+}
