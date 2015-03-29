@@ -197,9 +197,23 @@ namespace BookItAdmin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult CheckIn(Guid id, LoanStatusE loanStatus)
+        public virtual ActionResult CheckIn(Guid id, FormCollection collection)
         {
             Guid bookRequestId = Guid.Empty;
+            LoanStatusE loanStatus = LoanStatusE.Unknown;
+            if (collection.GetValue("loanStatus") != null)
+                loanStatus = (LoanStatusE)Enum.Parse(typeof(LoanStatusE), collection.GetValue("loanStatus").AttemptedValue);
+            else
+            {
+                foreach (var key in collection.AllKeys)
+                {
+                    if (key.ToLower().Contains("loanstatus"))
+                    {
+                        loanStatus = (LoanStatusE)Enum.Parse(typeof(LoanStatusE), collection.GetValue(key).AttemptedValue);
+                        break;
+                    }
+                }
+            }
             var loan = _bookLoanR.Get(id);
             if (loan == null)
             {

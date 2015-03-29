@@ -170,7 +170,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_CheckIn
         {
             public readonly string id = "id";
-            public readonly string loanStatus = "loanStatus";
+            public readonly string collection = "collection";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -299,15 +299,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void CheckInOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.LoanStatusE loanStatus);
+        partial void CheckInOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, System.Web.Mvc.FormCollection collection);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CheckIn(System.Guid id, FbcBookIt.Entity.LoanStatusE loanStatus)
+        public override System.Web.Mvc.ActionResult CheckIn(System.Guid id, System.Web.Mvc.FormCollection collection)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckIn);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "loanStatus", loanStatus);
-            CheckInOverride(callInfo, id, loanStatus);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            CheckInOverride(callInfo, id, collection);
             return callInfo;
         }
 

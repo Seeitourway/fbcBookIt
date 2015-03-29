@@ -131,9 +131,9 @@
                     using (Html.BeginForm(MVC.BookRequest.CheckIn()))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.HiddenFor(modelItem => item.BookLoanId);
-                        @Html.EnumDropDownListFor(modelItem => item.LoanStatus)
+                        <input type="hidden" id="Id" value="@item.BookLoanId" name="Id" />
                         <div class="form-actions no-color">
+                            @Html.EnumDropDownListFor(modelItem => item.LoanStatus, new { id = "loanStatus", name = "loanStatus" })
                             <input type="submit" value="Check-in" class="btn btn-default" />
                         </div>
                     }
@@ -149,9 +149,9 @@
     using (Html.BeginForm(MVC.BookRequest.CheckIn()))
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(modelItem => Model.BookRequestId);
-        @Html.EnumDropDownListFor(modelItem => Model.Loans.First().LoanStatus)
+        <input type="hidden" id="Id" value="@Model.BookRequestId" name="Id" />
         <div class="form-actions no-color">
+            @Html.EnumDropDownListFor(modelItem => Model.Loans.First().LoanStatus, new { id="loanStatus", name="loanStatus" })
             <input type="submit" value="Check-in all checked-out" class="btn btn-default" />
         </div>
     }
