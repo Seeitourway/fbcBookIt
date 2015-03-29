@@ -21,73 +21,72 @@ namespace BookItAdmin.Controllers
 
         public virtual ActionResult Index()
         {
-            var Students = _StudentR.GetAll();
-            return View(Students);
+            var student = _StudentR.GetAll();
+            return View(student);
         }
 
         public virtual ActionResult Details(Guid id)
         {
-            var Student = _StudentR.Get(id);
-            return View();
+            var student = _StudentR.Get(id);
+            return View(student);
         }
 
         public virtual ActionResult Create()
         {
-            var Student = new Student();
-            return View(Student);
+            var student = new Student();
+            student.Active = true;
+            return View(student);
         }
 
         [HttpPost]
-        public virtual ActionResult Create(Student Student)
+        public virtual ActionResult Create(Student student)
         {
             try
             {
-                var id = _StudentR.InsertAndReturnPrimaryKey(Student);
+                student.Active = true;
+                var id = _StudentR.InsertAndReturnPrimaryKey(student);
 
                 return RedirectToAction(MVC.Student.Details(id));
             }
             catch
             {
-                return View(Student);
+                return View(student);
             }
         }
 
         public virtual ActionResult Edit(Guid id)
         {
-            var Student = _StudentR.Get(id);
-            return View(Student);
+            var student = _StudentR.Get(id);
+            return View(student);
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(Guid id, Student Student)
+        public virtual ActionResult Edit(Guid id, Student student)
         {
             try
             {
-                _StudentR.Update(Student);
+                _StudentR.Update(student);
 
                 return RedirectToAction(MVC.Student.Details(id));
             }
             catch
             {
-                return View(Student);
+                return View(student);
             }
         }
 
         public virtual ActionResult Delete(Guid id)
         {
-            var Student = _StudentR.Get(id);
-            return View();
+            var student = _StudentR.Get(id);
+            return View(student);
         }
 
         [HttpPost]
-        public virtual ActionResult Delete(Guid id, bool actuallyDelete)
+        public virtual ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
-                if (actuallyDelete)
-                    _StudentR.Delete(id);
-                else
-                    _StudentR.Remove(id);
+                _StudentR.Remove(id);
 
                 return RedirectToAction(MVC.Student.Index());
             }

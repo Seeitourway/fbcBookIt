@@ -183,10 +183,14 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BookLoanController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="BookRequestController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookLoanController.cs" />
     <Compile Include="Controllers\BookRequestController.cs" />
     <Compile Include="Controllers\CopyController.cs" />
     <Compile Include="Controllers\DataManagerController.cs" />
@@ -348,12 +352,21 @@
     <Content Include="Views\Copy\Details.cshtml" />
     <Content Include="Views\Copy\Edit.cshtml" />
     <Content Include="Views\Copy\Delete.cshtml" />
+    <Content Include="Views\BookLoan\Index.cshtml" />
+    <Content Include="Views\BookLoan\Details.cshtml" />
+    <Content Include="Views\BookLoan\Create.cshtml" />
+    <Content Include="Views\BookLoan\Edit.cshtml" />
+    <Content Include="Views\BookLoan\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessRules\BusinessRules.csproj">
+      <Project>{f758e488-f0bf-4ac1-8482-738d24e25656}</Project>
+      <Name>BusinessRules</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{ec4bb4fe-5273-452e-97f8-64eca4c75d8f}</Project>
       <Name>Entity</Name>

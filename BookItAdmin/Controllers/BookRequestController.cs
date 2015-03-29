@@ -27,7 +27,13 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Details(Guid id)
         {
             var BookRequest = _BookRequestR.Get(id);
-            return View();
+            LoadStuff(ref BookRequest);
+            return View(BookRequest);
+        }
+
+        private void LoadStuff(ref BookRequest bookRequest)
+        {
+
         }
 
         public virtual ActionResult Create()
@@ -75,7 +81,7 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Delete(Guid id)
         {
             var BookRequest = _BookRequestR.Get(id);
-            return View();
+            return View(BookRequest);
         }
 
         [HttpPost]

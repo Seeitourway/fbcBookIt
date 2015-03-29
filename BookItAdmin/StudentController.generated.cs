@@ -121,7 +121,7 @@ namespace BookItAdmin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string Student = "Student";
+            public readonly string student = "student";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -130,7 +130,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string Student = "Student";
+            public readonly string student = "student";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -139,7 +139,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Delete
         {
             public readonly string id = "id";
-            public readonly string actuallyDelete = "actuallyDelete";
+            public readonly string collection = "collection";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -205,14 +205,14 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.Student Student);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.Student student);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.Student Student)
+        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.Student student)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Student", Student);
-            CreateOverride(callInfo, Student);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "student", student);
+            CreateOverride(callInfo, student);
             return callInfo;
         }
 
@@ -229,15 +229,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.Student Student);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.Student student);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.Student Student)
+        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.Student student)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Student", Student);
-            EditOverride(callInfo, id, Student);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "student", student);
+            EditOverride(callInfo, id, student);
             return callInfo;
         }
 
@@ -254,15 +254,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, bool actuallyDelete);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, System.Web.Mvc.FormCollection collection);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Delete(System.Guid id, bool actuallyDelete)
+        public override System.Web.Mvc.ActionResult Delete(System.Guid id, System.Web.Mvc.FormCollection collection)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actuallyDelete", actuallyDelete);
-            DeleteOverride(callInfo, id, actuallyDelete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            DeleteOverride(callInfo, id, collection);
             return callInfo;
         }
 

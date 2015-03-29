@@ -45,6 +45,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookLoan.cs" />
+    <Compile Include="BookRequest.cs" />
     <Compile Include="BookLoan.generated.cs">
       <DependentUpon>EntityEF6_1.tt</DependentUpon>
     </Compile>

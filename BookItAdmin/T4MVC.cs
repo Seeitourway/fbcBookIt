@@ -27,6 +27,7 @@ using T4MVC;
 public static partial class MVC
 {
     public static BookItAdmin.Controllers.AccountController Account = new BookItAdmin.Controllers.T4MVC_AccountController();
+    public static BookItAdmin.Controllers.BookLoanController BookLoan = new BookItAdmin.Controllers.T4MVC_BookLoanController();
     public static BookItAdmin.Controllers.BookRequestController BookRequest = new BookItAdmin.Controllers.T4MVC_BookRequestController();
     public static BookItAdmin.Controllers.CopyController Copy = new BookItAdmin.Controllers.T4MVC_CopyController();
     public static BookItAdmin.Controllers.DataManagerController DataManager = new BookItAdmin.Controllers.T4MVC_DataManagerController();

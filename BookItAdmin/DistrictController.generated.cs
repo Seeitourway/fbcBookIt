@@ -121,7 +121,7 @@ namespace BookItAdmin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string District = "District";
+            public readonly string district = "district";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -130,7 +130,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string District = "District";
+            public readonly string district = "district";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -139,7 +139,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Delete
         {
             public readonly string id = "id";
-            public readonly string actuallyDelete = "actuallyDelete";
+            public readonly string collection = "collection";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -205,14 +205,14 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.District District);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.District district);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.District District)
+        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.District district)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "District", District);
-            CreateOverride(callInfo, District);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "district", district);
+            CreateOverride(callInfo, district);
             return callInfo;
         }
 
@@ -229,15 +229,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.District District);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.District district);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.District District)
+        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.District district)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "District", District);
-            EditOverride(callInfo, id, District);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "district", district);
+            EditOverride(callInfo, id, district);
             return callInfo;
         }
 
@@ -254,15 +254,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, bool actuallyDelete);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, System.Web.Mvc.FormCollection collection);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Delete(System.Guid id, bool actuallyDelete)
+        public override System.Web.Mvc.ActionResult Delete(System.Guid id, System.Web.Mvc.FormCollection collection)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "actuallyDelete", actuallyDelete);
-            DeleteOverride(callInfo, id, actuallyDelete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            DeleteOverride(callInfo, id, collection);
             return callInfo;
         }
 

@@ -24,10 +24,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace BookItAdmin.Controllers
 {
-    public partial class SchoolController
+    public partial class BookLoanController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected SchoolController(Dummy d) { }
+        protected BookLoanController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -63,6 +63,12 @@ namespace BookItAdmin.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Create()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Edit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -75,13 +81,13 @@ namespace BookItAdmin.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public SchoolController Actions { get { return MVC.School; } }
+        public BookLoanController Actions { get { return MVC.BookLoan; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "School";
+        public readonly string Name = "BookLoan";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "School";
+        public const string NameConst = "BookLoan";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -121,7 +127,8 @@ namespace BookItAdmin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string school = "school";
+            public readonly string id = "id";
+            public readonly string bookLoan = "bookLoan";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -130,7 +137,7 @@ namespace BookItAdmin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string school = "school";
+            public readonly string bookLoan = "bookLoan";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -157,18 +164,18 @@ namespace BookItAdmin.Controllers
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Views/School/Create.cshtml";
-            public readonly string Delete = "~/Views/School/Delete.cshtml";
-            public readonly string Details = "~/Views/School/Details.cshtml";
-            public readonly string Edit = "~/Views/School/Edit.cshtml";
-            public readonly string Index = "~/Views/School/Index.cshtml";
+            public readonly string Create = "~/Views/BookLoan/Create.cshtml";
+            public readonly string Delete = "~/Views/BookLoan/Delete.cshtml";
+            public readonly string Details = "~/Views/BookLoan/Details.cshtml";
+            public readonly string Edit = "~/Views/BookLoan/Edit.cshtml";
+            public readonly string Index = "~/Views/BookLoan/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_SchoolController : BookItAdmin.Controllers.SchoolController
+    public partial class T4MVC_BookLoanController : BookItAdmin.Controllers.BookLoanController
     {
-        public T4MVC_SchoolController() : base(Dummy.Instance) { }
+        public T4MVC_BookLoanController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -194,25 +201,26 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult Create(System.Guid id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            CreateOverride(callInfo, id);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.School school);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, FbcBookIt.Entity.BookLoan bookLoan);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.School school)
+        public override System.Web.Mvc.ActionResult Create(FbcBookIt.Entity.BookLoan bookLoan)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "school", school);
-            CreateOverride(callInfo, school);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "bookLoan", bookLoan);
+            CreateOverride(callInfo, bookLoan);
             return callInfo;
         }
 
@@ -229,15 +237,15 @@ namespace BookItAdmin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.School school);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id, FbcBookIt.Entity.BookLoan bookLoan);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.School school)
+        public override System.Web.Mvc.ActionResult Edit(System.Guid id, FbcBookIt.Entity.BookLoan bookLoan)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "school", school);
-            EditOverride(callInfo, id, school);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "bookLoan", bookLoan);
+            EditOverride(callInfo, id, bookLoan);
             return callInfo;
         }
 

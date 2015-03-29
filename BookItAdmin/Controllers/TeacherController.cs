@@ -28,12 +28,13 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Details(Guid id)
         {
             var teacher = _teacherR.Get(id);
-            return View();
+            return View(teacher);
         }
 
         public virtual ActionResult Create()
         {
             var teacher = new Teacher();
+            teacher.Active = true;
             return View(teacher);
         }
 
@@ -42,6 +43,7 @@ namespace BookItAdmin.Controllers
         {
             try
             {
+                teacher.Active = true;
                 var id = _teacherR.InsertAndReturnPrimaryKey(teacher);
 
                 return RedirectToAction(MVC.Teacher.Details(id));
@@ -76,18 +78,15 @@ namespace BookItAdmin.Controllers
         public virtual ActionResult Delete(Guid id)
         {
             var teacher = _teacherR.Get(id);
-            return View();
+            return View(teacher);
         }
 
         [HttpPost]
-        public virtual ActionResult Delete(Guid id, bool actuallyDelete)
+        public virtual ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
-                if (actuallyDelete)
-                    _teacherR.Delete(id);
-                else
-                    _teacherR.Remove(id);
+                _teacherR.Remove(id);
 
                 return RedirectToAction(MVC.Teacher.Index());
             }

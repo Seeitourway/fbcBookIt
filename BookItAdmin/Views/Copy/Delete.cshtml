@@ -53,11 +53,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CopyStatusID)
+            @Html.DisplayNameFor(model => model.CopyStatus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CopyStatusID)
+            @Html.DisplayFor(model => model.CopyStatus)
         </dd>
 
         <dt>
@@ -69,6 +69,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.StartLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartLocation)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.EndLocation)
         </dt>
 
@@ -77,11 +85,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FormatID)
+            @Html.DisplayNameFor(model => model.FormatTypeID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FormatID)
+            @Html.DisplayFor(model => model.FormatTypeID)
         </dd>
 
         <dt>
@@ -116,29 +124,15 @@
             @Html.DisplayFor(model => model.ProofRead)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartLocation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartLocation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TitleID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TitleID)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            Do you really want to discard this copy and all volumes?<br />
+            @Html.EnumDropDownListFor(model => model.CopyStatus, "Please select a reason")
+            <input type="submit" value="Discard" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

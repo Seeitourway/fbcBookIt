@@ -20,73 +20,72 @@ namespace BookItAdmin.Controllers
         }
         public virtual ActionResult Index()
         {
-            var Districts = _DistrictR.GetAll();
-            return View(Districts);
+            var districts = _DistrictR.GetAll();
+            return View(districts);
         }
 
         public virtual ActionResult Details(Guid id)
         {
-            var District = _DistrictR.Get(id);
-            return View();
+            var district = _DistrictR.Get(id);
+            return View(district);
         }
 
         public virtual ActionResult Create()
         {
-            var District = new District();
-            return View(District);
+            var district = new District();
+            district.Active = true;
+            return View(district);
         }
 
         [HttpPost]
-        public virtual ActionResult Create(District District)
+        public virtual ActionResult Create(District district)
         {
             try
             {
-                var id = _DistrictR.InsertAndReturnPrimaryKey(District);
+                district.Active = true;
+                var id = _DistrictR.InsertAndReturnPrimaryKey(district);
 
                 return RedirectToAction(MVC.District.Details(id));
             }
             catch
             {
-                return View(District);
+                return View(district);
             }
         }
 
         public virtual ActionResult Edit(Guid id)
         {
-            var District = _DistrictR.Get(id);
-            return View(District);
+            var district = _DistrictR.Get(id);
+            return View(district);
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(Guid id, District District)
+        public virtual ActionResult Edit(Guid id, District district)
         {
             try
             {
-                _DistrictR.Update(District);
+                _DistrictR.Update(district);
 
                 return RedirectToAction(MVC.District.Details(id));
             }
             catch
             {
-                return View(District);
+                return View(district);
             }
         }
 
         public virtual ActionResult Delete(Guid id)
         {
-            var District = _DistrictR.Get(id);
-            return View();
+            var district = _DistrictR.Get(id);
+            return View(district);
         }
 
         [HttpPost]
-        public virtual ActionResult Delete(Guid id, bool actuallyDelete)
+        public virtual ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
-                if (actuallyDelete)
-                    _DistrictR.Delete(id);
-                else
-                    _DistrictR.Remove(id);
+                _DistrictR.Remove(id);
 
                 return RedirectToAction(MVC.District.Index());
             }
