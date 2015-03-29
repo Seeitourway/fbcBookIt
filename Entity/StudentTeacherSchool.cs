@@ -4,7 +4,6 @@
 
 	public partial class StudentTeacherSchool
 	{
-		IEnumerable<Student> Student { get; set; }
-
+		public Student Student { get; set; }
 	}
 }
